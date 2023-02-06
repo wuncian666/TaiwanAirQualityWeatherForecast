@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_my_air"
+            android:icon="@drawable/ic_toolbar"
+            android:title="@string/my_air" />
+
+        <item
+            android:id="@+id/menu_aqi_search"
+            android:icon="@drawable/ic_search"
+            android:title="@string/aqi_search" />
+
+        <item
+            android:id="@+id/menu_change_location"
+            android:icon="@drawable/ic_baseline_location_on_24"
+            android:title="@string/change_location" />
+    </group>
+
+    <item android:title="@string/setting">
+        <menu>
+            <item
+                android:id="@+id/menu_setting"
+                android:icon="@drawable/ic_profile"
+                android:title="@string/setting"/>
+        </menu>
+    </item>
+
+    <item android:title="@string/logout">
+        <menu>
+            <item
+                android:id="@+id/menu_logout"
+                android:icon="@drawable/ic_baseline_logout_24"
+                android:title="@string/logout" />
+        </menu>
+    </item>
+</menu>

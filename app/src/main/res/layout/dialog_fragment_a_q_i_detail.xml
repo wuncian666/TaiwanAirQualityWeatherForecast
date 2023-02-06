@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/purple_200"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="75:110"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.8">
+
+            <TextView
+                android:id="@+id/text_city"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                app:layout_constraintDimensionRatio="1:0.2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="1"
+                tools:targetApi="o" />
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/text_aqi"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintDimensionRatio="1:0.2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_city"
+                app:layout_constraintWidth_percent="1"
+                tools:targetApi="o" />
+
+            <TextView
+                android:id="@+id/text_so2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/text_so2"
+                app:layout_constraintDimensionRatio="1:0.2"
+                app:layout_constraintEnd_toStartOf="@+id/text_co"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_aqi"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/text_co"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/text_co"
+                app:layout_constraintDimensionRatio="1:0.2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_so2"
+                app:layout_constraintTop_toBottomOf="@id/text_aqi"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/value_so2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                app:layout_constraintDimensionRatio="1:0.4"
+                app:layout_constraintEnd_toStartOf="@+id/value_co"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_so2"
+                app:layout_constraintWidth_percent="0.5"
+                tools:targetApi="o" />
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/value_co"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintDimensionRatio="1:0.4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/value_so2"
+                app:layout_constraintTop_toBottomOf="@+id/text_co"
+                app:layout_constraintWidth_percent="0.5"
+                tools:targetApi="o" />
+
+            <TextView
+                android:id="@+id/text_pm10"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/text_pm10"
+                app:layout_constraintDimensionRatio="1:0.2"
+                app:layout_constraintEnd_toStartOf="@+id/text_no2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/value_so2"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/text_no2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/text_no2"
+                app:layout_constraintDimensionRatio="1:0.2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_pm10"
+                app:layout_constraintTop_toBottomOf="@id/value_co"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/value_pm10"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                app:layout_constraintDimensionRatio="1:0.4"
+                app:layout_constraintEnd_toStartOf="@+id/value_no2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_pm10"
+                app:layout_constraintWidth_percent="0.5"
+                tools:targetApi="o" />
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/value_no2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintDimensionRatio="1:0.4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/value_pm10"
+                app:layout_constraintTop_toBottomOf="@+id/text_no2"
+                app:layout_constraintWidth_percent="0.5"
+                tools:targetApi="o" />
+
+            <TextView
+                android:id="@+id/text_o38"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/text_o38"
+                app:layout_constraintDimensionRatio="1:0.2"
+                app:layout_constraintEnd_toStartOf="@+id/text_pm25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/value_pm10"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/text_pm25"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/text_pm25"
+                app:layout_constraintDimensionRatio="1:0.2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_o38"
+                app:layout_constraintTop_toBottomOf="@id/value_no2"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/value_o38"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                app:layout_constraintDimensionRatio="1:0.4"
+                app:layout_constraintEnd_toStartOf="@+id/value_pm25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_o38"
+                app:layout_constraintWidth_percent="0.5"
+                tools:targetApi="o" />
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/value_pm25"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintDimensionRatio="1:0.4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/value_o38"
+                app:layout_constraintTop_toBottomOf="@+id/text_pm25"
+                app:layout_constraintWidth_percent="0.5"
+                tools:targetApi="o" />
+
+            <Button
+                android:text="@string/back"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/btn_back"
+                app:layout_constraintTop_toBottomOf="@id/value_o38"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

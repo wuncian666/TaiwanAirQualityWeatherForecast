@@ -1,0 +1,507 @@
+<resources>
+    <string name="app_name">Hi Q</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="hi_q">Hi Q</string>
+
+    <string name="not_yet_login">尚未登入</string>
+    <string name="location_default">基隆市</string>
+    <string name="site_name_default">基隆</string>
+
+    <string name="login">登入</string>
+    <string name="logout">登出</string>
+    <string name="register">註冊</string>
+    <string name="confirm">確認</string>
+    <string name="back">返回</string>
+    <string name="setting">設定</string>
+    <string name="cancel">取消</string>
+
+    <string name="type_account">請填入帳號</string>
+    <string name="type_password">請填入密碼</string>
+
+    <string name="item_background">項目背景</string>
+
+    <string name="text_aqi">空氣品質指標</string>
+    <string name="text_so2">二氧化硫副指標</string>
+    <string name="text_co">一氧化碳副指標</string>
+    <string name="text_pm10">懸浮微粒副指標</string>
+    <string name="text_no2">二氧化氮副指標</string>
+    <string name="text_o38">臭氧8小時副指標</string>
+    <string name="text_pm25">細懸浮微粒副指標</string>
+
+    <string name="pm25_unit">pm2.5(細懸浮微粒(μg/m3))</string>
+
+    <string name="per_hour_aqi">每小時空氣品質</string>
+    <string name="pollutant">空氣污染指標</string>
+    <string name="status">狀態</string>
+
+    <string name="aqi_search">臺灣空氣品質查詢</string>
+    <string name="sensor_thing_search">空品微型感測器查詢</string>
+    <string name="my_air">My Air</string>
+    <string name="change_location">所在地變更</string>
+    <string name="set_default_site_name">將測站設置為系統預設</string>
+
+    <string name="navigation_open">開啟</string>
+    <string name="navigation_close">關閉</string>
+
+    <string name="indoor">室內</string>
+    <string name="outdoor">室外</string>
+
+    <string name="none">無</string>
+
+    <string name="county">縣市</string>
+    <string name="township">鄉鎮</string>
+    <string name="aqi_site">測站</string>
+
+    <string name="name">Jessica</string>
+    <string name="aqi">AQI</string>
+    <string name="address">台南市 安南區</string>
+
+    <string name="btn_hub_setting">設置iHub</string>
+    <string name="text_hub_setup">請按iHub上的開關按鈕開啟設置</string>
+    <string name="text_hub_connect">請將手機與iHub連線</string>
+    <string name="go_to_device_settings">前往設定</string>
+    <string name="text_hub_connect_success">與iHub連線成功</string>
+    <string name="setup_hub_network">設置iHub網路</string>
+    <string name="type_wifi_password">請輸入iHub連線的WIFI密碼</string>
+    <string name="text_hub_connect_network_complete">iHub已連線至網路</string>
+    <string name="please_connect_your_phone_to_the_internet">請將手機連上網路</string>
+    <string name="connect_to_the_internet">連接網路</string>
+
+    <string name="next_step">下一步</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="open_window">請打開窗戶</string>
+    <string name="open_air_purifier">請打開空氣清淨機</string>
+
+    <string name="wear_mask">請戴口罩</string>
+    <string name="do_not_open_window">請勿打開窗戶</string>
+    <string name="do_not_go_outdoors">請勿從事戶外活動</string>
+
+    <string name="celsius_unit">°C</string>
+    <string name="percent_sign">%</string>
+    <string name="micrometer_per_cubic_meter">μg/m3</string>
+    <string name="parts_per_billion">ppb</string>
+    <string name="parts_per_million">ppm</string>
+
+    <string name="clear">晴天</string>
+    <string name="mostly_clear">晴時多雲</string>
+    <string name="partly_clear">多雲時晴</string>
+    <string name="partly_cloudy">多雲</string>
+
+    <string-array name="mostly_cloudy">
+        <item>多雲時陰</item>
+        <item>陰時多雲</item>
+    </string-array>
+
+    <string-array name="mostly_clear_rain">
+        <item>多雲陣雨</item>
+        <item>多雲短暫雨</item>
+        <item>多雲短暫陣雨</item>
+        <item>午後短暫陣雨</item>
+        <item>短暫陣雨</item>
+        <item>多雲時晴短暫陣雨</item>
+        <item>多雲時晴短暫雨</item>
+        <item>晴時多雲短暫陣雨</item>
+        <item>晴短暫陣雨</item>
+        <item>短暫雨</item>
+    </string-array>
+
+    <string-array name="rain">
+        <item>雨天</item>
+        <item>晴午後陰短暫雨</item>
+        <item>晴午後陰短暫陣雨</item>
+        <item>陰短暫雨</item>
+        <item>陰短暫陣雨</item>
+        <item>陰午後短暫陣雨</item>
+        <item>陰有雨</item>
+        <item>陰有陣雨</item>
+        <item>陰雨</item>
+        <item>陰陣雨</item>
+        <item>陣雨</item>
+        <item>午後陣雨</item>
+        <item>有雨</item>
+        <item>多雲時陰局部雨</item>
+        <item>多雲時陰局部陣雨</item>
+        <item>多雲時陰局部短暫雨</item>
+        <item>多雲時陰局部短暫陣雨</item>
+        <item>晴午後陰局部雨</item>
+        <item>晴午後陰局部陣雨</item>
+        <item>晴午後陰局部短暫雨</item>
+        <item>晴午後陰局部短暫陣雨</item>
+        <item>陰局部雨</item>
+        <item>陰局部陣雨陰局部短暫雨</item>
+        <item>陰局部短暫陣雨</item>
+        <item>陰時多雲局部雨</item>
+        <item>陰時多雲局部陣雨</item>
+        <item>陰時多雲局部短暫雨</item>
+        <item>陰時多雲局部短暫陣雨</item>
+    </string-array>
+
+    <string-array name="partly_cloudy_rain">
+        <item>多雲時陰短暫雨</item>
+        <item>多雲時陰短暫陣雨</item>
+        <item>陰時多雲短暫雨</item>
+        <item>陰時多雲短暫陣雨</item>
+    </string-array>
+
+    <string-array name="mostly_cloudy_rain">
+        <item>多雲時陰有雨</item>
+        <item>多雲時陰陣雨</item>
+        <item>晴時多雲陣雨</item>
+        <item>多雲時晴陣雨</item>
+        <item>陰時多雲有雨</item>
+        <item>陰時多雲有陣雨</item>
+        <item>陰時多雲陣雨</item>
+    </string-array>
+
+    <string-array name="partly_clear_rain_thunderstorms">
+        <item>多雲陣雨或雷雨</item>
+        <item>多雲短暫陣雨或雷雨</item>
+        <item>多雲短暫雷陣雨</item>
+        <item>多雲雷陣雨</item>
+        <item>短暫陣雨或雷雨後多雲</item>
+        <item>短暫雷陣雨後多雲</item>
+        <item>短暫陣雨或雷雨</item>
+        <item>晴時多雲短暫陣雨或雷雨</item>
+        <item>晴短暫陣雨或雷雨</item>
+        <item>多雲時晴短暫陣雨或雷雨</item>
+        <item>午後短暫雷陣雨</item>
+    </string-array>
+
+    <string-array name="cloudy_rain_thunderstorms">
+        <item>陰陣雨或雷雨</item>
+        <item>陰雷陣雨</item>
+        <item>晴午後陰短暫陣雨或雷雨</item>
+        <item>晴午後陰短暫雷陣雨</item>
+        <item>陰短暫陣雨或雷雨</item>
+        <item>陰短暫雷陣雨</item>
+        <item>雷雨</item>
+        <item>陣雨或雷雨後多雲</item>
+        <item>陰陣雨或雷雨後多雲</item>
+        <item>陰短暫陣雨或雷雨後多雲</item>
+        <item>陰短暫雷陣雨後多雲</item>
+        <item>陰雷陣雨後多雲</item>
+        <item>雷陣雨後多雲</item>
+        <item>陣雨或雷雨</item>
+        <item>雷陣雨</item>
+        <item>午後雷陣雨</item>
+    </string-array>
+
+    <string-array name="partly_cloudy_rain_thunderstorms">
+        <item>多雲時陰陣雨或雷雨</item>
+        <item>多雲時陰短暫陣雨或雷雨</item>
+        <item>多雲時陰短暫雷陣雨</item>
+        <item>多雲時陰雷陣雨</item>
+        <item>晴陣雨或雷雨</item>
+        <item>晴時多雲陣雨或雷雨</item>
+        <item>多雲時晴陣雨或雷雨</item>
+    </string-array>
+
+    <string-array name="mostly_cloudy_rain_thunderstorms">
+        <item>陰時多雲有雷陣雨</item>
+        <item>陰時多雲陣雨或雷雨</item>
+        <item>陰時多雲短暫陣雨或雷雨</item>
+        <item>陰時多雲短暫雷陣雨</item>
+        <item>陰時多雲雷陣雨</item>
+        <item>陰有陣雨或雷雨</item>
+        <item>陰有雷陣雨</item>
+    </string-array>
+
+    <string-array name="partly_clear_rain">
+        <item>晴午後多雲局部雨</item>
+        <item>晴午後多雲局部陣雨</item>
+        <item>晴午後多雲局部短暫雨</item>
+        <item>晴午後多雲局部短暫陣雨</item>
+        <item>晴午後多雲短暫雨</item>
+        <item>晴午後多雲短暫陣雨</item>
+        <item>晴午後局部雨</item>
+        <item>晴午後局部陣雨</item>
+        <item>晴午後局部短暫雨</item>
+        <item>晴午後局部短暫陣雨</item>
+        <item>晴午後陣雨</item>
+        <item>晴午後短暫雨</item>
+        <item>晴午後短暫陣雨</item>
+        <item>晴時多雲午後短暫陣雨</item>
+        <item>多雲午後局部雨</item>
+        <item>多雲午後局部陣雨</item>
+        <item>多雲午後局部短暫雨</item>
+        <item>多雲午後局部短暫陣雨</item>
+        <item>多雲午後陣雨</item>
+        <item>多雲午後短暫雨</item>
+        <item>多雲午後短暫陣雨</item>
+        <item>多雲時陰午後短暫陣雨</item>
+        <item>陰時多雲午後短暫陣雨</item>
+        <item>多雲時晴午後短暫陣雨</item>
+        <item>多雲局部雨</item>
+        <item>多雲局部陣雨</item>
+        <item>多雲局部短暫雨</item>
+        <item>多雲局部短暫陣雨</item>
+    </string-array>
+
+    <string-array name="mostly_clear_thunderstorms">
+        <item>晴午後多雲陣雨或雷雨</item>
+        <item>晴午後多雲雷陣雨</item>
+        <item>晴午後陣雨或雷雨</item>
+        <item>晴午後雷陣雨</item>
+        <item>晴午後多雲局部陣雨或雷雨</item>
+        <item>晴午後多雲局部短暫陣雨或雷雨</item>
+        <item>晴午後多雲局部短暫雷陣雨</item>
+        <item>晴午後多雲局部雷陣雨</item>
+        <item>晴午後多雲短暫陣雨或雷雨</item>
+        <item>晴午後多雲短暫雷陣雨</item>
+        <item>晴午後局部短暫雷陣雨</item>
+        <item>晴午後局部雷陣雨</item>
+        <item>晴午後短暫雷陣雨</item>
+        <item>晴雷陣雨</item>
+        <item>晴時多雲雷陣雨</item>
+        <item>晴時多雲午後短暫雷陣雨</item>
+        <item>多雲午後局部陣雨或雷雨</item>
+        <item>多雲午後局部短暫陣雨或雷雨</item>
+        <item>多雲午後局部短暫雷陣雨</item>
+        <item>多雲午後局部雷陣雨</item>
+        <item>多雲午後陣雨或雷雨</item>
+        <item>多雲午後短暫陣雨或雷雨</item>
+        <item>多雲午後短暫雷陣雨</item>
+        <item>多雲午後雷陣雨</item>
+        <item>多雲時晴雷陣雨</item>
+        <item>多雲時晴午後短暫雷陣雨</item>
+        <item>多雲時陰午後短暫雷陣雨</item>
+        <item>陰時多雲午後短暫雷陣雨</item>
+        <item>陰午後短暫雷陣雨</item>
+        <item>多雲局部陣雨或雷雨</item>
+        <item>多雲局部短暫陣雨或雷雨</item>
+        <item>多雲局部短暫雷陣雨</item>
+        <item>多雲局部雷陣雨</item>
+    </string-array>
+
+    <string-array name="cloudy_snowy_rain">
+        <item>多雲局部陣雨或雪</item>
+        <item>多雲時陰有雨或雪</item>
+        <item>多雲時陰短暫雨或雪</item>
+        <item>多雲短暫雨或雪</item>
+        <item>陰有雨或雪</item>
+        <item>陰時多雲有雨或雪</item>
+        <item>陰時多雲短暫雨或雪</item>
+        <item>陰短暫雨或雪</item>
+        <item>多雲時陰有雪</item>
+        <item>多雲時陰短暫雪</item>
+        <item>多雲短暫雪</item>
+        <item>陰有雪</item>
+        <item>陰時多雲有雪</item>
+        <item>陰時多雲短暫雪</item>
+        <item>陰短暫雪</item>
+        <item>有雨或雪</item>
+        <item>有雨或短暫雪</item>
+        <item>陰有雨或短暫雪</item>
+        <item>陰時多雲有雨或短暫雪</item>
+        <item>多雲時陰有雨或短暫雪</item>
+        <item>多雲有雨或短暫雪</item>
+        <item>多雲有雨或雪</item>
+        <item>多雲時晴有雨或雪</item>
+        <item>晴時多雲有雨或雪</item>
+        <item>晴有雨或雪</item>
+        <item>短暫雨或雪</item>
+        <item>多雲時晴短暫雨或雪</item>
+        <item>晴時多雲短暫雨或雪</item>
+        <item>晴短暫雨或雪</item>
+        <item>有雪</item>
+        <item>多雲有雪</item>
+        <item>多雲時晴有雪</item>
+        <item>晴時多雲有雪</item>
+        <item>晴有雪</item>
+        <item>短暫雪</item>
+        <item>多雲時晴短暫雪</item>
+        <item>晴時多雲短暫雪</item>
+        <item>晴短暫雪</item>
+    </string-array>
+
+    <string-array name="clear_foggy">
+        <item>晴有霧</item>
+        <item>晴晨霧</item>
+        <item>晴時多雲有霧</item>
+        <item>晴時多雲晨霧</item>
+    </string-array>
+
+    <string-array name="mostly_clear_foggy">
+        <item>多雲時晴有霧</item>
+        <item>多雲時晴晨霧</item>
+        <item>多雲有霧</item>
+        <item>多雲晨霧</item>
+        <item>有霧</item>
+        <item>晨霧</item>
+    </string-array>
+
+    <string-array name="cloudy_foggy">
+        <item>陰有霧</item>
+        <item>陰晨霧</item>
+        <item>多雲時陰有霧</item>
+        <item>多雲時陰晨霧</item>
+        <item>陰時多雲有霧</item>
+        <item>陰時多雲晨霧</item>
+    </string-array>
+
+    <string-array name="cloudy_foggy_rain">
+        <item>多雲時陰有霧有局部雨</item>
+        <item>多雲時陰有霧有局部陣雨</item>
+        <item>多雲時陰有霧有局部短暫雨</item>
+        <item>多雲時陰有霧有局部短暫陣雨</item>
+        <item>多雲時陰有霧有陣雨</item>
+        <item>多雲時陰有霧有短暫雨</item>
+        <item>多雲時陰有霧有短暫陣雨</item>
+        <item>多雲時陰局部雨有霧</item>
+        <item>多雲時陰局部陣雨有霧</item>
+        <item>多雲時陰局部短暫雨有霧</item>
+        <item>多雲時陰局部短暫陣雨有霧</item>
+        <item>多雲時陰陣雨有霧</item>
+        <item>多雲時陰短暫雨有霧</item>
+        <item>多雲時陰短暫雨晨霧</item>
+        <item>多雲時陰短暫陣雨有霧</item>
+        <item>多雲時陰短暫陣雨晨霧</item>
+        <item>陰有霧有陣雨</item>
+        <item>陰局部雨有霧</item>
+        <item>陰局部陣雨有霧</item>
+        <item>陰局部短暫陣雨有霧</item>
+        <item>陰時多雲有霧有局部雨</item>
+        <item>陰時多雲有霧有局部陣雨</item>
+        <item>陰時多雲有霧有局部短暫雨</item>
+        <item>陰時多雲有霧有局部短暫陣雨</item>
+        <item>陰時多雲有霧有陣雨</item>
+        <item>陰時多雲有霧有短暫雨</item>
+        <item>陰時多雲有霧有短暫陣雨</item>
+        <item>陰時多雲局部雨有霧</item>
+        <item>陰時多雲局部陣雨有霧</item>
+        <item>陰時多雲局部短暫雨有霧</item>
+        <item>陰時多雲局部短暫陣雨有霧</item>
+        <item>陰時多雲陣雨有霧</item>
+        <item>陰時多雲短暫雨有霧</item>
+        <item>陰時多雲短暫雨晨霧</item>
+        <item>陰時多雲短暫陣雨有霧</item>
+        <item>陰時多雲短暫陣雨晨霧</item>
+        <item>陰陣雨有霧</item>
+        <item>陰短暫雨有霧</item>
+        <item>陰短暫雨晨霧</item>
+        <item>陰短暫陣雨有霧</item>
+        <item>陰短暫陣雨晨霧</item>
+        <item>短暫陣雨有霧</item>
+        <item>短暫陣雨晨霧</item>
+        <item>短暫雨有霧</item>
+        <item>短暫雨晨霧</item>
+        <item>有雨有霧</item>
+        <item>陣雨有霧</item>
+    </string-array>
+
+    <string-array name="cloudy_thunderstorms">
+        <item>多雲時陰局部陣雨或雷雨</item>
+        <item>多雲時陰局部短暫陣雨或雷雨</item>
+        <item>多雲時陰局部短暫雷陣雨</item>
+        <item>多雲時陰局部雷陣雨</item>
+        <item>晴午後陰局部陣雨或雷雨</item>
+        <item>晴午後陰局部短暫陣雨或雷雨</item>
+        <item>晴午後陰局部短暫雷陣雨</item>
+        <item>晴午後陰局部雷陣雨</item>
+        <item>陰局部陣雨或雷雨</item>
+        <item>陰局部短暫陣雨或雷雨</item>
+        <item>陰局部短暫雷陣雨</item>
+        <item>陰局部雷陣雨</item>
+        <item>陰時多雲局部陣雨或雷雨</item>
+        <item>陰時多雲局部短暫陣雨或雷雨</item>
+        <item>陰時多雲局部短暫雷陣雨</item>
+        <item>陰時多雲局部雷陣雨</item>
+    </string-array>
+
+    <string-array name="cloudy_foggy_snowy_rain">
+        <item>多雲局部雨或雪有霧</item>
+        <item>多雲時陰局部雨或雪有霧</item>
+        <item>陰時多雲局部雨或雪有霧</item>
+        <item>陰局部雨或雪有霧</item>
+        <item>短暫雨或雪有霧</item>
+        <item>有雨或雪有霧</item>
+    </string-array>
+
+    <string-array name="mostly_clear_foggy_rain">
+        <item>多雲有霧有局部雨</item>
+        <item>多雲有霧有局部陣雨</item>
+        <item>多雲有霧有局部短暫雨</item>
+        <item>多雲有霧有局部短暫陣雨</item>
+        <item>多雲有霧有陣雨</item>
+        <item>多雲有霧有短暫雨</item>
+        <item>多雲有霧有短暫陣雨</item>
+        <item>多雲局部雨有霧</item>
+        <item>多雲局部雨晨霧</item>
+        <item>多雲局部陣雨有霧</item>
+        <item>多雲局部陣雨晨霧</item>
+        <item>多雲局部短暫雨有霧</item>
+        <item>多雲局部短暫雨晨霧</item>
+        <item>多雲局部短暫陣雨有霧</item>
+        <item>多雲局部短暫陣雨晨霧</item>
+        <item>多雲陣雨有霧</item>
+        <item>多雲短暫雨有霧</item>
+        <item>多雲短暫雨晨霧</item>
+        <item>多雲短暫陣雨有霧</item>
+        <item>多雲短暫陣雨晨霧</item>
+        <item>有霧有短暫雨</item>
+        <item>有霧有短暫陣雨</item>
+    </string-array>
+
+    <string-array name="snowy">
+        <item>下雪</item>
+        <item>積冰</item>
+        <item>暴風雪</item>
+    </string-array>
+
+    <string-array name="partly_cloudy_foggy_thunderstorms">
+        <item>多雲有陣雨或雷雨有霧</item>
+        <item>多雲有雷陣雨有霧</item>
+        <item>多雲有霧有陣雨或雷雨</item>
+        <item>多雲有霧有雷陣雨</item>
+        <item>多雲局部陣雨或雷雨有霧</item>
+        <item>多雲局部短暫陣雨或雷雨有霧</item>
+        <item>多雲局部短暫雷陣雨有霧</item>
+        <item>多雲局部雷陣雨有霧</item>
+        <item>多雲陣雨或雷雨有霧</item>
+        <item>多雲短暫陣雨或雷雨有霧</item>
+        <item>多雲短暫雷陣雨有霧</item>
+        <item>多雲雷陣雨有霧</item>
+        <item>多雲時晴短暫陣雨或雷雨有霧</item>
+    </string-array>
+
+    <string-array name="cloudy_foggy_thunderstorms">
+        <item>多雲時陰有陣雨或雷雨有霧</item>
+        <item>多雲時陰有雷陣雨有霧</item>
+        <item>多雲時陰有霧有陣雨或雷雨</item>
+        <item>多雲時陰有霧有雷陣雨</item>
+        <item>多雲時陰局部陣雨或雷雨有霧</item>
+        <item>多雲時陰局部短暫陣雨或雷雨有霧</item>
+        <item>多雲時陰局部短暫雷陣雨有霧</item>
+        <item>多雲時陰局部雷陣雨有霧</item>
+        <item>多雲時陰陣雨或雷雨有霧</item>
+        <item>多雲時陰短暫陣雨或雷雨有霧</item>
+        <item>多雲時陰短暫雷陣雨有霧</item>
+        <item>多雲時陰雷陣雨有霧</item>
+        <item>陰局部陣雨或雷雨有霧</item>
+        <item>陰局部短暫陣雨或雷雨有霧</item>
+        <item>陰局部短暫雷陣雨有霧</item>
+        <item>陰局部雷陣雨有霧</item>
+        <item>陰時多雲有陣雨或雷雨有霧</item>
+        <item>陰時多雲有雷陣雨有霧</item>
+        <item>陰時多雲有霧有陣雨或雷雨</item>
+        <item>陰時多雲有霧有雷陣雨</item>
+        <item>陰時多雲局部陣雨或雷雨有霧</item>
+        <item>陰時多雲局部短暫陣雨或雷雨有霧</item>
+        <item>陰時多雲局部短暫雷陣雨有霧</item>
+        <item>陰時多雲局部雷陣雨有霧</item>
+        <item>陰時多雲陣雨或雷雨有霧</item>
+        <item>陰時多雲短暫陣雨或雷雨有霧</item>
+        <item>陰時多雲短暫雷陣雨有霧</item>
+        <item>陰時多雲雷陣雨有霧</item>
+        <item>陰短暫陣雨或雷雨有霧</item>
+        <item>陰短暫雷陣雨有霧</item>
+        <item>雷陣雨有霧</item>
+        <item>短暫陣雨或雷雨有霧</item>
+        <item>陣雨或雷雨有霧</item>
+    </string-array>
+</resources>

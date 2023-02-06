@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hub_setup_nav"
+    app:startDestination="@id/hubSetUpStep1">
+
+    <fragment
+        android:id="@+id/hubSetUpStep1"
+        android:name="com.example.airqualityindex.hubSetup.HubSetupStep1"
+        android:label="HubSetUpStep1"
+        tools:layout="@layout/fragment_hub_setup_step1">
+        <action
+            android:id="@+id/action_hubSetUpStep1_to_hubSetupStep2"
+            app:destination="@id/hubSetupStep2" />
+        <action
+            android:id="@+id/action_hubSetUpStep1_to_hubSetupStep3"
+            app:destination="@id/hubSetupStep3" />
+    </fragment>
+    <fragment
+        android:id="@+id/hubSetupStep2"
+        android:name="com.example.airqualityindex.hubSetup.HubSetupStep2"
+        android:label="HubSetupStep2"
+        tools:layout="@layout/fragment_hub_setup_step2">
+        <action
+            android:id="@+id/action_hubSetupStep2_to_hubSetupStep3"
+            app:destination="@id/hubSetupStep3" />
+    </fragment>
+    <fragment
+        android:id="@+id/hubSetupStep3"
+        android:name="com.example.airqualityindex.hubSetup.HubSetupStep3"
+        android:label="HubSetupStep3"
+        tools:layout="@layout/fragment_hub_setup_step3"/>
+</navigation>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_hub_setup"
+    app:startDestination="@id/hubSetupStep2">
+    <fragment
+        android:id="@+id/hubSetupStep2"
+        android:name="com.example.airqualityindex.hubSetup.HubSetupStep2"
+        android:label="HubSetupStep2"
+        tools:layout="@layout/fragment_hub_setup_step2">
+        <action
+            android:id="@+id/action_hubSetupStep2_to_hubSetupStep3"
+            app:destination="@id/hubSetupStep3" />
+    </fragment>
+    <fragment
+        android:id="@+id/hubSetupStep3"
+        android:name="com.example.airqualityindex.hubSetup.HubSetupStep3"
+        android:label="HubSetupStep3"
+        tools:layout="@layout/fragment_hub_setup_step3">
+        <action
+            android:id="@+id/action_hubSetupStep3_to_hubSetupStep4"
+            app:destination="@id/hubSetupStep4" />
+    </fragment>
+    <fragment
+        android:id="@+id/hubSetupStep4"
+        android:name="com.example.airqualityindex.hubSetup.HubSetupStep4"
+        android:label="HubSetupStep4"
+        tools:layout="@layout/fragment_hub_setup_step4">
+        <action
+            android:id="@+id/action_hubSetupStep4_to_hubSetupStep5"
+            app:destination="@id/hubSetupStep5" />
+    </fragment>
+    <fragment
+        android:id="@+id/hubSetupStep5"
+        android:name="com.example.airqualityindex.hubSetup.HubSetupStep5"
+        android:label="HubSetupStep5"
+        tools:layout="@layout/fragment_hub_setup_step5">
+        <action
+            android:id="@+id/action_hubSetupStep5_to_hubSetupStep6"
+            app:destination="@id/hubSetupStep6" />
+        <action
+            android:id="@+id/action_hubSetupStep5_to_hubSetupFailed"
+            app:destination="@id/hubSetupFailed" />
+        <argument
+            android:name="wifiInfo"
+            app:argType="com.example.airqualityindex.model.WifiInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/hubSetupStep6"
+        android:name="com.example.airqualityindex.hubSetup.HubSetupStep6"
+        android:label="HubSetupStep6" >
+        <action
+            android:id="@+id/action_hubSetupStep6_to_hubSetupStep7"
+            app:destination="@id/hubSetupStep7" />
+    </fragment>
+    <fragment
+        android:id="@+id/hubSetupStep7"
+        android:name="com.example.airqualityindex.hubSetup.HubSetupStep7"
+        android:label="HubSetupStep7" />
+    <fragment
+        android:id="@+id/hubSetupFailed"
+        android:name="com.example.airqualityindex.hubSetup.HubSetupFailed"
+        android:label="HubSetupFailed" >
+        <action
+            android:id="@+id/action_hubSetupFailed_to_hubSetupStep2"
+            app:destination="@id/hubSetupStep2" />
+    </fragment>
+
+
+</navigation>
