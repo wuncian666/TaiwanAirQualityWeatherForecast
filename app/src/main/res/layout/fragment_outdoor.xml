@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_smoke"
+        tools:context=".workers.OutdoorFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/weather_block"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/custom_toolbar"
+                style="@style/toolbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/open_custom_drawer"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/shape_25dp_corners"
+                    android:src="@drawable/ic_toolbar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.9"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/co_headline_bold"
+                    android:gravity="center"
+                    android:text="@string/hi_q"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:0.15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.5"
+                    tools:targetApi="o" />
+
+                <ImageButton
+                    android:id="@+id/outdoor_warning"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/ic_outdoor_warning_default"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="28.8:38.4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.6"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/co_headline_bold"
+                android:text="@string/name"
+                android:textColor="@color/dark_gray"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="123:32"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.119"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.241"
+                app:layout_constraintWidth_percent="0.288"
+                tools:targetApi="o" />
+
+            <ImageView
+                android:id="@+id/img_location"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_baseline_location_on_24"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="@id/user_name"
+                app:layout_constraintTop_toBottomOf="@id/user_name"
+                app:layout_constraintWidth_percent="0.06" />
+
+            <TextView
+                android:id="@+id/text_user_location"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/gen_sen_maru_gothic_tw_regular"
+                android:text="@string/address"
+                android:textColor="@color/dark_gray"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/img_location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_location"
+                app:layout_constraintTop_toTopOf="@+id/img_location"
+                tools:targetApi="o" />
+
+            <ImageView
+                android:id="@+id/img_cloud"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/aqi_good"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="235.4:192.7"
+                app:layout_constraintStart_toStartOf="@id/img_location"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.76"
+                app:layout_constraintWidth_percent="0.4" />
+
+            <TextView
+                android:id="@+id/text_temperature_range"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/co_headline_bold"
+                android:gravity="center"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintDimensionRatio="142:47"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_cloud"
+                app:layout_constraintTop_toTopOf="@id/img_cloud"
+                app:layout_constraintWidth_percent="0.33"
+                tools:targetApi="o" />
+
+            <ImageView
+                android:id="@+id/background_aqi"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/background_purple"
+                app:layout_constraintBottom_toBottomOf="@id/img_cloud"
+                app:layout_constraintDimensionRatio="127.4:37.9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_cloud"
+                app:layout_constraintWidth_percent="0.296" />
+
+            <TextView
+                android:id="@+id/text_aqi"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="6dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/co_headline_bold"
+                android:gravity="center"
+                android:text="@string/aqi"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/background_aqi"
+                app:layout_constraintDimensionRatio="33.1:21.6"
+                app:layout_constraintStart_toStartOf="@id/background_aqi"
+                app:layout_constraintTop_toTopOf="@id/background_aqi"
+                app:layout_constraintWidth_percent="0.076"
+                tools:targetApi="o" />
+
+            <TextView
+                android:id="@+id/text_aqi_result"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/co_headline_bold"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/background_aqi"
+                app:layout_constraintDimensionRatio="45.4:37.5"
+                app:layout_constraintEnd_toEndOf="@id/background_aqi"
+                app:layout_constraintStart_toEndOf="@id/text_aqi"
+                app:layout_constraintTop_toTopOf="@id/background_aqi"
+                app:layout_constraintWidth_percent="0.105"
+                tools:targetApi="o" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/detail_block"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_10dp_bottom_top_corners"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/icon_pm25"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/img_pm25_outdoor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="52:56"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.188"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.267"
+                app:layout_constraintWidth_percent="0.12" />
+
+            <TextView
+                android:id="@+id/text_pm25"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:0.4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.155"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.458"
+                app:layout_constraintWidth_percent="0.2"
+                tools:targetApi="o" />
+
+            <ImageView
+                android:id="@+id/icon_co2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/img_co_outdoor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="85.1:53.2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.155"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.624"
+                app:layout_constraintWidth_percent="0.197" />
+
+            <TextView
+                android:id="@+id/text_co"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:0.4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.155"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.798"
+                app:layout_constraintWidth_percent="0.2"
+                tools:targetApi="o" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/img_pm10_outdoor"
+                android:textColor="@color/grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="80.7:58.1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.267"
+                app:layout_constraintWidth_percent="0.187" />
+
+            <TextView
+                android:id="@+id/text_pm10"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:0.4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.458"
+                app:layout_constraintWidth_percent="0.2"
+                tools:targetApi="o" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/img_so2_outdoor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="74:46.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.624"
+                app:layout_constraintWidth_percent="0.172" />
+
+            <TextView
+                android:id="@+id/text_so2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:0.4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.798"
+                app:layout_constraintWidth_percent="0.2"
+                tools:targetApi="o" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/img_o3"
+                android:textColor="@color/grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="61.7:49.8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.267"
+                app:layout_constraintWidth_percent="0.143" />
+
+            <TextView
+                android:id="@+id/text_o3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:0.4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.84"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.458"
+                app:layout_constraintWidth_percent="0.2"
+                tools:targetApi="o" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/img_no2_outdoor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="72.1:54.3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.624"
+                app:layout_constraintWidth_percent="0.167" />
+
+            <TextView
+                android:id="@+id/text_no2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:0.4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.84"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.798"
+                app:layout_constraintWidth_percent="0.2"
+                tools:targetApi="o" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

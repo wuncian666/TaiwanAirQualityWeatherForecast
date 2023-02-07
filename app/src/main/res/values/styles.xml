@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="navigation_view">
+        <item name="android:textColorSecondary">@color/grey</item>
+        <item name="android:listDivider">@color/grey</item>
+    </style>
+
+    <style name="toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="elevation">2dp</item>
+        <item name="android:background">@color/bilious_green</item>
+        <item name="titleTextColor">@color/white_smoke</item>
+        <item name="srcCompat">@drawable/shape_25dp_corners</item>
+    </style>
+
+    <style name="dialog_toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="elevation">2dp</item>
+    </style>
+
+    <style name="spinner">
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="Widget.Theme.AirQualityIndex.ActionBar.Fullscreen"
+        parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.Theme.AirQualityIndex.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+</resources>

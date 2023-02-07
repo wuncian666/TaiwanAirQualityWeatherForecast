@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_open_windows"
+        android:title="@string/open_window"
+        android:icon="@drawable/ic_open_window"/>
+
+    <item android:id="@+id/menu_open_air_purifier"
+        android:title="@string/open_air_purifier"
+        android:icon="@drawable/ic_open_air_purifier"/>
+</menu>

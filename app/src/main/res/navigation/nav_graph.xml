@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.airqualityindex.workers.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_indoorFragment"
+            app:destination="@id/indoorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.airqualityindex.workers.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/searchAQIFragment"
+        android:name="com.example.airqualityindex.drawerFragment.SearchAirQualityFragment"
+        android:label="SearchAQIFragment"
+        tools:layout="@layout/fragment_search_a_q_i">
+        <argument
+            android:name="perHourRecord"
+            app:argType="com.example.airqualityindex.model.aqiPerHour.PerHourRecord" />
+    </fragment>
+    <fragment
+        android:id="@+id/indoorFragment"
+        android:name="com.example.airqualityindex.workers.IndoorFragment"
+        android:label="IndoorFragment"
+        tools:layout="@layout/fragment_indoor" />
+    <fragment
+        android:id="@+id/outdoorFragment"
+        android:name="com.example.airqualityindex.workers.OutdoorFragment"
+        android:label="OutdoorFragment"
+        tools:layout="@layout/fragment_outdoor" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/changeLocationFragment"
+        android:name="com.example.airqualityindex.drawerFragment.ChangeLocationFragment"
+        android:label="fragment_change_location"
+        tools:layout="@layout/fragment_change_location" />
+
+    <fragment
+        android:id="@+id/myAirFragment"
+        android:name="com.example.airqualityindex.drawerFragment.MyAirFragment"
+        android:label="MyAirFragment"
+        tools:layout="@layout/fragment_my_air" />
+</navigation>
