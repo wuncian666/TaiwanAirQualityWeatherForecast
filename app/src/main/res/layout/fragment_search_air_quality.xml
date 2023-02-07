@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_smoke"
+        tools:context=".features.search.airquality.controller.SearchAirQuality">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/custom_toolbar"
+            style="@style/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/open_custom_drawer"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:background="@drawable/shape_25dp_corners"
+                android:src="@drawable/ic_toolbar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/co_headline_bold"
+                android:gravity="center"
+                android:text="@string/aqi_search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:0.15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.52"
+                app:layout_constraintWidth_percent="0.5"
+                tools:targetApi="o" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/text_county"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/gen_sen_maru_gothic_tw_regular"
+            android:text="@string/county"
+            android:textColor="@color/dark_gray"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_44"
+            app:layout_constraintDimensionRatio="45:31.2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.151"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/custom_toolbar"
+            app:layout_constraintVertical_bias="0.131"
+            app:layout_constraintWidth_percent="0.1"
+            tools:targetApi="o" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/spinner_county_block"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_spinner"
+            app:layout_constraintDimensionRatio="303.8:34"
+            app:layout_constraintStart_toStartOf="@id/text_county"
+            app:layout_constraintTop_toBottomOf="@+id/text_county"
+            app:layout_constraintVertical_bias="0.252"
+            app:layout_constraintWidth_percent="0.70">
+
+            <Spinner
+                android:id="@+id/spinner_county"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.9" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/text_site"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="108dp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/gen_sen_maru_gothic_tw_regular"
+            android:text="@string/aqi_site"
+            android:textColor="@color/dark_gray"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_horizontal_44"
+            app:layout_constraintDimensionRatio="45:31.2"
+            app:layout_constraintStart_toStartOf="@id/text_county"
+            app:layout_constraintTop_toBottomOf="@+id/custom_toolbar"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent="0.1"
+            tools:targetApi="o" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/spinner_site_block"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_spinner"
+            app:layout_constraintDimensionRatio="303.8:34"
+            app:layout_constraintStart_toStartOf="@id/text_county"
+            app:layout_constraintTop_toBottomOf="@id/text_site"
+            app:layout_constraintVertical_bias="0.649"
+            app:layout_constraintWidth_percent="0.70">
+
+            <Spinner
+                android:id="@+id/spinner_site"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.9" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <CheckBox
+            android:id="@+id/checkbox_set_default_site_name"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:buttonTint="@color/dark_gray"
+            android:text="@string/set_default_site_name"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline_horizontal_44"
+            app:layout_constraintDimensionRatio="10:1"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintStart_toStartOf="@id/text_county"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_site_block"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <ImageButton
+            android:id="@+id/btn_search"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/btn_spinner_confirm"
+            android:src="@drawable/ic_search_white"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_horizontal_44"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@id/spinner_site_block"
+            app:layout_constraintTop_toBottomOf="@id/checkbox_set_default_site_name"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintWidth_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.44" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/detail_block"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_10dp_bottom_top_corners"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_44"
+            app:layout_constraintVertical_bias="1.0">
+
+            <TextView
+                android:id="@+id/text_county_with_site_name"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/co_headline_bold"
+                android:gravity="center"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="70:32"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.057"
+                app:layout_constraintWidth_percent="0.339" />
+
+            <TextView
+                android:id="@+id/text_air_quality_index"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="6dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/co_headline_bold"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/background_air_quality_index"
+                app:layout_constraintDimensionRatio="60.9:34.3"
+                app:layout_constraintEnd_toEndOf="@id/background_air_quality_index"
+                app:layout_constraintStart_toEndOf="@id/text_aqi"
+                app:layout_constraintTop_toTopOf="@id/background_air_quality_index"
+                app:layout_constraintVertical_bias="0.538"
+                app:layout_constraintWidth_percent="0.081"
+                tools:targetApi="o" />
+
+            <ImageView
+                android:id="@+id/img_air_quality"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/aqi_good"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="144.6:92.1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.17"
+                app:layout_constraintHorizontal_bias="0.183"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.28" />
+
+            <ImageView
+                android:id="@+id/background_air_quality_index"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/background_green"
+                app:layout_constraintBottom_toBottomOf="@id/img_air_quality"
+                app:layout_constraintDimensionRatio="114.3:34"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.508"
+                app:layout_constraintStart_toEndOf="@id/img_air_quality"
+                app:layout_constraintTop_toBottomOf="@id/text_air_quality_status"
+                app:layout_constraintWidth_percent="0.26" />
+
+            <TextView
+                android:id="@+id/text_aqi"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="12dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/co_headline_bold"
+                android:text="@string/aqi"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/background_air_quality_index"
+                app:layout_constraintDimensionRatio="29.4:19.1"
+                app:layout_constraintStart_toStartOf="@id/background_air_quality_index"
+                app:layout_constraintTop_toTopOf="@id/background_air_quality_index"
+                app:layout_constraintWidth_percent="0.068"
+                tools:targetApi="o" />
+
+            <TextView
+                android:id="@+id/text_air_quality_status"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/co_headline_bold"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintBottom_toTopOf="@+id/background_air_quality_index"
+                app:layout_constraintDimensionRatio="45:31"
+                app:layout_constraintEnd_toEndOf="@+id/background_air_quality_index"
+                app:layout_constraintStart_toStartOf="@+id/background_air_quality_index"
+                app:layout_constraintTop_toTopOf="@id/img_air_quality"
+                app:layout_constraintVertical_bias="1.0"
+                app:layout_constraintWidth_percent="0.1" />
+
+            <TextView
+                android:id="@+id/text_so2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/co_headline_bold"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@id/text_co"
+                app:layout_constraintEnd_toEndOf="@+id/icon_so2"
+                app:layout_constraintHorizontal_bias="0.478"
+                app:layout_constraintStart_toStartOf="@+id/icon_so2"
+                app:layout_constraintTop_toTopOf="@id/text_co"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintWidth_percent="0.2"
+                tools:targetApi="o" />
+
+            <TextView
+                android:id="@+id/text_co"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/co_headline_bold"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="100:30"
+                app:layout_constraintEnd_toEndOf="@+id/icon_co"
+                app:layout_constraintHorizontal_bias="0.521"
+                app:layout_constraintStart_toStartOf="@+id/icon_co"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.909"
+                app:layout_constraintWidth_percent="0.2"
+                tools:targetApi="o" />
+
+            <TextView
+                android:id="@+id/text_no2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/co_headline_bold"
+                android:gravity="center"
+                android:textColor="@color/grey"
+                app:layout_constraintBottom_toBottomOf="@id/text_co"
+                app:layout_constraintEnd_toEndOf="@+id/icon_no2"
+                app:layout_constraintHorizontal_bias="0.575"
+                app:layout_constraintStart_toStartOf="@+id/icon_no2"
+                app:layout_constraintTop_toTopOf="@id/text_co"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintWidth_percent="0.2"
+                tools:targetApi="o" />
+
+            <ImageView
+                android:id="@+id/icon_pm25"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/img_pm25_outdoor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="47.5:51.8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.1"
+                app:layout_constraintHorizontal_bias="0.18"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.552" />
+
+            <TextView
+                android:id="@+id/text_pm10"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/co_headline_bold"
+                android:gravity="center"
+                android:textColor="@color/grey"
+                app:layout_constraintBottom_toBottomOf="@id/text_pm25"
+                app:layout_constraintEnd_toEndOf="@+id/icon_pm10"
+                app:layout_constraintHorizontal_bias="0.461"
+                app:layout_constraintStart_toStartOf="@+id/icon_pm10"
+                app:layout_constraintTop_toTopOf="@id/text_pm25"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintWidth_percent="0.2"
+                tools:targetApi="o" />
+
+            <ImageView
+                android:id="@+id/icon_o3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/img_o3"
+                android:textColor="@color/grey"
+                app:layout_constraintBottom_toBottomOf="@id/icon_pm25"
+                app:layout_constraintDimensionRatio="61.7:49.8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.816"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/icon_pm25"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/text_o3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/co_headline_bold"
+                android:gravity="center"
+                android:textColor="@color/grey"
+                app:layout_constraintBottom_toBottomOf="@id/text_pm25"
+                app:layout_constraintEnd_toEndOf="@+id/icon_o3"
+                app:layout_constraintStart_toStartOf="@+id/icon_o3"
+                app:layout_constraintTop_toTopOf="@id/text_pm25"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintWidth_percent="0.2"
+                tools:targetApi="o" />
+
+            <TextView
+                android:id="@+id/text_pm25"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/co_headline_bold"
+                android:gravity="center"
+                android:textColor="@color/grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="100:30"
+                app:layout_constraintEnd_toEndOf="@+id/icon_pm25"
+                app:layout_constraintHorizontal_bias="0.527"
+                app:layout_constraintStart_toStartOf="@+id/icon_pm25"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.656"
+                app:layout_constraintWidth_percent="0.2"
+                tools:targetApi="o" />
+
+            <ImageView
+                android:id="@+id/icon_pm10"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/img_pm10_outdoor"
+                android:textColor="@color/grey"
+                app:layout_constraintBottom_toBottomOf="@id/icon_pm25"
+                app:layout_constraintDimensionRatio="80.7:58.1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/icon_pm25"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/icon_so2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/img_so2_outdoor"
+                app:layout_constraintBottom_toBottomOf="@id/icon_co"
+                app:layout_constraintDimensionRatio="74:46.5"
+                app:layout_constraintEnd_toEndOf="@+id/text_pm10"
+                app:layout_constraintHorizontal_bias="0.625"
+                app:layout_constraintStart_toStartOf="@+id/text_pm10"
+                app:layout_constraintTop_toTopOf="@id/icon_co"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/icon_no2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/img_no2_outdoor"
+                app:layout_constraintBottom_toBottomOf="@id/icon_co"
+                app:layout_constraintDimensionRatio="72.1:54.3"
+                app:layout_constraintEnd_toEndOf="@+id/text_o3"
+                app:layout_constraintHorizontal_bias="0.571"
+                app:layout_constraintStart_toStartOf="@+id/text_o3"
+                app:layout_constraintTop_toTopOf="@id/icon_co"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/icon_co"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/img_co_outdoor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="77.9:48.7"
+                app:layout_constraintEnd_toEndOf="@+id/text_pm25"
+                app:layout_constraintHeight_percent="0.09"
+                app:layout_constraintHorizontal_bias="0.625"
+                app:layout_constraintStart_toStartOf="@+id/text_pm25"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.824" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
