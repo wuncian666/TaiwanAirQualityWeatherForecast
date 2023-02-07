@@ -1,4 +1,4 @@
-package com.example.airqualityindex.features.device.setup
+package com.example.airqualityindex.features.device.setup.controller
 
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.example.airqualityindex.features.device.setup.services.AWSMqttEventListener
 import com.example.airqualityindex.databinding.FragmentHubSetupStep7Binding
 import com.example.airqualityindex.shared.constant.AWSConfig
-import com.example.airqualityindex.viewmodels.AWSViewModel
+import com.example.airqualityindex.features.device.setup.viewmodels.AWSViewModel
 import org.json.JSONObject
 import org.koin.android.ext.android.get
 

@@ -1,8 +1,8 @@
-package com.example.airqualityindex.shared.database
+package com.example.airqualityindex.shared.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.airqualityindex.shared.models.aqiPerHour.PerHourRecord
+import com.example.airqualityindex.shared.models.aqi.hour.PerHourRecord
 
 @Dao
 interface PerHourRecordDao {

@@ -1,4 +1,4 @@
-package com.example.airqualityindex.api
+package com.example.airqualityindex.shared.api
 
 import android.annotation.SuppressLint
 import okhttp3.OkHttpClient

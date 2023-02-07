@@ -1,23 +1,18 @@
-package com.example.airqualityindex.viewmodels
+package com.example.airqualityindex.features.device.setup.viewmodels
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.airqualityindex.features.device.setup.services.MqttEventListener
+import com.example.airqualityindex.features.device.setup.services.MqttService
 import com.example.airqualityindex.shared.models.AWSCertification
-import com.example.airqualityindex.shared.repositories.HubRepositoryImpl
-import com.example.airqualityindex.shared.units.JsonFormatTransform
-import com.example.airqualityindex.features.device.setup.services.Mqttervice
+import com.example.airqualityindex.shared.repositories.implement.HubRepositoryImpl
 import com.example.airqualityindex.shared.units.NetworkInformation
 import io.reactivex.rxjava3.core.Single
 
 class HubViewModel(private val context: Context, private val hubRepositoryImpl: HubRepositoryImpl) : ViewModel() {
-    private val TAG = HubViewModel::class.java.simpleName
-    private val apiUseCase = JsonFormatTransform()
-
     private val networkUseCase = NetworkInformation()
 
-    private var mqttUserCase: Mqttervice? = null
+    private var mqttService: MqttService? = null
 
     private var addMasterDevice: Boolean = true
 
@@ -30,20 +25,19 @@ class HubViewModel(private val context: Context, private val hubRepositoryImpl: 
     }
 
     fun setMqttUseCase(listener: MqttEventListener) {
-        this.mqttUserCase = Mqttervice(context, listener)
+        this.mqttService = MqttService(context, listener)
     }
 
     fun setMqttListener(listener: MqttEventListener) {
-        mqttUserCase?.setMqttEventListener(listener)
+        this.mqttService?.setMqttEventListener(listener)
     }
 
     fun requestCertificationApi(uuid: String): Single<AWSCertification> {
-        return hubRepositoryImpl.requestCertificationApi(uuid)
+        return this.hubRepositoryImpl.requestCertificationApi(uuid)
     }
 
     fun findVisionHubSSID(): Boolean {
         val ssid = this.networkUseCase.getWifiSSID(context)
-        Log.d(TAG, "findVisionHubSSID: $ssid")
 
         if (ssid.isEmpty()) return false
 
@@ -59,18 +53,18 @@ class HubViewModel(private val context: Context, private val hubRepositoryImpl: 
     }
 
     fun mqttConnected(): Boolean {
-        return mqttUserCase!!.mqttConnected()
+        return this.mqttService!!.mqttConnected()
     }
 
     fun mqttDisconnect() {
-        mqttUserCase?.mqttDisconnect()
+        this.mqttService?.mqttDisconnect()
     }
 
     fun mqttConnect() {
-        mqttUserCase?.mqttConnect()
+        this.mqttService?.mqttConnect()
     }
 
     fun mqttPublish(topic: String, msg: String, qos: Int = 0) {
-        mqttUserCase?.publish(topic, msg, qos)
+        this.mqttService?.publish(topic, msg, qos)
     }
 }

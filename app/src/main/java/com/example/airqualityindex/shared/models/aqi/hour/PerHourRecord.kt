@@ -1,4 +1,4 @@
-package com.example.airqualityindex.shared.models.aqiPerHour
+package com.example.airqualityindex.shared.models.aqi.hour
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

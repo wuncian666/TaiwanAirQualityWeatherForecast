@@ -81,6 +81,13 @@
     <string name="do_not_open_window">請勿打開窗戶</string>
     <string name="do_not_go_outdoors">請勿從事戶外活動</string>
 
+    <string name="good">良好</string>
+    <string name="moderate">普通</string>
+    <string name="unhealthy_for_sensitive_groups">對敏感族群不良</string>
+    <string name="unhealthy">對所有族群不良</string>
+    <string name="very_unhealthy">非常不良</string>
+    <string name="hazardous">有害</string>
+
     <string name="celsius_unit">°C</string>
     <string name="percent_sign">%</string>
     <string name="micrometer_per_cubic_meter">μg/m3</string>

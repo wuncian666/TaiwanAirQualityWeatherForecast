@@ -1,4 +1,4 @@
-package com.example.airqualityindex.aws
+package com.example.airqualityindex.features.device.setup.services
 
 import android.content.Context
 import android.util.Log

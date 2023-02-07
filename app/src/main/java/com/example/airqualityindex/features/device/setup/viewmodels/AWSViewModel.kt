@@ -1,9 +1,9 @@
-package com.example.airqualityindex.viewmodels
+package com.example.airqualityindex.features.device.setup.viewmodels
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.example.airqualityindex.features.device.setup.services.AWSMqttEventListener
-import com.example.airqualityindex.shared.repositories.UserDataRepositoryImpl
+import com.example.airqualityindex.shared.repositories.implement.UserDataRepositoryImpl
 import com.example.airqualityindex.shared.constant.UserData
 import com.example.airqualityindex.features.device.setup.services.AWSMqttService
 import io.reactivex.rxjava3.core.Observable

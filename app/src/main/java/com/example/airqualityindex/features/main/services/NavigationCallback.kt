@@ -1,4 +1,4 @@
-package com.example.airqualityindex.workers
+package com.example.airqualityindex.features.main.services
 
 interface NavigationCallback {
     fun onShowMenu()

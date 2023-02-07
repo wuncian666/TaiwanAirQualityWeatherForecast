@@ -1,10 +1,11 @@
-package com.example.airqualityindex.shared.repositories
+package com.example.airqualityindex.shared.repositories.implement
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import com.example.airqualityindex.shared.api.ApiInstances
 import com.example.airqualityindex.shared.database.ApplicationDatabase
 import com.example.airqualityindex.shared.models.aqi.hour.PerHourRecord
+import com.example.airqualityindex.shared.repositories.IPerHourRepository
 import io.reactivex.rxjava3.core.Single
 
 class PerHourAirQualityRepositoryImpl(private val context: Context) : IPerHourRepository {

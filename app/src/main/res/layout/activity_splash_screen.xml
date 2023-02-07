@@ -12,13 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bilious_green"
-        tools:context=".workers.SplashScreenActivity">
+        tools:context=".features.splash.SplashScreenActivity">
 
         <ImageView
             android:id="@+id/img_cloud"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/aqi_normal"
+            android:background="@drawable/aqi_moderate"
             app:layout_constraintWidth_percent="0.55"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

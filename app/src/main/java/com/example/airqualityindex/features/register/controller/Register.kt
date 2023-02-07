@@ -10,7 +10,7 @@ import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentRegisterBinding
 import com.example.airqualityindex.shared.units.RegisterVerify
 
-class RegisterFragment : Fragment() {
+class Register : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
 

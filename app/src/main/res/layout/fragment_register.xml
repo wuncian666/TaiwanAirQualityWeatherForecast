@@ -7,13 +7,13 @@
 
         <variable
             name="register"
-            type="com.example.airqualityindex.workers.RegisterFragment" />
+            type="com.example.airqualityindex.features.register.controller.Register" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".workers.RegisterFragment">
+        tools:context=".features.register.controller.Register">
 
         <EditText
             android:id="@+id/edit_account"

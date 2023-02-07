@@ -1,10 +1,10 @@
-package com.example.airqualityindex.api
+package com.example.airqualityindex.shared.api
 
 class ApiInstances {
     companion object {
         private const val BASE_URL = "https://data.epa.gov.tw/api/v2/"
 
-         fun getRetrofitInstance():  AQIService {
+         fun getRetrofitInstance(): AQIService {
             return RetrofitInstances.getRetrofitInstance(BASE_URL)
                 .create(AQIService::class.java)
         }

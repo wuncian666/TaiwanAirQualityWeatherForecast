@@ -1,4 +1,4 @@
-package com.example.airqualityindex.shared
+package com.example.airqualityindex.shared.database
 
 import android.content.SharedPreferences
 

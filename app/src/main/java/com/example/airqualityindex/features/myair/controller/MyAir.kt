@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentMyAirBinding
-import com.example.airqualityindex.features.main.viewmodels.NavigationCallbackImpl
+import com.example.airqualityindex.features.main.viewmodels.NavigationViewModel
 import org.koin.android.ext.android.get
 
-class MyAirFragment : Fragment() {
-    private val navCallback: NavigationCallbackImpl = get()
+class MyAir : Fragment() {
+    private val navCallback: NavigationViewModel = get()
     private lateinit var binding: FragmentMyAirBinding
 
     override fun onCreateView(

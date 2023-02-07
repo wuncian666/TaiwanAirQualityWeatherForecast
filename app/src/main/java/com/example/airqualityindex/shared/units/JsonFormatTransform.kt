@@ -1,4 +1,4 @@
-package com.example.airqualityindex.units
+package com.example.airqualityindex.shared.units
 
 import com.google.gson.Gson
 

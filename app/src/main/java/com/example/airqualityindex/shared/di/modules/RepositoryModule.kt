@@ -1,7 +1,7 @@
-package com.example.airqualityindex.di
+package com.example.airqualityindex.shared.di.modules
 
-import com.example.airqualityindex.shared.SharedPreferencesManager
-import com.example.airqualityindex.shared.repositories.*
+import com.example.airqualityindex.shared.database.SharedPreferencesManager
+import com.example.airqualityindex.shared.repositories.implement.*
 import org.koin.dsl.module
 
 val repositoryModule = module {

@@ -1,4 +1,4 @@
-package com.example.airqualityindex.main.controller
+package com.example.airqualityindex.features.main.controller
 
 import android.Manifest
 import android.app.AlarmManager
@@ -24,10 +24,10 @@ import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.ActivityMainBinding
 import com.example.airqualityindex.shared.units.AlarmReceiver
 import com.example.airqualityindex.shared.units.SystemTime
-import com.example.airqualityindex.outdoor.viewmodels.PerHourAirQualityViewModel
-import com.example.airqualityindex.indoor.viewmodels.WeatherForecastViewModel
-import com.example.airqualityindex.workers.NavigationCallback
-import com.example.airqualityindex.workers.NavigationCallbackImpl
+import com.example.airqualityindex.features.outdoor.viewmodels.AirQualityViewModel
+import com.example.airqualityindex.features.indoor.viewmodels.WeatherForecastViewModel
+import com.example.airqualityindex.features.main.services.NavigationCallback
+import com.example.airqualityindex.features.main.viewmodels.NavigationViewModel
 import com.google.android.material.navigation.NavigationView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -43,9 +43,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         private const val ID_OUTDOOR = 2
     }
 
-    private val navCallback: NavigationCallbackImpl = get()
+    private val navCallback: NavigationViewModel = get()
     private val weatherForecastViewModel: WeatherForecastViewModel = get()
-    private val perHourAirQualityViewModel: PerHourAirQualityViewModel = get()
+    private val perHourAirQualityViewModel: AirQualityViewModel = get()
 
     private lateinit var binding: ActivityMainBinding
 

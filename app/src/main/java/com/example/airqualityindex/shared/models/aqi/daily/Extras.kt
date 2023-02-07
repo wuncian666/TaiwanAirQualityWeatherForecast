@@ -1,4 +1,4 @@
-package com.example.airqualityindex.shared.models.aqiDaily
+package com.example.airqualityindex.shared.models.aqi.daily
 
 import com.google.gson.annotations.SerializedName
 

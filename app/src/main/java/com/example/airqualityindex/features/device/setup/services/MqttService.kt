@@ -7,9 +7,9 @@ import info.mqtt.android.service.Ack
 import info.mqtt.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.*
 
-class Mqttervice(private val context: Context, private var mqttEventListener: MqttEventListener?) {
+class MqttService(private val context: Context, private var mqttEventListener: MqttEventListener?) {
     companion object {
-        private val TAG = Mqttervice::class.java.simpleName
+        private val TAG = MqttService::class.java.simpleName
     }
 
     private var mqttClient: MqttAndroidClient? = null

@@ -1,4 +1,4 @@
-package com.example.airqualityindex.shared.database
+package com.example.airqualityindex.shared.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

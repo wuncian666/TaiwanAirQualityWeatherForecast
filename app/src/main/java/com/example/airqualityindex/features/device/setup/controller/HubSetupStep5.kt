@@ -1,18 +1,17 @@
-package com.example.airqualityindex.features.device.setup
+package com.example.airqualityindex.features.device.setup.controller
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentHubSetupStep5Binding
-import com.example.airqualityindex.hubSetup.HubSetupStep5Args
+import com.example.airqualityindex.features.device.setup.viewmodels.HubViewModel
 import com.example.airqualityindex.shared.constant.AWSConfig
 import com.example.airqualityindex.shared.constant.MqttConfig
-import com.example.airqualityindex.viewmodels.HubViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers

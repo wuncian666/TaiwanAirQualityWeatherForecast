@@ -6,7 +6,7 @@
     app:startDestination="@id/hubSetupStep2">
     <fragment
         android:id="@+id/hubSetupStep2"
-        android:name="com.example.airqualityindex.hubSetup.HubSetupStep2"
+        android:name="com.example.airqualityindex.features.device.setup.controller.HubSetupStep2"
         android:label="HubSetupStep2"
         tools:layout="@layout/fragment_hub_setup_step2">
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/hubSetupStep3"
-        android:name="com.example.airqualityindex.hubSetup.HubSetupStep3"
+        android:name="com.example.airqualityindex.features.device.setup.controller.HubSetupStep3"
         android:label="HubSetupStep3"
         tools:layout="@layout/fragment_hub_setup_step3">
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/hubSetupStep4"
-        android:name="com.example.airqualityindex.hubSetup.HubSetupStep4"
+        android:name="com.example.airqualityindex.features.device.setup.controller.HubSetupStep4"
         android:label="HubSetupStep4"
         tools:layout="@layout/fragment_hub_setup_step4">
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/hubSetupStep5"
-        android:name="com.example.airqualityindex.hubSetup.HubSetupStep5"
+        android:name="com.example.airqualityindex.features.device.setup.controller.HubSetupStep5"
         android:label="HubSetupStep5"
         tools:layout="@layout/fragment_hub_setup_step5">
         <action
@@ -44,11 +44,11 @@
             app:destination="@id/hubSetupFailed" />
         <argument
             android:name="wifiInfo"
-            app:argType="com.example.airqualityindex.model.WifiInfo" />
+            app:argType="com.example.airqualityindex.shared.models.WifiInfo" />
     </fragment>
     <fragment
         android:id="@+id/hubSetupStep6"
-        android:name="com.example.airqualityindex.hubSetup.HubSetupStep6"
+        android:name="com.example.airqualityindex.features.device.setup.controller.HubSetupStep6"
         android:label="HubSetupStep6" >
         <action
             android:id="@+id/action_hubSetupStep6_to_hubSetupStep7"
@@ -56,11 +56,11 @@
     </fragment>
     <fragment
         android:id="@+id/hubSetupStep7"
-        android:name="com.example.airqualityindex.hubSetup.HubSetupStep7"
+        android:name="com.example.airqualityindex.features.device.setup.controller.HubSetupStep7"
         android:label="HubSetupStep7" />
     <fragment
         android:id="@+id/hubSetupFailed"
-        android:name="com.example.airqualityindex.hubSetup.HubSetupFailed"
+        android:name="com.example.airqualityindex.features.device.setup.controller.HubSetupFailed"
         android:label="HubSetupFailed" >
         <action
             android:id="@+id/action_hubSetupFailed_to_hubSetupStep2"

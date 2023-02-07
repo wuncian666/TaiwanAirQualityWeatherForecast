@@ -1,4 +1,4 @@
-package com.example.airqualityindex.workers
+package com.example.airqualityindex.features.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -13,7 +13,6 @@ import androidx.databinding.DataBindingUtil
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.ActivitySplashScreenBinding
 import com.example.airqualityindex.features.main.controller.MainActivity
-
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {

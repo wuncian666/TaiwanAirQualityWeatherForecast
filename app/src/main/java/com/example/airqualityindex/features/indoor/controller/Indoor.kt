@@ -12,19 +12,19 @@ import com.example.airqualityindex.databinding.FragmentIndoorBinding
 import com.example.airqualityindex.shared.models.WeatherForecastStore
 import com.example.airqualityindex.shared.database.SharedPreferencesManager
 import com.example.airqualityindex.features.indoor.viewmodels.WeatherForecastViewModel
-import com.example.airqualityindex.features.main.viewmodels.NavigationCallbackImpl
+import com.example.airqualityindex.features.main.viewmodels.NavigationViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.koin.android.ext.android.get
 
-class IndoorFragment : Fragment() {
+class Indoor : Fragment() {
     companion object {
-        private val TAG = IndoorFragment::class.java.simpleName
+        private val TAG = Indoor::class.java.simpleName
     }
 
     private lateinit var binding: FragmentIndoorBinding
 
-    private val navCallback: NavigationCallbackImpl = get()
+    private val navCallback: NavigationViewModel = get()
     private val weatherForecastViewModel: WeatherForecastViewModel = get()
     private val sharedPreferencesManager: SharedPreferencesManager = get()
 

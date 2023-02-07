@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/hubSetUpStep1"
-        android:name="com.example.airqualityindex.hubSetup.HubSetupStep1"
+        android:name="com.example.airqualityindex.features.device.setup.controller.HubSetupStep1"
         android:label="HubSetUpStep1"
         tools:layout="@layout/fragment_hub_setup_step1">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/hubSetupStep2"
-        android:name="com.example.airqualityindex.hubSetup.HubSetupStep2"
+        android:name="com.example.airqualityindex.features.device.setup.controller.HubSetupStep2"
         android:label="HubSetupStep2"
         tools:layout="@layout/fragment_hub_setup_step2">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/hubSetupStep3"
-        android:name="com.example.airqualityindex.hubSetup.HubSetupStep3"
+        android:name="com.example.airqualityindex.features.device.setup.controller.HubSetupStep3"
         android:label="HubSetupStep3"
         tools:layout="@layout/fragment_hub_setup_step3"/>
 </navigation>

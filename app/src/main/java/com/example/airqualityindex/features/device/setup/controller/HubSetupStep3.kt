@@ -1,4 +1,4 @@
-package com.example.airqualityindex.features.device.setup
+package com.example.airqualityindex.features.device.setup.controller
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package com.example.airqualityindex.model.sensorThings
+package com.example.airqualityindex.shared.models.sensorThings
 
 import com.google.gson.annotations.SerializedName
 
@@ -10,7 +10,7 @@ data class SensorThings(
     val name: String,
     val properties: Properties,
     @SerializedName("Locations")
-    val locations:Locations
+    val locations: Locations
 )
 
 data class Properties(

@@ -9,27 +9,27 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.example.airqualityindex.R
-import com.example.airqualityindex.databinding.FragmentSearchAQIBinding
-import com.example.airqualityindex.shared.models.aqiPerHour.PerHourRecord
-import com.example.airqualityindex.shared.database.SharedPreferencesManager
+import com.example.airqualityindex.databinding.FragmentSearchAirQualityBinding
+import com.example.airqualityindex.features.main.viewmodels.NavigationViewModel
+import com.example.airqualityindex.features.outdoor.viewmodels.AirQualityViewModel
 import com.example.airqualityindex.shared.constant.UserData
+import com.example.airqualityindex.shared.database.SharedPreferencesManager
+import com.example.airqualityindex.shared.models.aqi.hour.PerHourRecord
 import com.example.airqualityindex.shared.units.SpannableStringService
-import com.example.airqualityindex.features.outdoor.viewmodels.PerHourAirQualityViewModel
-import com.example.airqualityindex.features.main.viewmodels.NavigationCallbackImpl
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.koin.android.ext.android.get
 
-class SearchAirQualityFragment : Fragment() {
+class SearchAirQuality : Fragment() {
     companion object {
-        private val TAG = SearchAirQualityFragment::class.java.simpleName
+        private val TAG = SearchAirQuality::class.java.simpleName
     }
 
-    private val perHourAQIViewModel: PerHourAirQualityViewModel = get()
+    private val perHourAQIViewModel: AirQualityViewModel = get()
     private val sharedPreferencesManager: SharedPreferencesManager = get()
-    private val navCallback: NavigationCallbackImpl = get()
+    private val navCallback: NavigationViewModel = get()
 
-    private lateinit var binding: FragmentSearchAQIBinding
+    private lateinit var binding: FragmentSearchAirQualityBinding
 
     private var site: String? = null
 
@@ -38,7 +38,7 @@ class SearchAirQualityFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        this.binding = FragmentSearchAQIBinding.inflate(inflater, container, false)
+        this.binding = FragmentSearchAirQualityBinding.inflate(inflater, container, false)
 
         this.navCallback.navigationCallback?.onInvisibleBottomNavigation()
         this.binding.openCustomDrawer.setOnClickListener {

@@ -6,13 +6,13 @@
     <data>
         <variable
             name="listener"
-            type="com.example.airqualityindex.hubSetup.HubSetupStep4" />
+            type="com.example.airqualityindex.features.device.setup.controller.HubSetupStep4" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".hubSetup.HubSetupStep4">
+        tools:context=".features.device.setup.controller.HubSetupStep4">
 
         <TextView
             android:id="@+id/textView6"

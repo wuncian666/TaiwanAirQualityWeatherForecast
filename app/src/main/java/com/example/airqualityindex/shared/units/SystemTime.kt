@@ -1,4 +1,4 @@
-package com.example.airqualityindex.units
+package com.example.airqualityindex.shared.units
 
 import android.os.Build
 import androidx.annotation.RequiresApi

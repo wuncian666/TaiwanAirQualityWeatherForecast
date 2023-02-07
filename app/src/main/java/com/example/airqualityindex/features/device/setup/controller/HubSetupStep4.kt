@@ -1,7 +1,6 @@
-package com.example.airqualityindex.features.device.setup
+package com.example.airqualityindex.features.device.setup.controller
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,13 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.airqualityindex.R
-import com.example.airqualityindex.features.device.setup.view.WifiListAdapter
-import com.example.airqualityindex.features.device.setup.services.MqttEventListener
 import com.example.airqualityindex.databinding.FragmentHubSetupStep4Binding
-import com.example.airqualityindex.hubSetup.HubSetupStep4Directions
-import com.example.airqualityindex.shared.models.WifiInfo
+import com.example.airqualityindex.features.device.setup.services.MqttEventListener
+import com.example.airqualityindex.features.device.setup.view.WifiListAdapter
+import com.example.airqualityindex.features.device.setup.viewmodels.HubViewModel
 import com.example.airqualityindex.shared.constant.MqttConfig
-import com.example.airqualityindex.viewmodels.HubViewModel
+import com.example.airqualityindex.shared.models.WifiInfo
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -27,7 +25,6 @@ import org.koin.android.ext.android.get
 import java.util.concurrent.TimeUnit
 
 class HubSetupStep4 : Fragment(), WifiListAdapter.OnItemClickListener, MqttEventListener {
-    private val TAG = HubSetupStep4::class.java.simpleName
     private val viewModel: HubViewModel = get()
 
     private lateinit var binding: FragmentHubSetupStep4Binding
@@ -111,7 +108,6 @@ class HubSetupStep4 : Fragment(), WifiListAdapter.OnItemClickListener, MqttEvent
     }
 
     override fun onMessageArrived(message: MqttMessage?) {
-        Log.d(TAG, "onMessageArrived: $message")
         val wifiInfoList = turnJsonArrayToList(message)
         this.setupRecyclerView(wifiInfoList)
     }

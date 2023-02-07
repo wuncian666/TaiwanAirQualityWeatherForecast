@@ -1,6 +1,6 @@
-package com.example.airqualityindex.repository
+package com.example.airqualityindex.shared.repositories
 
-import com.example.airqualityindex.model.sensorThings.SensorThings
+import com.example.airqualityindex.shared.models.sensorThings.SensorThings
 import io.reactivex.rxjava3.core.Single
 
 interface ISearchSensorThingRepository {

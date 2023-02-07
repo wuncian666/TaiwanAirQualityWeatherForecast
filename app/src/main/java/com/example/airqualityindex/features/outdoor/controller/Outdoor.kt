@@ -9,26 +9,26 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentOutdoorBinding
-import com.example.airqualityindex.shared.models.aqiPerHour.PerHourRecord
-import com.example.airqualityindex.shared.database.SharedPreferencesManager
-import com.example.airqualityindex.shared.units.SpannableStringService
-import com.example.airqualityindex.features.outdoor.viewmodels.PerHourAirQualityViewModel
 import com.example.airqualityindex.features.indoor.viewmodels.WeatherForecastViewModel
-import com.example.airqualityindex.features.main.viewmodels.NavigationCallbackImpl
+import com.example.airqualityindex.features.main.viewmodels.NavigationViewModel
+import com.example.airqualityindex.features.outdoor.viewmodels.AirQualityViewModel
+import com.example.airqualityindex.shared.database.SharedPreferencesManager
+import com.example.airqualityindex.shared.models.aqi.hour.PerHourRecord
+import com.example.airqualityindex.shared.units.SpannableStringService
 import com.skydoves.balloon.*
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.koin.android.ext.android.get
 
-class OutdoorFragment : Fragment() {
+class Outdoor : Fragment() {
     companion object {
-        private val TAG = OutdoorFragment::class.java.simpleName
+        private val TAG = Outdoor::class.java.simpleName
     }
 
     private lateinit var binding: FragmentOutdoorBinding
 
-    private val navCallback: NavigationCallbackImpl = get()
-    private val perHourAQIViewModel: PerHourAirQualityViewModel = get()
+    private val navCallback: NavigationViewModel = get()
+    private val perHourAQIViewModel: AirQualityViewModel = get()
     private val weatherForecastViewModel: WeatherForecastViewModel = get()
     private val sharedPreferencesManager: SharedPreferencesManager = get()
 

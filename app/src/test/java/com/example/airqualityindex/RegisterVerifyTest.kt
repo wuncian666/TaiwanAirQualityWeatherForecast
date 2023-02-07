@@ -1,6 +1,6 @@
 package com.example.airqualityindex
 
-import com.example.airqualityindex.units.RegisterVerify
+import com.example.airqualityindex.shared.units.RegisterVerify
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test

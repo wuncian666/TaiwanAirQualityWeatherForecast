@@ -1,7 +1,7 @@
-package com.example.airqualityindex.api
+package com.example.airqualityindex.shared.api
 
-import com.example.airqualityindex.shared.models.aqiDaily.DailyAQI
-import com.example.airqualityindex.shared.models.aqiPerHour.PerHourResult
+import com.example.airqualityindex.shared.models.aqi.daily.DailyAQI
+import com.example.airqualityindex.shared.models.aqi.hour.PerHourResult
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET

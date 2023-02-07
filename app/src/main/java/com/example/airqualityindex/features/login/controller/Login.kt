@@ -10,7 +10,7 @@ import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentLoginBinding
 
 
-class LoginFragment : Fragment() {
+class Login : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
 

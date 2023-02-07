@@ -1,4 +1,4 @@
-package com.example.airqualityindex.model
+package com.example.airqualityindex.shared.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

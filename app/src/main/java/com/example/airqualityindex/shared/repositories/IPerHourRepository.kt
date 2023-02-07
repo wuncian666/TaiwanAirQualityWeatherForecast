@@ -1,7 +1,7 @@
-package com.example.airqualityindex.repository
+package com.example.airqualityindex.shared.repositories
 
 import androidx.lifecycle.LiveData
-import com.example.airqualityindex.model.aqiPerHour.PerHourRecord
+import com.example.airqualityindex.shared.models.aqi.hour.PerHourRecord
 import io.reactivex.rxjava3.core.Single
 
 interface IPerHourRepository {

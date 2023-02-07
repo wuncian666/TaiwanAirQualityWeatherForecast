@@ -1,8 +1,8 @@
-package com.example.airqualityindex.repository
+package com.example.airqualityindex.shared.repositories
 
 import androidx.lifecycle.LiveData
-import com.example.airqualityindex.model.Location
-import com.example.airqualityindex.model.WeatherForecastStore
+import com.example.airqualityindex.shared.models.Location
+import com.example.airqualityindex.shared.models.WeatherForecastStore
 import io.reactivex.rxjava3.core.Single
 
 interface IWeatherForecastRepository {

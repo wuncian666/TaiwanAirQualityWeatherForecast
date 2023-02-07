@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.airqualityindex.workers.LoginFragment"
+        android:name="com.example.airqualityindex.features.login.controller.Login"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -19,39 +19,39 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.airqualityindex.workers.RegisterFragment"
+        android:name="com.example.airqualityindex.features.register.controller.Register"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/searchAQIFragment"
-        android:name="com.example.airqualityindex.drawerFragment.SearchAirQualityFragment"
+        android:name="com.example.airqualityindex.features.search.airquality.controller.SearchAirQuality"
         android:label="SearchAQIFragment"
-        tools:layout="@layout/fragment_search_a_q_i">
+        tools:layout="@layout/fragment_search_air_quality">
         <argument
             android:name="perHourRecord"
-            app:argType="com.example.airqualityindex.model.aqiPerHour.PerHourRecord" />
+            app:argType="com.example.airqualityindex.shared.models.aqi.hour.PerHourRecord" />
     </fragment>
     <fragment
         android:id="@+id/indoorFragment"
-        android:name="com.example.airqualityindex.workers.IndoorFragment"
+        android:name="com.example.airqualityindex.features.indoor.controller.Indoor"
         android:label="IndoorFragment"
         tools:layout="@layout/fragment_indoor" />
     <fragment
         android:id="@+id/outdoorFragment"
-        android:name="com.example.airqualityindex.workers.OutdoorFragment"
+        android:name="com.example.airqualityindex.features.outdoor.controller.Outdoor"
         android:label="OutdoorFragment"
         tools:layout="@layout/fragment_outdoor" >
     </fragment>
 
     <fragment
         android:id="@+id/changeLocationFragment"
-        android:name="com.example.airqualityindex.drawerFragment.ChangeLocationFragment"
+        android:name="com.example.airqualityindex.features.location.change.controller.LocationChange"
         android:label="fragment_change_location"
         tools:layout="@layout/fragment_change_location" />
 
     <fragment
         android:id="@+id/myAirFragment"
-        android:name="com.example.airqualityindex.drawerFragment.MyAirFragment"
+        android:name="com.example.airqualityindex.features.myair.controller.MyAir"
         android:label="MyAirFragment"
         tools:layout="@layout/fragment_my_air" />
 </navigation>

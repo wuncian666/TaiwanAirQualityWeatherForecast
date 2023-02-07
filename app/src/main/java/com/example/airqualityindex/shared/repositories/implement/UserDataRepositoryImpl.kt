@@ -1,9 +1,10 @@
-package com.example.airqualityindex.shared.repositories
+package com.example.airqualityindex.shared.repositories.implement
 
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.airqualityindex.R
 import com.example.airqualityindex.shared.constant.UserData
+import com.example.airqualityindex.shared.repositories.IUserDataRepository
 
 class UserDataRepositoryImpl(private val context: Context) :
     IUserDataRepository {

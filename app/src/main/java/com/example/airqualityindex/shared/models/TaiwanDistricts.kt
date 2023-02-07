@@ -1,4 +1,4 @@
-package com.example.airqualityindex.model
+package com.example.airqualityindex.shared.models
 
 data class CityWithDistricts(val districts: List<District>, val name: String)
 

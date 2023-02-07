@@ -1,4 +1,4 @@
-package com.example.airqualityindex.adapters
+package com.example.airqualityindex.features.device.setup.view
 
 import android.view.LayoutInflater
 import android.view.View

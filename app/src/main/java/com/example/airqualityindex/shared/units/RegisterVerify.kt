@@ -1,4 +1,4 @@
-package com.example.airqualityindex.units
+package com.example.airqualityindex.shared.units
 
 class RegisterVerify {
     fun isLoginIdVerify(loginId: String):Boolean {

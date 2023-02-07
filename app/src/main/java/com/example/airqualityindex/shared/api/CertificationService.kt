@@ -1,4 +1,4 @@
-package com.example.airqualityindex.api
+package com.example.airqualityindex.shared.api
 
 import com.example.airqualityindex.shared.models.AWSCertification
 import io.reactivex.rxjava3.core.Single

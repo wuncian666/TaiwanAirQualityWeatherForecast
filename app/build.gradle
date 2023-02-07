@@ -116,9 +116,9 @@ dependencies {
     // Aws mqtt
     implementation 'com.amazonaws:aws-android-sdk-iot:2.57.0'
 
+    // Above this version(1.2.0), the image location will be lost
     implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
 
     implementation 'com.github.skydoves:balloon:1.5.2'
 
-    implementation 'com.beust:klaxon:5.5'
-}
+    implementation 'com.beust:klaxon:5.5'}

@@ -5,13 +5,16 @@
 
     <data>
 
+        <variable
+            name="myAir"
+            type="com.example.airqualityindex.features.myair.controller.MyAir" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white_smoke"
-        tools:context=".drawerFragment.MyAirFragment">
+        tools:context=".features.myair.controller.MyAir">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/custom_toolbar"
@@ -26,6 +29,7 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="2dp"
                 android:background="@drawable/shape_25dp_corners"
+                android:onClick="@{(view)->myAir.onClick(view)}"
                 android:src="@drawable/ic_toolbar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"

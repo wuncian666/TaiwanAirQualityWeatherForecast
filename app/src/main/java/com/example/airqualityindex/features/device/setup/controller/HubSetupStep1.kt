@@ -1,4 +1,4 @@
-package com.example.airqualityindex.features.device.setup
+package com.example.airqualityindex.features.device.setup.controller
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentHubSetupStep1Binding
-import com.example.airqualityindex.viewmodels.HubViewModel
+import com.example.airqualityindex.features.device.setup.viewmodels.HubViewModel
 import io.github.g00fy2.quickie.QRResult
 import io.github.g00fy2.quickie.ScanCustomCode
 import io.github.g00fy2.quickie.config.BarcodeFormat

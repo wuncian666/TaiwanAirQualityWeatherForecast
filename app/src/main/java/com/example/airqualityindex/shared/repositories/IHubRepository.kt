@@ -1,6 +1,6 @@
-package com.example.airqualityindex.repository
+package com.example.airqualityindex.shared.repositories
 
-import com.example.airqualityindex.model.AWSCertification
+import com.example.airqualityindex.shared.models.AWSCertification
 import io.reactivex.rxjava3.core.Single
 
 interface IHubRepository {

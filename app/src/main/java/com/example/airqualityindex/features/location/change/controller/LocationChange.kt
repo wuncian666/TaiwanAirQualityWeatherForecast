@@ -1,7 +1,6 @@
 package com.example.airqualityindex.features.location.change.controller
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,13 +13,13 @@ import com.example.airqualityindex.shared.models.CityWithDistricts
 import com.example.airqualityindex.shared.models.District
 import com.example.airqualityindex.shared.database.SharedPreferencesManager
 import com.example.airqualityindex.shared.constant.UserData
-import com.example.airqualityindex.features.main.viewmodels.NavigationCallbackImpl
+import com.example.airqualityindex.features.main.viewmodels.NavigationViewModel
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import org.koin.android.ext.android.get
 
-class ChangeLocationFragment : Fragment() {
-    private val navCallback: NavigationCallbackImpl = get()
+class LocationChange : Fragment() {
+    private val navCallback: NavigationViewModel = get()
     private val sharedPreferencesManager: SharedPreferencesManager = get()
 
     private lateinit var binding: FragmentChangeLocationBinding
@@ -64,7 +63,7 @@ class ChangeLocationFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                this@ChangeLocationFragment.setSpinnerDistricts(cityWithDistrictsList[position].districts)
+                this@LocationChange.setSpinnerDistricts(cityWithDistrictsList[position].districts)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
