@@ -1,4 +1,4 @@
-package com.example.airqualityindex.repository
+package com.example.airqualityindex.shared.repositories
 
 import android.content.Context
 import android.content.SharedPreferences

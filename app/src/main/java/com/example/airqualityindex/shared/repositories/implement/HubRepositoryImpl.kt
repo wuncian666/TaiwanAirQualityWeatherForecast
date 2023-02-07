@@ -1,8 +1,8 @@
-package com.example.airqualityindex.repository
+package com.example.airqualityindex.shared.repositories
 
-import com.example.airqualityindex.api.ApiInstances
-import com.example.airqualityindex.model.AWSCertification
-import com.example.airqualityindex.units.JsonFormatTransform
+import com.example.airqualityindex.shared.api.ApiInstances
+import com.example.airqualityindex.shared.models.AWSCertification
+import com.example.airqualityindex.shared.units.JsonFormatTransform
 import io.reactivex.rxjava3.core.Single
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody

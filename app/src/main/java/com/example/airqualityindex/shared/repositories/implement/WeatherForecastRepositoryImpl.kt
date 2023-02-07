@@ -1,11 +1,11 @@
-package com.example.airqualityindex.repository
+package com.example.airqualityindex.shared.repositories
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.example.airqualityindex.api.ApiInstances
-import com.example.airqualityindex.database.ApplicationDatabase
-import com.example.airqualityindex.model.Location
-import com.example.airqualityindex.model.WeatherForecastStore
+import com.example.airqualityindex.shared.api.ApiInstances
+import com.example.airqualityindex.shared.database.ApplicationDatabase
+import com.example.airqualityindex.shared.models.Location
+import com.example.airqualityindex.shared.models.WeatherForecastStore
 import io.reactivex.rxjava3.core.Single
 
 class WeatherForecastRepositoryImpl(private val context: Context) : IWeatherForecastRepository {
