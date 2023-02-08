@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="hubSetupStep2"
+            type="com.example.airqualityindex.features.device.setup.controller.HubSetupStep2" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,6 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/btn_hub_setup"
+            android:onClick="@{(view)->hubSetupStep2.onClickListener(view)}"
             android:shadowColor="@color/black_trans_80"
             android:shadowDy="1"
             android:shadowRadius="0"

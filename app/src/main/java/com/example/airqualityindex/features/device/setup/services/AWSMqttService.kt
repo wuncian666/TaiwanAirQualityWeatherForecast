@@ -19,8 +19,6 @@ import java.security.KeyStore
 import java.util.UUID
 
 class AWSMqttService(private var awsMqttEventListener: AWSMqttEventListener?) {
-    private val TAG = AWSMqttService::class.java.simpleName
-
     private var awsMqttManager: AWSIotMqttManager? = null
 
     private var awsMqttConnected = false
@@ -110,7 +108,6 @@ class AWSMqttService(private var awsMqttEventListener: AWSMqttEventListener?) {
         if (params == null) {
             newParams.put("EVENT", command)
             if (this.awsMqttConnected) {
-                Log.d(TAG, "publish: $newParams")
                 this.awsMqttManager!!.publishString(
                     "$newParams",
                     "$gatewayUuid/subscribe",

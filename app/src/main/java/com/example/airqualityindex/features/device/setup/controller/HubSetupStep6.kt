@@ -3,10 +3,10 @@ package com.example.airqualityindex.features.device.setup.controller
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentHubSetupStep6Binding
@@ -31,17 +31,25 @@ class HubSetupStep6 : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentHubSetupStep6Binding.inflate(inflater, container, false)
-        this.binding.btnConnectInternet.setOnClickListener {
-            val wifiSetting = Intent(Settings.ACTION_WIFI_SETTINGS)
-            wifiSetting.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(wifiSetting)
-        }
+        this.binding.hubSetupStep6 = this
+
         return binding.root
+    }
+
+    fun onClickListener(view: View) {
+        when (view.id) {
+            R.id.btn_connect_internet -> {
+
+                val wifiSetting = Intent(Settings.ACTION_WIFI_SETTINGS)
+                wifiSetting.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(wifiSetting)
+            }
+        }
     }
 
     override fun onStart() {
         super.onStart()
-        setTimerCheckNetworkConnected()
+        this.setTimerCheckNetworkConnected()
     }
 
     private fun setTimerCheckNetworkConnected() {

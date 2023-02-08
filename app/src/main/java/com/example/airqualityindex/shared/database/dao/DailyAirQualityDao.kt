@@ -4,7 +4,7 @@ import androidx.room.*
 import com.example.airqualityindex.models.DailyRecord
 
 @Dao
-interface AQIDao {
+interface DailyAirQualityDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(record: List<DailyRecord>)
 

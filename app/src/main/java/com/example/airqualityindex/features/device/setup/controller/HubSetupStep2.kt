@@ -20,7 +20,6 @@ import org.koin.android.ext.android.get
 import java.util.concurrent.TimeUnit
 
 class HubSetupStep2 : Fragment() {
-    private val TAG = HubSetupStep2::class.java.simpleName
     private val viewModel: HubViewModel = get()
 
     private lateinit var binding: FragmentHubSetupStep2Binding
@@ -32,14 +31,19 @@ class HubSetupStep2 : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentHubSetupStep2Binding.inflate(inflater, container, false)
-
-        this.binding.btnGotoSettings.setOnClickListener {
-            val intentWifiSettings = Intent(Settings.ACTION_WIFI_SETTINGS)
-            intentWifiSettings.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intentWifiSettings)
-        }
+        this.binding.hubSetupStep2 = this
 
         return binding.root
+    }
+
+    fun onClickListener(view: View) {
+        when (view.id) {
+            R.id.btn_goto_settings -> {
+                val intentWifiSettings = Intent(Settings.ACTION_WIFI_SETTINGS)
+                intentWifiSettings.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intentWifiSettings)
+            }
+        }
     }
 
     override fun onStart() {
@@ -49,7 +53,6 @@ class HubSetupStep2 : Fragment() {
             .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext {
-                Log.d(TAG, "onStart: $it")
                 if (viewModel.findVisionHubSSID()) {
                     this.timerFindVisionHubSSID.dispose()
                     findNavController().navigate(R.id.action_hubSetupStep2_to_hubSetupStep3)

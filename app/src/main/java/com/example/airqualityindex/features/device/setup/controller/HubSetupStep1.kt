@@ -19,8 +19,6 @@ import org.koin.android.ext.android.get
 import java.util.*
 
 class HubSetupStep1 : Fragment() {
-    private val TAG = HubSetupStep1::class.java.simpleName
-
     private lateinit var binding: FragmentHubSetupStep1Binding
 
     private val viewModel: HubViewModel = get()
@@ -36,13 +34,12 @@ class HubSetupStep1 : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentHubSetupStep1Binding.inflate(inflater, container, false)
-
-        this.binding.hubLayout = this
+        this.binding.hubSetupStep1 = this
 
         return this.binding.root
     }
 
-    fun onButtonClick(view: View) {
+    fun onClickListener(view: View) {
         when (view.id) {
             R.id.btn_next -> {
                 this.setupQRCodeScanner()
@@ -87,7 +84,7 @@ class HubSetupStep1 : Fragment() {
     }
 
     private fun navigateByNetworkStatus() {
-        if (viewModel.findVisionHubSSID()) {
+        if (this.viewModel.findVisionHubSSID()) {
             findNavController().navigate(R.id.action_hubSetUpStep1_to_hubSetupStep3)
         } else {
             findNavController().navigate(R.id.action_hubSetUpStep1_to_hubSetupStep2)

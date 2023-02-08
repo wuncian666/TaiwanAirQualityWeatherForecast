@@ -10,25 +10,25 @@ import com.example.airqualityindex.shared.repositories.IWeatherForecastRepositor
 import io.reactivex.rxjava3.core.Single
 
 class WeatherForecastRepositoryImpl(private val context: Context) : IWeatherForecastRepository {
-
     private val dao = ApplicationDatabase.getInstance(this.context).getWeatherForecastDao()
+
     override fun getApiResponse(date: String): Single<List<Location>> {
         return ApiInstances.getWeatherInstance().getWeatherForecast(date)
             .map { it.records.location }
     }
 
     override fun insertWeatherForecastInDatabase(records: List<WeatherForecastStore>) {
-        dao.insert(records)
+        this.dao.insert(records)
     }
 
     override fun getRecordByLocationName(locationName: String?): Single<WeatherForecastStore> {
         return Single.fromCallable {
-            dao.getRecordByLocationName(locationName)
+            this.dao.getRecordByLocationName(locationName)
         }
     }
 
     override fun getRecordByLocationNameLiveData(locationName: String?): LiveData<WeatherForecastStore> {
-        return dao.getRecordByLocationNameLiveData(locationName)
+        return this.dao.getRecordByLocationNameLiveData(locationName)
     }
 
     override fun turnStoreFormat(data: List<Location>): List<WeatherForecastStore> {

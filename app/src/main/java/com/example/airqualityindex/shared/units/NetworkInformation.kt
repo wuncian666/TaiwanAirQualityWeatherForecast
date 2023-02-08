@@ -7,8 +7,6 @@ import android.net.wifi.WifiManager
 import android.os.Build
 
 class NetworkInformation {
-    private val TAG = NetworkInformation::class.java.simpleName
-
     fun getWifiSSID(context: Context): String {
         val wifiManager = context.getSystemService(Context.WIFI_SERVICE) as WifiManager
         val wifiInfo = wifiManager.connectionInfo

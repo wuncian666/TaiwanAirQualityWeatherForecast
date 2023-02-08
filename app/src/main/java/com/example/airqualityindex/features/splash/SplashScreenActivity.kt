@@ -38,7 +38,7 @@ class SplashScreenActivity : AppCompatActivity() {
         get() = this.resources.displayMetrics.heightPixels
 
     private fun bounceAnimation() {
-        binding.imgHaveAGoodDay.clearAnimation()
+        this.binding.imgHaveAGoodDay.clearAnimation()
         val transAnim = TranslateAnimation(
             -50f, 0f, -200f, 0f
             //(displayHeight / 2).toFloat()
@@ -53,12 +53,12 @@ class SplashScreenActivity : AppCompatActivity() {
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-                binding.imgHaveAGoodDay.clearAnimation()
-                val left = binding.imgHaveAGoodDay.left
-                val top = binding.imgHaveAGoodDay.top
-                val right = binding.imgHaveAGoodDay.right
-                val bottom = binding.imgHaveAGoodDay.bottom
-                binding.imgHaveAGoodDay.layout(left, top, right, bottom)
+                this@SplashScreenActivity.binding.imgHaveAGoodDay.clearAnimation()
+                val left = this@SplashScreenActivity.binding.imgHaveAGoodDay.left
+                val top = this@SplashScreenActivity.binding.imgHaveAGoodDay.top
+                val right = this@SplashScreenActivity.binding.imgHaveAGoodDay.right
+                val bottom = this@SplashScreenActivity.binding.imgHaveAGoodDay.bottom
+                this@SplashScreenActivity.binding.imgHaveAGoodDay.layout(left, top, right, bottom)
             }
 
             override fun onAnimationRepeat(animation: Animation?) {
@@ -66,11 +66,11 @@ class SplashScreenActivity : AppCompatActivity() {
 
         })
 
-        binding.imgHaveAGoodDay.startAnimation(transAnim)
+        this.binding.imgHaveAGoodDay.startAnimation(transAnim)
     }
 
     private fun parallelRotationAnimation() {
-        binding.imgHaveAGoodDay.animate().apply {
+        this.binding.imgHaveAGoodDay.animate().apply {
             duration = 3000
             rotationYBy(720f)
         }
@@ -78,6 +78,6 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun rotation() {
         val animation = AnimationUtils.loadAnimation(this, R.anim.splash_animation)
-        binding.imgHaveAGoodDay.startAnimation(animation)
+        this.binding.imgHaveAGoodDay.startAnimation(animation)
     }
 }

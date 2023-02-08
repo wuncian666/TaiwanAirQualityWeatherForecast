@@ -3,17 +3,15 @@ package com.example.airqualityindex.features.device.setup.viewmodels
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.example.airqualityindex.features.device.setup.services.AWSMqttEventListener
-import com.example.airqualityindex.shared.repositories.implement.UserDataRepositoryImpl
-import com.example.airqualityindex.shared.constant.UserData
 import com.example.airqualityindex.features.device.setup.services.AWSMqttService
+import com.example.airqualityindex.shared.constant.UserData
+import com.example.airqualityindex.shared.repositories.implement.UserDataRepositoryImpl
 import io.reactivex.rxjava3.core.Observable
 
 class AWSViewModel(
     private val context: Context,
     private val userDataRepositoryImpl: UserDataRepositoryImpl
 ) : ViewModel() {
-    private val TAG = AWSViewModel::class.java.simpleName
-
     private var awsMqttUseCase: AWSMqttService? = null
 
     fun setAWSMqttUseCase(listener: AWSMqttEventListener) {

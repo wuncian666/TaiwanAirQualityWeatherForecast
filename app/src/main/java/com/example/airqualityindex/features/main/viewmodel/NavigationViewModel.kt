@@ -1,4 +1,4 @@
-package com.example.airqualityindex.features.main.viewmodels
+package com.example.airqualityindex.features.main.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.airqualityindex.features.main.services.NavigationCallback

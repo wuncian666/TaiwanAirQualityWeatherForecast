@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="hubSetupStep3"
+            type="com.example.airqualityindex.features.device.setup.controller.HubSetupStep3" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,15 +19,15 @@
             android:id="@+id/imageView8"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintWidth_percent="0.3"
-            app:layout_constraintDimensionRatio="108:88"
+            android:background="@drawable/img_hub_connect_success"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="108:88"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.254"
-            android:background="@drawable/img_hub_connect_success" />
+            app:layout_constraintWidth_percent="0.3" />
 
         <TextView
             android:id="@+id/textView6"
@@ -47,22 +50,23 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/btn_hub_setup"
+            android:onClick="@{view->hubSetupStep3.onClickListener(view)}"
             android:shadowColor="@color/black_trans_80"
             android:shadowDy="1"
             android:shadowRadius="0"
-            android:textSize="20sp"
             android:text="@string/next_step"
             android:textAllCaps="false"
             android:textColor="@color/grey"
+            android:textSize="20sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="173:45"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.817"
-            app:layout_constraintWidth_percent="0.480"
-            app:layout_constraintDimensionRatio="173:45" />
+            app:layout_constraintWidth_percent="0.480" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

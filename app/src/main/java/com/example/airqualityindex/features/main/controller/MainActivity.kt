@@ -8,7 +8,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.RequiresApi
@@ -25,9 +24,11 @@ import com.example.airqualityindex.databinding.ActivityMainBinding
 import com.example.airqualityindex.shared.units.AlarmReceiver
 import com.example.airqualityindex.shared.units.SystemTime
 import com.example.airqualityindex.features.outdoor.viewmodels.AirQualityViewModel
-import com.example.airqualityindex.features.indoor.viewmodels.WeatherForecastViewModel
+import com.example.airqualityindex.features.indoor.viewmodel.WeatherForecastViewModel
 import com.example.airqualityindex.features.main.services.NavigationCallback
-import com.example.airqualityindex.features.main.viewmodels.NavigationViewModel
+import com.example.airqualityindex.features.main.viewmodel.NavigationViewModel
+import com.example.airqualityindex.shared.constant.MainConfig.ID_INDOOR
+import com.example.airqualityindex.shared.constant.MainConfig.ID_OUTDOOR
 import com.google.android.material.navigation.NavigationView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -36,13 +37,6 @@ import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     NavigationCallback {
-
-    companion object {
-        private val TAG = MainActivity::class.java.simpleName
-        private const val ID_INDOOR = 1
-        private const val ID_OUTDOOR = 2
-    }
-
     private val navCallback: NavigationViewModel = get()
     private val weatherForecastViewModel: WeatherForecastViewModel = get()
     private val perHourAirQualityViewModel: AirQualityViewModel = get()
@@ -87,16 +81,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun requestApi() {
-        weatherForecastViewModel.getApiResponse(SystemTime().getCurrentTime())
+        this.weatherForecastViewModel.getApiResponse(SystemTime().getCurrentTime())
             .doOnSuccess {
                 val weatherForecastStores = weatherForecastViewModel.turnStoreFormat(it)
-                weatherForecastViewModel.insertWeatherForecastInDatabase(weatherForecastStores)
+                this.weatherForecastViewModel.insertWeatherForecastInDatabase(weatherForecastStores)
             }
             .flatMap {
-                perHourAirQualityViewModel.getRecordResponse()
+                this.perHourAirQualityViewModel.requestApi()
             }
             .doOnSuccess {
-                perHourAirQualityViewModel.insertRecordsInDatabase(it)
+                this.perHourAirQualityViewModel.insert(it)
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -134,40 +128,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val bottomNavigation = binding.bottomNavigation
 
         bottomNavigation.apply {
-            add(
-                MeowBottomNavigation.Model(
-                    ID_INDOOR,
-                    R.drawable.ic_indoor
-                )
-            )
-
-            add(
-                MeowBottomNavigation.Model(
-                    ID_OUTDOOR,
-                    R.drawable.ic_outdoor
-                )
-            )
+            add(MeowBottomNavigation.Model(ID_INDOOR, R.drawable.ic_indoor))
+            add(MeowBottomNavigation.Model(ID_OUTDOOR,R.drawable.ic_outdoor))
 
             setOnShowListener {
-                val name = when (it.id) {
+                when (it.id) {
                     ID_INDOOR -> navController?.navigate(R.id.indoorFragment)
                     ID_OUTDOOR -> navController?.navigate(R.id.outdoorFragment)
-                    else -> ""
                 }
-                Log.d(TAG, "setOnShowListener: $name")
-            }
-
-            setOnClickMenuListener {
-                val name = when (it.id) {
-                    ID_INDOOR -> "INDOOR"
-                    ID_OUTDOOR -> "OUTDOOR"
-                    else -> ""
-                }
-                Log.d(TAG, "setOnClickMenuListener: ${it.id}")
-            }
-
-            setOnReselectListener {
-                Log.d(TAG, "setOnReselectListener: ${it.id}")
             }
 
             show(ID_INDOOR)

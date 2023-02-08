@@ -10,23 +10,19 @@ import androidx.fragment.app.Fragment
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentIndoorBinding
 import com.example.airqualityindex.shared.models.WeatherForecastStore
-import com.example.airqualityindex.shared.database.SharedPreferencesManager
-import com.example.airqualityindex.features.indoor.viewmodels.WeatherForecastViewModel
-import com.example.airqualityindex.features.main.viewmodels.NavigationViewModel
+import com.example.airqualityindex.features.indoor.viewmodel.WeatherForecastViewModel
+import com.example.airqualityindex.features.main.viewmodel.NavigationViewModel
+import com.example.airqualityindex.features.user.viewmodel.UserViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.koin.android.ext.android.get
 
 class Indoor : Fragment() {
-    companion object {
-        private val TAG = Indoor::class.java.simpleName
-    }
-
     private lateinit var binding: FragmentIndoorBinding
 
     private val navCallback: NavigationViewModel = get()
+    private val userViewModel: UserViewModel = get()
     private val weatherForecastViewModel: WeatherForecastViewModel = get()
-    private val sharedPreferencesManager: SharedPreferencesManager = get()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -35,20 +31,24 @@ class Indoor : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentIndoorBinding.inflate(inflater, container, false)
+        this.binding.indoor = this
 
-        this.binding.openCustomDrawer.setOnClickListener { this.navCallback.navigationCallback?.onShowMenu() }
+        this.queryWeatherThenUpdateUi(userViewModel.getLocationName())
 
-        this.queryWeatherThenUpdateUi(sharedPreferencesManager.getLocationName())
-
-        this.binding.userName.text = sharedPreferencesManager.getUserName()
-        this.binding.textUserLocation.text = sharedPreferencesManager.getLocationName()
-
-        this.weatherForecastViewModel.getRecordByLocationNameLiveData(sharedPreferencesManager.getLocationName())
+        this.weatherForecastViewModel.getRecordByLocationNameLiveData(userViewModel.getLocationName())
             .observe(viewLifecycleOwner) {
                 this.updateUi(it)
             }
 
         return binding.root
+    }
+
+    fun onClickListener(view: View) {
+        when (view.id) {
+            R.id.open_custom_drawer -> {
+                this.navCallback.navigationCallback?.onShowMenu()
+            }
+        }
     }
 
     private fun queryWeatherThenUpdateUi(locationName: String?) {
@@ -63,7 +63,10 @@ class Indoor : Fragment() {
 
     private fun updateUi(weatherForecast: WeatherForecastStore) {
         this.updateWeatherImage(weatherForecast.weatherPhenomenon)
-        this.updateTemperatureRangeText(weatherForecast.temperatureMin, weatherForecast.temperatureMax)
+        this.updateTemperatureRangeText(
+            weatherForecast.temperatureMin,
+            weatherForecast.temperatureMax
+        )
         this.updateProbabilityOfPrecipitationText(weatherForecast.probabilityOfPrecipitation)
     }
 

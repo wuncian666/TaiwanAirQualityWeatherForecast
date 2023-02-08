@@ -38,17 +38,17 @@ class HubSetupStep4 : Fragment(), WifiListAdapter.OnItemClickListener, MqttEvent
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentHubSetupStep4Binding.inflate(inflater, container, false)
-        this.binding.listener = this
+        this.binding.hubSetupStep4 = this
 
         this.binding.wifiDialog.visibility = View.INVISIBLE
 
-        viewModel.setMqttUseCase(this)
-        viewModel.mqttConnect()
+        this.viewModel.setMqttUseCase(this)
+        this.viewModel.mqttConnect()
 
         return this.binding.root
     }
 
-    fun onButtonClick(view: View) {
+    fun onClickListener(view: View) {
         when (view.id) {
             R.id.btn_cancel -> {
                 this.binding.wifiDialog.visibility = View.INVISIBLE
@@ -57,8 +57,6 @@ class HubSetupStep4 : Fragment(), WifiListAdapter.OnItemClickListener, MqttEvent
                 val wifiPassword = this.binding.editPassword.text
 
                 if (wifiPassword.isNullOrEmpty()) {
-
-                } else {
                     this.selectedWifiInfo.password = wifiPassword.toString()
                     val action =
                         HubSetupStep4Directions.actionHubSetupStep4ToHubSetupStep5(selectedWifiInfo)
@@ -69,7 +67,7 @@ class HubSetupStep4 : Fragment(), WifiListAdapter.OnItemClickListener, MqttEvent
     }
 
     override fun onConnectFail(error: Throwable?) {
-        mqttReconnect()
+        this.mqttReconnect()
     }
 
     private fun mqttReconnect() {

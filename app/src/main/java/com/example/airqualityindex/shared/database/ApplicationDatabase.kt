@@ -5,15 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.airqualityindex.models.DailyRecord
-import com.example.airqualityindex.shared.database.dao.AQIDao
-import com.example.airqualityindex.shared.database.dao.PerHourRecordDao
+import com.example.airqualityindex.shared.database.dao.DailyAirQualityDao
+import com.example.airqualityindex.shared.database.dao.PerHourAirQualityDao
 import com.example.airqualityindex.shared.database.dao.WeatherForecastDao
 import com.example.airqualityindex.shared.models.WeatherForecastStore
 import com.example.airqualityindex.shared.models.aqi.hour.PerHourRecord
 
 @Database(entities = [DailyRecord::class, PerHourRecord::class, WeatherForecastStore::class], version = 8)
 abstract class ApplicationDatabase : RoomDatabase() {
-
     companion object {
         private var instance: ApplicationDatabase? = null
         private var databaseName = "AQI_Database"
@@ -27,7 +26,7 @@ abstract class ApplicationDatabase : RoomDatabase() {
         }
     }
 
-    abstract fun getDailyRecord(): AQIDao
-    abstract fun getPerHourRecordDao(): PerHourRecordDao
+    abstract fun getDailyRecord(): DailyAirQualityDao
+    abstract fun getPerHourRecordDao(): PerHourAirQualityDao
     abstract fun getWeatherForecastDao(): WeatherForecastDao
 }

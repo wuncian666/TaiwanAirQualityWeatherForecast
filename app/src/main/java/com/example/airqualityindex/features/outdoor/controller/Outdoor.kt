@@ -9,10 +9,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentOutdoorBinding
-import com.example.airqualityindex.features.indoor.viewmodels.WeatherForecastViewModel
-import com.example.airqualityindex.features.main.viewmodels.NavigationViewModel
+import com.example.airqualityindex.features.indoor.viewmodel.WeatherForecastViewModel
+import com.example.airqualityindex.features.main.viewmodel.NavigationViewModel
 import com.example.airqualityindex.features.outdoor.viewmodels.AirQualityViewModel
-import com.example.airqualityindex.shared.database.SharedPreferencesManager
+import com.example.airqualityindex.features.user.viewmodel.UserViewModel
 import com.example.airqualityindex.shared.models.aqi.hour.PerHourRecord
 import com.example.airqualityindex.shared.units.SpannableStringService
 import com.skydoves.balloon.*
@@ -21,16 +21,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.koin.android.ext.android.get
 
 class Outdoor : Fragment() {
-    companion object {
-        private val TAG = Outdoor::class.java.simpleName
-    }
-
     private lateinit var binding: FragmentOutdoorBinding
 
     private val navCallback: NavigationViewModel = get()
+    private val userViewModel: UserViewModel = get()
     private val perHourAQIViewModel: AirQualityViewModel = get()
     private val weatherForecastViewModel: WeatherForecastViewModel = get()
-    private val sharedPreferencesManager: SharedPreferencesManager = get()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,34 +34,35 @@ class Outdoor : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentOutdoorBinding.inflate(inflater, container, false)
-
-        this.binding.openCustomDrawer.setOnClickListener {
-            this.navCallback.navigationCallback?.onShowMenu()
-        }
-
-        this.binding.outdoorWarning.setOnClickListener {
-            if (isWarningState()) {
-                binding.outdoorWarning.showAlignBottom(this.getBalloon())
-            }
-        }
-
-        this.binding.userName.text = sharedPreferencesManager.getUserName()
-        this.binding.textUserLocation.text = sharedPreferencesManager.getLocationName()
+        this.binding.outdoor = this
 
         this.queryDatabaseThenUpdateUI()
 
-        perHourAQIViewModel.getRecordBySiteNameLiveData(sharedPreferencesManager.getSiteName())
+        this.perHourAQIViewModel.getRecordBySiteNameLiveData(userViewModel.getSiteName())
             .observe(viewLifecycleOwner) {
-                Log.d(TAG, "onCreateView: observer on change")
-                updateAirQualityUi(it)
+                this.updateAirQualityUi(it)
             }
 
-        weatherForecastViewModel.getRecordByLocationNameLiveData(sharedPreferencesManager.getLocationName())
+        this.weatherForecastViewModel.getRecordByLocationNameLiveData(userViewModel.getLocationName())
             .observe(viewLifecycleOwner) {
-                setTemperatureRangeText(it.temperatureMin, it.temperatureMax)
+                this.setTemperatureRangeText(it.temperatureMin, it.temperatureMax)
             }
 
         return this.binding.root
+    }
+
+    fun onCLickListener(view: View) {
+        when (view.id) {
+            R.id.open_custom_drawer -> {
+                this.navCallback.navigationCallback?.onShowMenu()
+            }
+
+            R.id.outdoor_warning -> {
+                if (isWarningState()) {
+                    this.binding.outdoorWarning.showAlignBottom(this.getBalloon())
+                }
+            }
+        }
     }
 
     private fun isWarningState(): Boolean {
@@ -92,21 +89,21 @@ class Outdoor : Fragment() {
     }
 
     private fun queryDatabaseThenUpdateUI() {
-        perHourAQIViewModel.getDataBySiteName(sharedPreferencesManager.getSiteName())
+        this.perHourAQIViewModel.getDataBySiteName(userViewModel.getSiteName())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 updateAirQualityUi(it)
             }
             .flatMap {
-                weatherForecastViewModel.getRecordByLocationName(sharedPreferencesManager.getLocationName())
+                weatherForecastViewModel.getRecordByLocationName(userViewModel.getLocationName())
                     .subscribeOn(Schedulers.io())
             }
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
                 setTemperatureRangeText(it.temperatureMin, it.temperatureMax)
             }
-            .subscribe({}, { Log.e(TAG, "queryDatabaseThenUpdateUI: $it.message") })
+            .subscribe()
     }
 
     private fun updateAirQualityUi(record: PerHourRecord) {
@@ -117,28 +114,28 @@ class Outdoor : Fragment() {
     private fun setTemperatureRangeText(temperatureMin: String, temperatureMax: String) {
         val text =
             temperatureMin + "-" + temperatureMax + resources.getString(R.string.celsius_unit)
-        binding.textTemperatureRange.text = text
+        this.binding.textTemperatureRange.text = text
     }
 
     private fun updateAirQualityText(record: PerHourRecord) {
         val spannableStringService = SpannableStringService()
         spannableStringService.setSuperscriptText(
             record.pm25 + resources.getString(R.string.micrometer_per_cubic_meter),
-            binding.textPm25
+            this.binding.textPm25
         )
         spannableStringService.setSuperscriptText(
             record.pm10 + resources.getString(R.string.micrometer_per_cubic_meter),
-            binding.textPm10
+            this.binding.textPm10
         )
 
         val o3withUnit = record.o3 + resources.getString(R.string.parts_per_billion)
-        binding.textO3.text = o3withUnit
+        this.binding.textO3.text = o3withUnit
         val coWithUnit = record.co + resources.getString(R.string.parts_per_million)
-        binding.textCo.text = coWithUnit
+        this.binding.textCo.text = coWithUnit
         val so2WithUnit = record.so2 + resources.getString(R.string.parts_per_billion)
-        binding.textSo2.text = so2WithUnit
+        this.binding.textSo2.text = so2WithUnit
         val no2WithUnit = record.no2 + resources.getString(R.string.parts_per_billion)
-        binding.textNo2.text = no2WithUnit
+        this.binding.textNo2.text = no2WithUnit
     }
 
     private fun updateAirQualityIndexImage(value: Int) {
@@ -184,16 +181,14 @@ class Outdoor : Fragment() {
                     )
                 }
 
-                else -> {
-                    Log.d(TAG, "setText: out of range")
-                }
+                else -> {}
             }
         }
 
         if (value >= 101) {
-            binding.outdoorWarning.setBackgroundResource(R.drawable.ic_outdoor_warning)
+            this.binding.outdoorWarning.setBackgroundResource(R.drawable.ic_outdoor_warning)
         } else {
-            binding.outdoorWarning.setBackgroundResource(R.drawable.ic_outdoor_warning_default)
+            this.binding.outdoorWarning.setBackgroundResource(R.drawable.ic_outdoor_warning_default)
         }
     }
 
@@ -202,8 +197,8 @@ class Outdoor : Fragment() {
         imgCloud: Int,
         imgBackground: Int
     ) {
-        binding.textAqiResult.text = value.toString()
-        binding.imgCloud.setBackgroundResource(imgCloud)
-        binding.backgroundAqi.setBackgroundResource(imgBackground)
+        this.binding.textAqiResult.text = value.toString()
+        this.binding.imgCloud.setBackgroundResource(imgCloud)
+        this.binding.backgroundAqi.setBackgroundResource(imgBackground)
     }
 }

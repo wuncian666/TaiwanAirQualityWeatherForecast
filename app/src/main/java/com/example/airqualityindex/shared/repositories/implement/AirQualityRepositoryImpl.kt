@@ -5,49 +5,45 @@ import androidx.lifecycle.LiveData
 import com.example.airqualityindex.shared.api.ApiInstances
 import com.example.airqualityindex.shared.database.ApplicationDatabase
 import com.example.airqualityindex.shared.models.aqi.hour.PerHourRecord
-import com.example.airqualityindex.shared.repositories.IPerHourRepository
+import com.example.airqualityindex.shared.repositories.IAirQualityRepository
 import io.reactivex.rxjava3.core.Single
 
-class PerHourAirQualityRepositoryImpl(private val context: Context) : IPerHourRepository {
-    companion object {
-        private val TAG = PerHourAirQualityRepositoryImpl::class.java.simpleName
+class AirQualityRepositoryImpl(private val context: Context) : IAirQualityRepository {
+    private val dao = ApplicationDatabase.getInstance(this.context).getPerHourRecordDao()
+    override fun requestApi(): Single<List<PerHourRecord>> {
+        return ApiInstances.getRetrofitInstance().getAirQualityPerHour()
+            .map { it.records }
     }
 
-    private val dao = ApplicationDatabase.getInstance(this.context).getPerHourRecordDao()
+    override fun insert(records: List<PerHourRecord>) {
+        this.dao.insert(records)
+    }
+
     override fun getDistinctSiteName(): Single<List<String>> {
         return Single.fromCallable {
-            dao.getDistinctSiteName()
+            this.dao.getDistinctSiteName()
         }
     }
 
     override fun getDistinctCounties(): Single<List<String>> {
         return Single.fromCallable {
-            dao.getDistinctCounties()
+            this.dao.getDistinctCounties()
         }
-    }
-
-    override fun getRecordResponse(): Single<List<PerHourRecord>> {
-        return ApiInstances.getRetrofitInstance().getAQIPerHour()
-            .map { it.records }
-    }
-
-    override fun insertRecordsInDatabase(records: List<PerHourRecord>) {
-        dao.insert(records)
     }
 
     override fun getSiteNameByCounty(county: String): Single<List<String>> {
         return Single.fromCallable {
-            dao.getSiteNameByCounty(county)
+            this.dao.getSiteNameByCounty(county)
         }
     }
 
     override fun getRecordBySiteName(siteName: String?): Single<PerHourRecord> {
-        return Single.fromCallable{
-            dao.getRecordBySiteName(siteName)
+        return Single.fromCallable {
+            this.dao.getRecordBySiteName(siteName)
         }
     }
 
     override fun getRecordBySiteNameLiveData(siteName: String?): LiveData<PerHourRecord> {
-        return dao.getRecordBySiteNameLiveData(siteName)
+        return this.dao.getRecordBySiteNameLiveData(siteName)
     }
 }

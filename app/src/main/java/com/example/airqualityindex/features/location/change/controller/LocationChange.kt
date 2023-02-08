@@ -9,18 +9,16 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentChangeLocationBinding
+import com.example.airqualityindex.features.main.viewmodel.NavigationViewModel
+import com.example.airqualityindex.features.user.viewmodel.UserViewModel
+import com.example.airqualityindex.shared.constant.UserData
 import com.example.airqualityindex.shared.models.CityWithDistricts
 import com.example.airqualityindex.shared.models.District
-import com.example.airqualityindex.shared.database.SharedPreferencesManager
-import com.example.airqualityindex.shared.constant.UserData
-import com.example.airqualityindex.features.main.viewmodels.NavigationViewModel
-import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 import org.koin.android.ext.android.get
 
 class LocationChange : Fragment() {
-    private val navCallback: NavigationViewModel = get()
-    private val sharedPreferencesManager: SharedPreferencesManager = get()
+    private val navViewModel: NavigationViewModel = get()
+    private val userViewModel: UserViewModel = get()
 
     private lateinit var binding: FragmentChangeLocationBinding
 
@@ -31,7 +29,7 @@ class LocationChange : Fragment() {
     ): View {
         this.binding = FragmentChangeLocationBinding.inflate(inflater, container, false)
 
-        this.setSpinnerCity(this.getTaiwanDistricts())
+        this.setSpinnerCity(this.userViewModel.getTaiwanDistricts())
 
         return this.binding.root
     }
@@ -39,11 +37,12 @@ class LocationChange : Fragment() {
     fun onClickListener(view: View) {
         when (view.id) {
             R.id.open_custom_drawer -> {
-                this.navCallback.navigationCallback?.onPressBack()
+                this.navViewModel.navigationCallback?.onPressBack()
             }
 
             R.id.btn_confirm -> {
-                this.saveSelectedLocation()
+                val selectedCounty = binding.spinnerCounty.selectedItem.toString()
+                this.userViewModel.save(UserData.GROUP, UserData.LOCATION, selectedCounty)
             }
         }
     }
@@ -55,8 +54,8 @@ class LocationChange : Fragment() {
         }
         val adapter = ArrayAdapter(requireContext(), R.layout.spinner_default_item, cityList)
         adapter.setDropDownViewResource(R.layout.spinner_selected_item)
-        binding.spinnerCounty.adapter = adapter
-        binding.spinnerCounty.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        this.binding.spinnerCounty.adapter = adapter
+        this.binding.spinnerCounty.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -77,8 +76,8 @@ class LocationChange : Fragment() {
         }
         val adapter = ArrayAdapter(requireContext(), R.layout.spinner_default_item, districtsList)
         adapter.setDropDownViewResource(R.layout.spinner_selected_item)
-        binding.spinnerSite.adapter = adapter
-        binding.spinnerSite.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        this.binding.spinnerSite.adapter = adapter
+        this.binding.spinnerSite.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -92,24 +91,5 @@ class LocationChange : Fragment() {
 
             }
         }
-    }
-
-    private fun getTaiwanDistricts(): List<CityWithDistricts> {
-        val taiwanDistricts: String =
-            requireContext().assets.open("taiwan_districts.json").bufferedReader()
-                .use { it.readText() }
-        val gson = GsonBuilder().create()
-        return gson.fromJson<ArrayList<CityWithDistricts>>(
-            taiwanDistricts,
-            object : TypeToken<ArrayList<CityWithDistricts>>() {}.type
-        )
-    }
-
-    private fun saveSelectedLocation() {
-        sharedPreferencesManager.saveData(
-            UserData.GROUP,
-            UserData.LOCATION,
-            binding.spinnerCounty.selectedItem.toString()
-        )
     }
 }

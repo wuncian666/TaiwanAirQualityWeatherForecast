@@ -5,7 +5,7 @@ import androidx.room.*
 import com.example.airqualityindex.shared.models.aqi.hour.PerHourRecord
 
 @Dao
-interface PerHourRecordDao {
+interface PerHourAirQualityDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(record: List<PerHourRecord>)
 

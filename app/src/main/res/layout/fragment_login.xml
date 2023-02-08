@@ -11,17 +11,17 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/bilious_green"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bilious_green"
         tools:context=".features.login.controller.Login">
 
         <Button
-            android:onClick="@{(view) -> login.onButtonClick(view)}"
-            android:text="@string/login"
             android:id="@+id/btn_login"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:onClick="@{(view) -> login.onClickListener(view)}"
+            android:text="@string/login"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="6:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
             android:id="@+id/btn_register"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:onClick="@{(view) -> login.onButtonClick(view)}"
+            android:onClick="@{(view) -> login.onClickListener(view)}"
             android:text="@string/register"
             app:layout_constraintDimensionRatio="6:1"
             app:layout_constraintEnd_toEndOf="parent"

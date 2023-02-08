@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="searchAirQuality"
+            type="com.example.airqualityindex.features.search.airquality.controller.SearchAirQuality" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,6 +29,7 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="2dp"
                 android:background="@drawable/shape_25dp_corners"
+                android:onClick="@{(view)->searchAirQuality.onClickListener(view)}"
                 android:src="@drawable/ic_toolbar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
@@ -150,6 +154,7 @@
             app:layout_constraintVertical_bias="0.2" />
 
         <ImageButton
+            android:onClick="@{(view)->searchAirQuality.onClickListener(view)}"
             android:id="@+id/btn_search"
             android:layout_width="0dp"
             android:layout_height="0dp"

@@ -8,10 +8,6 @@ import info.mqtt.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.*
 
 class MqttService(private val context: Context, private var mqttEventListener: MqttEventListener?) {
-    companion object {
-        private val TAG = MqttService::class.java.simpleName
-    }
-
     private var mqttClient: MqttAndroidClient? = null
 
     fun setMqttEventListener(listener: MqttEventListener) {
@@ -19,7 +15,7 @@ class MqttService(private val context: Context, private var mqttEventListener: M
     }
 
     init {
-        mqttClient = MqttAndroidClient(
+        this.mqttClient = MqttAndroidClient(
             this.context,
             MqttConfig.MQTT_URL,
             MqttConfig.CLIENT_ID,
@@ -37,7 +33,7 @@ class MqttService(private val context: Context, private var mqttEventListener: M
             override fun deliveryComplete(token: IMqttDeliveryToken?) {}
 
             override fun connectComplete(reconnect: Boolean, serverURI: String?) {
-                Log.d(TAG, "connectComplete: $serverURI")
+                Log.d("TAG", "connectComplete: $serverURI")
             }
         })
     }
@@ -51,7 +47,7 @@ class MqttService(private val context: Context, private var mqttEventListener: M
     }
 
     fun mqttConnect() {
-        Log.d(TAG, "mqttConnect: ")
+        Log.d("TAG", "mqttConnect: ")
 
         val mqttConnectOptions = MqttConnectOptions()
         mqttConnectOptions.userName = "root"
@@ -73,16 +69,16 @@ class MqttService(private val context: Context, private var mqttEventListener: M
         try {
             mqttClient!!.subscribe(subscriptionTopic, qos, null, object : IMqttActionListener {
                 override fun onSuccess(asyncActionToken: IMqttToken?) {
-                    Log.d(TAG, "onSuccess: $subscriptionTopic")
+                    Log.d("TAG", "onSuccess: $subscriptionTopic")
                 }
 
                 override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
-                    Log.d(TAG, "onFailure: $subscriptionTopic failed!")
+                    Log.d("TAG", "onFailure: $subscriptionTopic failed!")
                 }
             })
         } catch (ex: MqttException) {
             Log.e(
-                TAG,
+                "TAG",
                 "subscribe: Exception whilst subscribing to topic $subscriptionTopic \n" + ex.printStackTrace()
             )
         }
@@ -93,9 +89,9 @@ class MqttService(private val context: Context, private var mqttEventListener: M
             val message = MqttMessage()
             message.payload = msg.toByteArray()
             mqttClient!!.publish(topic, message.payload, qos, false)
-            Log.d(TAG, "publish: $msg")
+            Log.d("TAG", "publish: $msg")
         } catch (e: MqttException) {
-            Log.e(TAG, "publish: Error Publish to $topic, " + e.message)
+            Log.e("TAG", "publish: Error Publish to $topic, " + e.message)
         }
     }
 

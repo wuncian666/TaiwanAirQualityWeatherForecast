@@ -1,6 +1,7 @@
 package com.example.airqualityindex.shared.repositories
 
 import android.content.SharedPreferences
+import com.example.airqualityindex.shared.models.CityWithDistricts
 
 interface IUserDataRepository {
     fun getSharedPreferences(group: String): SharedPreferences
@@ -14,11 +15,13 @@ interface IUserDataRepository {
     // for air quality
     fun getSiteName(): String?
 
-    fun saveData(group: String, key: String, value:String)
+    fun save(group: String, key: String, value:String)
 
     fun getData(group: String, key: String): String?
 
     fun removeData(group: String, key: String)
 
     fun clearGroup(group: String)
+
+    fun getTaiwanDistricts(): List<CityWithDistricts>
 }

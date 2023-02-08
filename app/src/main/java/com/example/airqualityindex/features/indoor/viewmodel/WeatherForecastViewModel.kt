@@ -1,4 +1,4 @@
-package com.example.airqualityindex.features.indoor.viewmodels
+package com.example.airqualityindex.features.indoor.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

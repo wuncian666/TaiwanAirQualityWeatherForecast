@@ -5,6 +5,13 @@
 
     <data>
 
+        <variable
+            name="indoor"
+            type="com.example.airqualityindex.features.indoor.controller.Indoor" />
+
+        <variable
+            name="userViewModel"
+            type="com.example.airqualityindex.features.user.viewmodel.UserViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,6 +33,7 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="2dp"
                 android:background="@drawable/shape_25dp_corners"
+                android:onClick="@{(view)->indoor.onClickListener(view)}"
                 android:src="@drawable/ic_toolbar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
@@ -78,7 +86,7 @@
                 android:layout_height="0dp"
                 android:autoSizeTextType="uniform"
                 android:fontFamily="@font/co_headline_bold"
-                android:text="@string/name"
+                android:text="@{userViewModel.userName}"
                 android:textColor="@color/dark_gray"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -108,7 +116,7 @@
                 android:layout_height="0dp"
                 android:autoSizeTextType="uniform"
                 android:fontFamily="@font/gen_sen_maru_gothic_tw_regular"
-                android:text="@string/address"
+                android:text="@{userViewModel.locationName}"
                 android:textColor="@color/dark_gray"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/img_location"

@@ -11,7 +11,6 @@ import com.example.airqualityindex.databinding.FragmentRegisterBinding
 import com.example.airqualityindex.shared.units.RegisterVerify
 
 class Register : Fragment() {
-
     private lateinit var binding: FragmentRegisterBinding
 
     override fun onCreateView(
@@ -29,7 +28,7 @@ class Register : Fragment() {
         when (view.id) {
             R.id.btn_register -> {
                 if (findNavController().currentDestination?.id == R.id.registerFragment) {
-                    if (RegisterVerify().isLoginIdVerify(binding.editAccount.text.toString()))
+                    if (RegisterVerify().isLoginIdVerify(this.binding.editAccount.text.toString()))
                         findNavController().navigateUp()
                 }
             }
