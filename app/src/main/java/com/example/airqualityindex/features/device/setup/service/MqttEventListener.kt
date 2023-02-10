@@ -1,4 +1,4 @@
-package com.example.airqualityindex.features.device.setup.services
+package com.example.airqualityindex.features.device.setup.service
 
 import org.eclipse.paho.client.mqttv3.MqttMessage
 

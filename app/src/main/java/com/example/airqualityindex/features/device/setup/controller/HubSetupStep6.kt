@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentHubSetupStep6Binding
-import com.example.airqualityindex.features.device.setup.viewmodels.HubViewModel
+import com.example.airqualityindex.features.device.setup.viewmodel.HubViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable

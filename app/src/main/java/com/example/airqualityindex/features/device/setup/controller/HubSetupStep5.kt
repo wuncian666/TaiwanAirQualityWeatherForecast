@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentHubSetupStep5Binding
-import com.example.airqualityindex.features.device.setup.viewmodels.HubViewModel
+import com.example.airqualityindex.features.device.setup.viewmodel.HubViewModel
 import com.example.airqualityindex.shared.constant.AWSConfig
 import com.example.airqualityindex.shared.constant.MqttConfig
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers

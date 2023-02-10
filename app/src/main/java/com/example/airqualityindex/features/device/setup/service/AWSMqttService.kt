@@ -1,7 +1,6 @@
-package com.example.airqualityindex.features.device.setup.services
+package com.example.airqualityindex.features.device.setup.service
 
 import android.content.Context
-import android.util.Log
 import com.amazonaws.auth.CognitoCachingCredentialsProvider
 import com.amazonaws.mobileconnectors.iot.AWSIotKeystoreHelper
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus

@@ -1,9 +1,9 @@
-package com.example.airqualityindex.features.device.setup.viewmodels
+package com.example.airqualityindex.features.device.setup.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import com.example.airqualityindex.features.device.setup.services.MqttEventListener
-import com.example.airqualityindex.features.device.setup.services.MqttService
+import com.example.airqualityindex.features.device.setup.service.MqttEventListener
+import com.example.airqualityindex.features.device.setup.service.MqttService
 import com.example.airqualityindex.shared.model.AWSCertification
 import com.example.airqualityindex.shared.repository.implement.HubRepositoryImpl
 import com.example.airqualityindex.shared.util.NetworkInformation

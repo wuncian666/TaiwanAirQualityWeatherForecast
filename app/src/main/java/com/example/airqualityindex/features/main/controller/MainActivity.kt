@@ -17,9 +17,9 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.ActivityMainBinding
 import com.example.airqualityindex.features.indoor.viewmodel.WeatherForecastViewModel
-import com.example.airqualityindex.features.main.services.NavigationCallback
+import com.example.airqualityindex.features.main.service.NavigationCallback
 import com.example.airqualityindex.features.main.viewmodel.NavigationViewModel
-import com.example.airqualityindex.features.outdoor.viewmodels.AirQualityViewModel
+import com.example.airqualityindex.features.outdoor.viewmodel.AirQualityViewModel
 import com.example.airqualityindex.shared.constant.MainConfig.ID_INDOOR
 import com.example.airqualityindex.shared.constant.MainConfig.ID_OUTDOOR
 import com.example.airqualityindex.shared.util.SystemTime

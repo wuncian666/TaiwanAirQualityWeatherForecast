@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentSearchAirQualityBinding
 import com.example.airqualityindex.features.main.viewmodel.NavigationViewModel
-import com.example.airqualityindex.features.outdoor.viewmodels.AirQualityViewModel
+import com.example.airqualityindex.features.outdoor.viewmodel.AirQualityViewModel
 import com.example.airqualityindex.features.user.viewmodel.UserViewModel
 import com.example.airqualityindex.shared.constant.AirQualityStatus
 import com.example.airqualityindex.shared.database.entity.PerHourAirQualityEntity

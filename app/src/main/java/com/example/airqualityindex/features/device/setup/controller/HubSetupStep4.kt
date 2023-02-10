@@ -9,9 +9,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentHubSetupStep4Binding
-import com.example.airqualityindex.features.device.setup.services.MqttEventListener
+import com.example.airqualityindex.features.device.setup.service.MqttEventListener
 import com.example.airqualityindex.features.device.setup.view.WifiListAdapter
-import com.example.airqualityindex.features.device.setup.viewmodels.HubViewModel
+import com.example.airqualityindex.features.device.setup.viewmodel.HubViewModel
 import com.example.airqualityindex.shared.constant.MqttConfig
 import com.example.airqualityindex.shared.model.WifiInfo
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers

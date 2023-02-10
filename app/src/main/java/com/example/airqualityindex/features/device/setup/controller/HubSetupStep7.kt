@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.airqualityindex.databinding.FragmentHubSetupStep7Binding
-import com.example.airqualityindex.features.device.setup.services.AWSMqttEventListener
-import com.example.airqualityindex.features.device.setup.viewmodels.AWSViewModel
+import com.example.airqualityindex.features.device.setup.service.AWSMqttEventListener
+import com.example.airqualityindex.features.device.setup.viewmodel.AWSViewModel
 import com.example.airqualityindex.shared.constant.AWSConfig
 import org.json.JSONObject
 import org.koin.android.ext.android.get
