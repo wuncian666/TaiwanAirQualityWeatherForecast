@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.airqualityindex.databinding.ItemWifiListBinding
-import com.example.airqualityindex.shared.models.WifiInfo
+import com.example.airqualityindex.shared.model.WifiInfo
 
 class WifiListAdapter(
     private var wifiInfoList: List<WifiInfo>,
@@ -50,7 +50,7 @@ class WifiListAdapter(
         override fun onClick(v: View?) {
             val clickPosition = adapterPosition
             if (clickPosition != RecyclerView.NO_POSITION)
-                this.listener.onItemClick(clickPosition, this. wifiInfoList)
+                this.listener.onItemClick(clickPosition, this.wifiInfoList)
         }
     }
 }

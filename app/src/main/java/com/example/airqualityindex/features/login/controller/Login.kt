@@ -18,7 +18,7 @@ class Login : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentLoginBinding.inflate(inflater, container, false)
-        this.binding.login = this
+        this.binding.onClickListener = this
 
         return this.binding.root
     }

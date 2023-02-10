@@ -34,7 +34,7 @@ class HubSetupStep1 : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentHubSetupStep1Binding.inflate(inflater, container, false)
-        this.binding.hubSetupStep1 = this
+        this.binding.onClickListener = this
 
         return this.binding.root
     }
@@ -76,7 +76,7 @@ class HubSetupStep1 : Fragment() {
         this.viewModel.requestCertificationApi(uuid.uppercase(Locale.getDefault()))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSuccess {
+            .doOnNext {
                 navigateByNetworkStatus()
                 // todo set gateway uuid
             }

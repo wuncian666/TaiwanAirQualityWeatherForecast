@@ -18,7 +18,7 @@ class HubSetupStep3 : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentHubSetupStep3Binding.inflate(inflater, container, false)
-        this.binding.hubSetupStep3 = this
+        this.binding.onClickListener = this
 
         return this.binding.root
     }

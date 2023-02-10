@@ -28,7 +28,7 @@ class HubSetupStep7 : Fragment(), AWSMqttEventListener {
         this.awsViewModel.setAWSMqttUseCase(this)
         this.awsViewModel.connectAWSMqtt()
 
-        return binding.root
+        return this.binding.root
     }
 
     override fun mqttStatusCallback(status: Int) {
@@ -44,12 +44,12 @@ class HubSetupStep7 : Fragment(), AWSMqttEventListener {
     }
 
     override fun subscribe(message: JSONObject) {
-        awsViewModel.parse()
+        this.awsViewModel.parse()
     }
 
     private fun subscribeAndPublishTopic() {
         //val gatewayUuid = awsViewModel.getDeviceUuid()
-        awsViewModel.subscribeTopic(AWSConfig.GATEWAY_UUID)
-        awsViewModel.getAllGatewayInformation()
+        this.awsViewModel.subscribeTopic(AWSConfig.GATEWAY_UUID)
+        this.awsViewModel.getAllGatewayInformation()
     }
 }

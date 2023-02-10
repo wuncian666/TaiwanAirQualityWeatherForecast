@@ -4,25 +4,28 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.airqualityindex.models.DailyRecord
 import com.example.airqualityindex.shared.database.dao.DailyAirQualityDao
 import com.example.airqualityindex.shared.database.dao.PerHourAirQualityDao
 import com.example.airqualityindex.shared.database.dao.WeatherForecastDao
-import com.example.airqualityindex.shared.models.WeatherForecastStore
-import com.example.airqualityindex.shared.models.aqi.hour.PerHourRecord
+import com.example.airqualityindex.shared.database.entity.DailyAirQualityEntity
+import com.example.airqualityindex.shared.database.entity.PerHourAirQualityEntity
+import com.example.airqualityindex.shared.database.entity.WeatherForecastEntity
 
-@Database(entities = [DailyRecord::class, PerHourRecord::class, WeatherForecastStore::class], version = 8)
+@Database(
+    entities = [DailyAirQualityEntity::class, PerHourAirQualityEntity::class, WeatherForecastEntity::class],
+    version = 8
+)
 abstract class ApplicationDatabase : RoomDatabase() {
     companion object {
         private var instance: ApplicationDatabase? = null
         private var databaseName = "AQI_Database"
 
         fun getInstance(context: Context): ApplicationDatabase {
-            return instance ?: Room.databaseBuilder(
-                context, ApplicationDatabase::class.java, databaseName
+            return this.instance ?: Room.databaseBuilder(
+                context, ApplicationDatabase::class.java, this.databaseName
             )
                 .fallbackToDestructiveMigration()
-                .build().also { instance = it }
+                .build().also { this.instance = it }
         }
     }
 

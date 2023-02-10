@@ -2,8 +2,8 @@ package com.example.airqualityindex.shared.di
 
 import android.app.Application
 import android.util.Log
-import com.example.airqualityindex.shared.di.modules.repositoryModule
-import com.example.airqualityindex.shared.di.modules.viewModeModule
+import com.example.airqualityindex.shared.di.module.repositoryModule
+import com.example.airqualityindex.shared.di.module.viewModeModule
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidContext

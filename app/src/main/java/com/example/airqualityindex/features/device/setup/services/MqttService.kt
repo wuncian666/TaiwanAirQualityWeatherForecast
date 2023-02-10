@@ -27,7 +27,7 @@ class MqttService(private val context: Context, private var mqttEventListener: M
 
             @Throws(Exception::class)
             override fun messageArrived(topic: String?, message: MqttMessage?) {
-                mqttEventListener?.onMessageArrived(message)
+                this@MqttService.mqttEventListener?.onMessageArrived(message)
             }
 
             override fun deliveryComplete(token: IMqttDeliveryToken?) {}
@@ -56,18 +56,18 @@ class MqttService(private val context: Context, private var mqttEventListener: M
         this.mqttClient?.connect(mqttConnectOptions, this.context, object : IMqttActionListener {
             override fun onSuccess(asyncActionToken: IMqttToken?) {
                 subscribe(MqttConfig.SUBSCRIBE_TOPIC, 1)
-                mqttEventListener?.onConnected()
+                this@MqttService.mqttEventListener?.onConnected()
             }
 
             override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
-                mqttEventListener?.onConnectFail(exception)
+                this@MqttService.mqttEventListener?.onConnectFail(exception)
             }
         })
     }
 
     fun subscribe(subscriptionTopic: String, qos: Int = 0) {
         try {
-            mqttClient!!.subscribe(subscriptionTopic, qos, null, object : IMqttActionListener {
+            this.mqttClient!!.subscribe(subscriptionTopic, qos, null, object : IMqttActionListener {
                 override fun onSuccess(asyncActionToken: IMqttToken?) {
                     Log.d("TAG", "onSuccess: $subscriptionTopic")
                 }
@@ -88,7 +88,7 @@ class MqttService(private val context: Context, private var mqttEventListener: M
         try {
             val message = MqttMessage()
             message.payload = msg.toByteArray()
-            mqttClient!!.publish(topic, message.payload, qos, false)
+            this.mqttClient!!.publish(topic, message.payload, qos, false)
             Log.d("TAG", "publish: $msg")
         } catch (e: MqttException) {
             Log.e("TAG", "publish: Error Publish to $topic, " + e.message)
@@ -96,11 +96,11 @@ class MqttService(private val context: Context, private var mqttEventListener: M
     }
 
     fun isConnected(): Boolean {
-        return mqttClient!!.isConnected
+        return this.mqttClient!!.isConnected
     }
 
     fun destroy() {
-        mqttClient!!.unregisterResources()
-        mqttClient!!.disconnect()
+        this.mqttClient!!.unregisterResources()
+        this.mqttClient!!.disconnect()
     }
 }

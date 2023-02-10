@@ -99,7 +99,7 @@ class AWSMqttService(private var awsMqttEventListener: AWSMqttEventListener?) {
         ) { _: String?, bytesMessage: ByteArray? ->
             val message = String(bytesMessage!!, StandardCharsets.UTF_8)
             val jsonMessage = JSONObject(message)
-            awsMqttEventListener?.subscribe(jsonMessage)
+            this.awsMqttEventListener?.subscribe(jsonMessage)
         }
     }
 

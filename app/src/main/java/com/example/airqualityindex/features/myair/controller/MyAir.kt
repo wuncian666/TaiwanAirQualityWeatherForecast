@@ -20,11 +20,12 @@ class MyAir : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentMyAirBinding.inflate(inflater, container, false)
+        this.binding.onClickListener = this
 
         return this.binding.root
     }
 
-    fun onClick(view: View) {
+    fun onClickListener(view: View) {
         when (view.id) {
             R.id.open_custom_drawer -> {
                 this.navCallback.navigationCallback?.onPressBack()

@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="hubSetupStep4"
+            name="onClickListener"
             type="com.example.airqualityindex.features.device.setup.controller.HubSetupStep4" />
     </data>
 
@@ -105,7 +105,7 @@
                     android:text="@string/cancel"
                     android:textColor="@color/white"
                     android:textSize="15sp"
-                    android:onClick="@{(view)->hubSetupStep4.onClickListener(view)}"
+                    android:onClick="@{(view)->onClickListener.onClickListener(view)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="100:30"
                     app:layout_constraintEnd_toStartOf="@+id/btn_confirm"
@@ -123,7 +123,7 @@
                     android:text="@string/confirm"
                     android:textColor="@color/white"
                     android:textSize="15sp"
-                    android:onClick="@{(view)->hubSetupStep4.onClickListener(view)}"
+                    android:onClick="@{(view)->onClickListener.onClickListener(view)}"
                     app:layout_constraintBottom_toBottomOf="@+id/btn_cancel"
                     app:layout_constraintDimensionRatio="100:30"
                     app:layout_constraintEnd_toEndOf="parent"

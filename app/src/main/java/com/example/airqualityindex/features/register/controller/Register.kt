@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentRegisterBinding
-import com.example.airqualityindex.shared.units.RegisterVerify
+import com.example.airqualityindex.shared.unit.RegisterVerify
 
 class Register : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
@@ -19,7 +19,7 @@ class Register : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        this.binding.register = this
+        this.binding.onClickListener = this
 
         return this.binding.root
     }
@@ -34,6 +34,4 @@ class Register : Fragment() {
             }
         }
     }
-
-
 }

@@ -13,7 +13,7 @@ import com.example.airqualityindex.features.device.setup.services.MqttEventListe
 import com.example.airqualityindex.features.device.setup.view.WifiListAdapter
 import com.example.airqualityindex.features.device.setup.viewmodels.HubViewModel
 import com.example.airqualityindex.shared.constant.MqttConfig
-import com.example.airqualityindex.shared.models.WifiInfo
+import com.example.airqualityindex.shared.model.WifiInfo
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -38,7 +38,7 @@ class HubSetupStep4 : Fragment(), WifiListAdapter.OnItemClickListener, MqttEvent
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentHubSetupStep4Binding.inflate(inflater, container, false)
-        this.binding.hubSetupStep4 = this
+        this.binding.onClickListener = this
 
         this.binding.wifiDialog.visibility = View.INVISIBLE
 
@@ -59,7 +59,7 @@ class HubSetupStep4 : Fragment(), WifiListAdapter.OnItemClickListener, MqttEvent
                 if (wifiPassword.isNullOrEmpty()) {
                     this.selectedWifiInfo.password = wifiPassword.toString()
                     val action =
-                        HubSetupStep4Directions.actionHubSetupStep4ToHubSetupStep5(selectedWifiInfo)
+                        HubSetupStep4Directions.actionHubSetupStep4ToHubSetupStep5(this.selectedWifiInfo)
                     findNavController().navigate(action)
                 }
             }
@@ -75,7 +75,7 @@ class HubSetupStep4 : Fragment(), WifiListAdapter.OnItemClickListener, MqttEvent
             .take(1)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext { viewModel.mqttConnect() }
+            .doOnNext { this.viewModel.mqttConnect() }
             .subscribe()
     }
 
@@ -88,7 +88,7 @@ class HubSetupStep4 : Fragment(), WifiListAdapter.OnItemClickListener, MqttEvent
 
         this.scanWifiTimer = Observable.interval(5, 10, TimeUnit.SECONDS)
             .doOnNext {
-                viewModel.mqttPublish(MqttConfig.PUBLISH_TOPIC, getJsonWifiScanEvent())
+                this.viewModel.mqttPublish(MqttConfig.PUBLISH_TOPIC, getJsonWifiScanEvent())
             }
             .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())

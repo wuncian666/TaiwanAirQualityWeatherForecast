@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="myAir"
+            name="onClickListener"
             type="com.example.airqualityindex.features.myair.controller.MyAir" />
     </data>
 
@@ -29,7 +29,7 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="2dp"
                 android:background="@drawable/shape_25dp_corners"
-                android:onClick="@{(view)->myAir.onClick(view)}"
+                android:onClick="@{(view)->onClickListener.onClickListener(view)}"
                 android:src="@drawable/ic_toolbar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"

@@ -31,9 +31,9 @@ class HubSetupStep6 : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentHubSetupStep6Binding.inflate(inflater, container, false)
-        this.binding.hubSetupStep6 = this
+        this.binding.onClickListener = this
 
-        return binding.root
+        return this.binding.root
     }
 
     fun onClickListener(view: View) {
@@ -58,7 +58,7 @@ class HubSetupStep6 : Fragment() {
             .observeOn(Schedulers.computation())
             .subscribeOn(AndroidSchedulers.mainThread())
             .doOnNext {
-                if (viewModel.networkConnected()) {
+                if (this.viewModel.networkConnected()) {
                     findNavController().navigate(R.id.action_hubSetupStep6_to_hubSetupStep7)
                 }
             }

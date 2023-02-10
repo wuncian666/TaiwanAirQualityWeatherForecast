@@ -3,7 +3,6 @@ package com.example.airqualityindex.features.device.setup.controller
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,9 +30,9 @@ class HubSetupStep2 : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentHubSetupStep2Binding.inflate(inflater, container, false)
-        this.binding.hubSetupStep2 = this
+        this.binding.onClickListener = this
 
-        return binding.root
+        return this.binding.root
     }
 
     fun onClickListener(view: View) {
@@ -53,7 +52,7 @@ class HubSetupStep2 : Fragment() {
             .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext {
-                if (viewModel.findVisionHubSSID()) {
+                if (this.viewModel.findVisionHubSSID()) {
                     this.timerFindVisionHubSSID.dispose()
                     findNavController().navigate(R.id.action_hubSetupStep2_to_hubSetupStep3)
                 }

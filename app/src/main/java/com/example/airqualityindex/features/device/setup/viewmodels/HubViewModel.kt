@@ -4,13 +4,17 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.example.airqualityindex.features.device.setup.services.MqttEventListener
 import com.example.airqualityindex.features.device.setup.services.MqttService
-import com.example.airqualityindex.shared.models.AWSCertification
-import com.example.airqualityindex.shared.repositories.implement.HubRepositoryImpl
-import com.example.airqualityindex.shared.units.NetworkInformation
-import io.reactivex.rxjava3.core.Single
+import com.example.airqualityindex.shared.model.AWSCertification
+import com.example.airqualityindex.shared.repository.implement.HubRepositoryImpl
+import com.example.airqualityindex.shared.unit.NetworkInformation
+import io.reactivex.rxjava3.core.Observable
 
-class HubViewModel(private val context: Context, private val hubRepositoryImpl: HubRepositoryImpl) : ViewModel() {
-    private val networkUseCase = NetworkInformation()
+class HubViewModel(
+    private val context: Context,
+    private val hubRepositoryImpl: HubRepositoryImpl
+) : ViewModel() {
+
+    private val networkInformation = NetworkInformation()
 
     private var mqttService: MqttService? = null
 
@@ -25,19 +29,19 @@ class HubViewModel(private val context: Context, private val hubRepositoryImpl: 
     }
 
     fun setMqttUseCase(listener: MqttEventListener) {
-        this.mqttService = MqttService(context, listener)
+        this.mqttService = MqttService(this.context, listener)
     }
 
     fun setMqttListener(listener: MqttEventListener) {
         this.mqttService?.setMqttEventListener(listener)
     }
 
-    fun requestCertificationApi(uuid: String): Single<AWSCertification> {
+    fun requestCertificationApi(uuid: String): Observable<AWSCertification> {
         return this.hubRepositoryImpl.requestCertificationApi(uuid)
     }
 
     fun findVisionHubSSID(): Boolean {
-        val ssid = this.networkUseCase.getWifiSSID(context)
+        val ssid = this.networkInformation.getWifiSSID(this.context)
 
         if (ssid.isEmpty()) return false
 
@@ -49,7 +53,7 @@ class HubViewModel(private val context: Context, private val hubRepositoryImpl: 
     }
 
     fun networkConnected(): Boolean {
-        return this.networkUseCase.networkConnected(context)
+        return this.networkInformation.networkConnected(this.context)
     }
 
     fun mqttConnected(): Boolean {

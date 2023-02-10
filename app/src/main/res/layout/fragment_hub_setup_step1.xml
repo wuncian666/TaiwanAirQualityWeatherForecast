@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="hubSetupStep1"
+            name="onClickListener"
             type="com.example.airqualityindex.features.device.setup.controller.HubSetupStep1" />
     </data>
 
@@ -52,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/btn_hub_setup"
-            android:onClick="@{(view)->hubSetupStep1.onClickListener(view)}"
+            android:onClick="@{(view)->onClickListener.onClickListener(view)}"
             android:shadowColor="@color/black_trans_80"
             android:shadowDy="1"
             android:shadowRadius="0"

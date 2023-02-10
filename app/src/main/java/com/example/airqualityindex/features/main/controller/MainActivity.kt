@@ -1,19 +1,14 @@
 package com.example.airqualityindex.features.main.controller
 
 import android.Manifest
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -21,25 +16,28 @@ import androidx.navigation.fragment.NavHostFragment
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.ActivityMainBinding
-import com.example.airqualityindex.shared.units.AlarmReceiver
-import com.example.airqualityindex.shared.units.SystemTime
-import com.example.airqualityindex.features.outdoor.viewmodels.AirQualityViewModel
 import com.example.airqualityindex.features.indoor.viewmodel.WeatherForecastViewModel
 import com.example.airqualityindex.features.main.services.NavigationCallback
 import com.example.airqualityindex.features.main.viewmodel.NavigationViewModel
+import com.example.airqualityindex.features.outdoor.viewmodels.AirQualityViewModel
 import com.example.airqualityindex.shared.constant.MainConfig.ID_INDOOR
 import com.example.airqualityindex.shared.constant.MainConfig.ID_OUTDOOR
+import com.example.airqualityindex.shared.unit.SystemTime
 import com.google.android.material.navigation.NavigationView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.koin.android.ext.android.get
-import java.util.*
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     NavigationCallback {
     private val navCallback: NavigationViewModel = get()
     private val weatherForecastViewModel: WeatherForecastViewModel = get()
     private val perHourAirQualityViewModel: AirQualityViewModel = get()
+
+    private var timeDisposable: Disposable? = null
 
     private lateinit var binding: ActivityMainBinding
 
@@ -48,48 +46,56 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        installSplashScreen()
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         this.navCallback.navigationCallback = this
-
         this.navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         this.navController = this.navHostFragment!!.navController
 
         this.setDrawerNavigation()
-
         this.setBottomNavigation()
-
         this.requestPermission()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
 
         this.requestApi()
 
-        this.periodicWorkRequest()
+        this.startTimer()
     }
 
     override fun onStop() {
         super.onStop()
 
-        this.cancelDailyApiRequest(this)
+        this.timeDisposable?.dispose()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    private fun startTimer() {
+        this.timeDisposable?.dispose()
+        this.timeDisposable = Observable.interval(
+            SystemTime().getPeriodTimeNextHour(),
+            3600,
+            TimeUnit.SECONDS,
+            Schedulers.io()
+        ).doOnNext { this.requestApi() }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
+    }
+
     private fun requestApi() {
         this.weatherForecastViewModel.getApiResponse(SystemTime().getCurrentTime())
-            .doOnSuccess {
-                val weatherForecastStores = weatherForecastViewModel.turnStoreFormat(it)
-                this.weatherForecastViewModel.insertWeatherForecastInDatabase(weatherForecastStores)
+            .flatMap {
+                val weatherForecast = this.weatherForecastViewModel.turnStoreFormat(it)
+                this.weatherForecastViewModel.insert(weatherForecast)
             }
             .flatMap {
                 this.perHourAirQualityViewModel.requestApi()
             }
-            .doOnSuccess {
+            .flatMap {
                 this.perHourAirQualityViewModel.insert(it)
             }
             .subscribeOn(Schedulers.io())
@@ -97,39 +103,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .subscribe()
     }
 
-    private fun periodicWorkRequest() {
-        val alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(this, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getService(this, 0, intent, 0)
-
-        val triggerTime = Calendar.getInstance().apply {
-            timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
-        }.timeInMillis
-
-        alarmManager.setInexactRepeating(
-            AlarmManager.RTC,
-            triggerTime,
-            AlarmManager.INTERVAL_DAY,
-            pendingIntent
-        )
-    }
-
-    private fun cancelDailyApiRequest(context: Context) {
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getService(context, 0, intent, 0)
-        alarmManager.cancel(pendingIntent)
-    }
-
     private fun setBottomNavigation() {
-        val bottomNavigation = binding.bottomNavigation
+        val bottomNavigation = this.binding.bottomNavigation
 
         bottomNavigation.apply {
             add(MeowBottomNavigation.Model(ID_INDOOR, R.drawable.ic_indoor))
-            add(MeowBottomNavigation.Model(ID_OUTDOOR,R.drawable.ic_outdoor))
+            add(MeowBottomNavigation.Model(ID_OUTDOOR, R.drawable.ic_outdoor))
 
             setOnShowListener {
                 when (it.id) {
@@ -214,6 +193,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onLogout() {
+
     }
 
     override fun onPressBack() {

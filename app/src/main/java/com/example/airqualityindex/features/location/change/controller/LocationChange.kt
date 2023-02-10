@@ -11,9 +11,8 @@ import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentChangeLocationBinding
 import com.example.airqualityindex.features.main.viewmodel.NavigationViewModel
 import com.example.airqualityindex.features.user.viewmodel.UserViewModel
-import com.example.airqualityindex.shared.constant.UserData
-import com.example.airqualityindex.shared.models.CityWithDistricts
-import com.example.airqualityindex.shared.models.District
+import com.example.airqualityindex.shared.model.CityWithDistricts
+import com.example.airqualityindex.shared.model.District
 import org.koin.android.ext.android.get
 
 class LocationChange : Fragment() {
@@ -28,6 +27,7 @@ class LocationChange : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         this.binding = FragmentChangeLocationBinding.inflate(inflater, container, false)
+        this.binding.onClickListener = this
 
         this.setSpinnerCity(this.userViewModel.getTaiwanDistricts())
 
@@ -41,8 +41,8 @@ class LocationChange : Fragment() {
             }
 
             R.id.btn_confirm -> {
-                val selectedCounty = binding.spinnerCounty.selectedItem.toString()
-                this.userViewModel.save(UserData.GROUP, UserData.LOCATION, selectedCounty)
+                val selectedCounty = this.binding.spinnerCounty.selectedItem.toString()
+                this.userViewModel.saveLocation(selectedCounty)
             }
         }
     }

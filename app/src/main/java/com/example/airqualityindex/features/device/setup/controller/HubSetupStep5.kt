@@ -33,26 +33,26 @@ class HubSetupStep5 : Fragment() {
 
         this.setupGateway()
 
-        return binding.root
+        return this.binding.root
     }
 
     private fun setupGateway() {
         Observable.just(1)
             .map {
-                viewModel.mqttPublish(MqttConfig.PUBLISH_TOPIC, this.getSetupEvent())
+                this.viewModel.mqttPublish(MqttConfig.PUBLISH_TOPIC, this.getSetupEvent())
             }
             .delay(5, TimeUnit.SECONDS, Schedulers.io())
             .map {
-                this.chooseAddMasterSlaveDevice(viewModel.getAddMasterDevice())
+                this.chooseAddMasterSlaveDevice(this.viewModel.getAddMasterDevice())
             }
             .delay(5, TimeUnit.SECONDS, Schedulers.io())
             .map {
-                viewModel.mqttPublish(MqttConfig.PUBLISH_TOPIC, this.getWifiSetupEvent())
+                this.viewModel.mqttPublish(MqttConfig.PUBLISH_TOPIC, this.getWifiSetupEvent())
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError {
-                viewModel.mqttDisconnect()
+                this.viewModel.mqttDisconnect()
                 findNavController().navigate(R.id.action_hubSetupStep5_to_hubSetupFailed)
             }
     }

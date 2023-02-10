@@ -17,31 +17,34 @@
             android:id="@+id/action_loginFragment_to_indoorFragment"
             app:destination="@id/indoorFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.airqualityindex.features.register.controller.Register"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register" />
+
     <fragment
         android:id="@+id/searchAQIFragment"
-        android:name="com.example.airqualityindex.features.search.airquality.controller.SearchAirQuality"
+        android:name="com.example.airqualityindex.features.search.controller.SearchAirQuality"
         android:label="SearchAQIFragment"
         tools:layout="@layout/fragment_search_air_quality">
         <argument
             android:name="perHourRecord"
-            app:argType="com.example.airqualityindex.shared.models.aqi.hour.PerHourRecord" />
+            app:argType="com.example.airqualityindex.shared.database.entity.PerHourAirQualityEntity" />
     </fragment>
+
     <fragment
         android:id="@+id/indoorFragment"
         android:name="com.example.airqualityindex.features.indoor.controller.Indoor"
         android:label="IndoorFragment"
         tools:layout="@layout/fragment_indoor" />
+
     <fragment
         android:id="@+id/outdoorFragment"
         android:name="com.example.airqualityindex.features.outdoor.controller.Outdoor"
         android:label="OutdoorFragment"
-        tools:layout="@layout/fragment_outdoor" >
-    </fragment>
+        tools:layout="@layout/fragment_outdoor" />
 
     <fragment
         android:id="@+id/changeLocationFragment"

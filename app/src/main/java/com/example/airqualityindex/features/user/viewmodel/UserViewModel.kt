@@ -1,10 +1,14 @@
 package com.example.airqualityindex.features.user.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.airqualityindex.shared.models.CityWithDistricts
-import com.example.airqualityindex.shared.repositories.implement.UserDataRepositoryImpl
+import com.example.airqualityindex.shared.constant.UserData
+import com.example.airqualityindex.shared.model.CityWithDistricts
+import com.example.airqualityindex.shared.repository.implement.UserDataRepositoryImpl
 
-class UserViewModel(private val repository: UserDataRepositoryImpl) : ViewModel() {
+class UserViewModel(
+    private val repository: UserDataRepositoryImpl
+) : ViewModel() {
+
     fun getUserName(): String? {
         return this.repository.getUserName()
     }
@@ -17,8 +21,8 @@ class UserViewModel(private val repository: UserDataRepositoryImpl) : ViewModel(
         return this.repository.getSiteName()
     }
 
-    fun save(group: String, key: String, value: String) {
-        this.repository.save(group, key, value)
+    fun saveLocation(location: String) {
+        this.repository.save(UserData.GROUP, UserData.LOCATION, location)
     }
 
     fun getTaiwanDistricts(): List<CityWithDistricts> {

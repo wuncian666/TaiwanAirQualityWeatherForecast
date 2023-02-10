@@ -44,7 +44,7 @@
             app:destination="@id/hubSetupFailed" />
         <argument
             android:name="wifiInfo"
-            app:argType="com.example.airqualityindex.shared.models.WifiInfo" />
+            app:argType="com.example.airqualityindex.shared.model.WifiInfo" />
     </fragment>
     <fragment
         android:id="@+id/hubSetupStep6"

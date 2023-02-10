@@ -5,27 +5,27 @@ import androidx.lifecycle.ViewModel
 import com.example.airqualityindex.features.device.setup.services.AWSMqttEventListener
 import com.example.airqualityindex.features.device.setup.services.AWSMqttService
 import com.example.airqualityindex.shared.constant.UserData
-import com.example.airqualityindex.shared.repositories.implement.UserDataRepositoryImpl
+import com.example.airqualityindex.shared.repository.implement.UserDataRepositoryImpl
 import io.reactivex.rxjava3.core.Observable
 
 class AWSViewModel(
     private val context: Context,
     private val userDataRepositoryImpl: UserDataRepositoryImpl
 ) : ViewModel() {
-    private var awsMqttUseCase: AWSMqttService? = null
+    private var mqttService: AWSMqttService? = null
 
     fun setAWSMqttUseCase(listener: AWSMqttEventListener) {
-        this.awsMqttUseCase = AWSMqttService(listener)
+        this.mqttService = AWSMqttService(listener)
     }
 
     fun connectAWSMqtt() {
         val keyStorePath = this.context.filesDir.path
-        awsMqttUseCase?.initAWSMqtt()
-        awsMqttUseCase?.connectMqtt(context, keyStorePath)
+        this.mqttService?.initAWSMqtt()
+        this.mqttService?.connectMqtt(context, keyStorePath)
     }
 
     fun subscribeTopic(gatewayUuid: String?) {
-        awsMqttUseCase?.subscribeTopic(gatewayUuid)
+        this.mqttService?.subscribeTopic(gatewayUuid)
     }
 
     fun getAllGatewayInformation() {
