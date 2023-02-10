@@ -14,19 +14,17 @@ import com.example.airqualityindex.features.outdoor.viewmodels.AirQualityViewMod
 import com.example.airqualityindex.features.user.viewmodel.UserViewModel
 import com.example.airqualityindex.shared.constant.AirQualityStatus
 import com.example.airqualityindex.shared.database.entity.PerHourAirQualityEntity
-import com.example.airqualityindex.shared.unit.SpannableStringService
+import com.example.airqualityindex.shared.util.SpannableStringService
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.koin.android.ext.android.get
 
 class SearchAirQuality : Fragment() {
     private val userViewModel: UserViewModel = get()
-    private val perHourAQIViewModel: AirQualityViewModel = get()
+    private val airQualityViewModel: AirQualityViewModel = get()
     private val navCallback: NavigationViewModel = get()
 
     private lateinit var binding: FragmentSearchAirQualityBinding
-
-    private var site: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,10 +34,12 @@ class SearchAirQuality : Fragment() {
         this.binding = FragmentSearchAirQualityBinding.inflate(inflater, container, false)
         this.binding.onClickListener = this
 
-        this.perHourAQIViewModel.getDistinctCounties()
+        this.airQualityViewModel.getDistinctCounties()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext { setSpinnerCounty(it) }
+            .doOnNext {
+                this.setSpinnerCounty(it)
+            }
             .subscribe()
 
         return this.binding.root
@@ -51,19 +51,20 @@ class SearchAirQuality : Fragment() {
                 this.navCallback.navigationCallback?.onPressBack()
             }
             R.id.btn_search -> {
-                this.searchAQI()
+                this.searchAirQuality()
 
                 if (this.binding.checkboxSetDefaultSiteName.isChecked) {
-                    this.saveApplicationDefaultSiteName()
+                    this.saveDefaultSiteName()
                 }
             }
         }
     }
 
-    private fun saveApplicationDefaultSiteName() {
+    /**Air Quality Index*/
+    private fun saveDefaultSiteName() {
         if (this.binding.spinnerCounty.selectedItem.toString().isNotEmpty()) {
-            val selectedSiteName = this.binding.spinnerCounty.selectedItem.toString()
-            this.userViewModel.saveLocation(selectedSiteName)
+            val selected = this.binding.spinnerCounty.selectedItem.toString()
+            this.userViewModel.saveSiteName(selected)
         }
     }
 
@@ -71,9 +72,9 @@ class SearchAirQuality : Fragment() {
         val adapter =
             ArrayAdapter(requireContext(), R.layout.spinner_default_item, counties)
         adapter.setDropDownViewResource(R.layout.spinner_selected_item)
-        val spinnerCounty = this.binding.spinnerCounty
-        spinnerCounty.adapter = adapter
-        spinnerCounty.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        val spinner = this.binding.spinnerCounty
+        spinner.adapter = adapter
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -91,39 +92,38 @@ class SearchAirQuality : Fragment() {
     private fun getSiteNameByCounty(county: String?) {
         val split = county?.chunked(2)
         if (split != null) {
-            this.perHourAQIViewModel.getSiteNameByCounty(split[0])
+            this.airQualityViewModel.getSiteNameByCounty(split[0])
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext {
-                    this.setSpinnerSite(it)
+                    this.setSpinnerSiteName(it)
                 }
                 .subscribe()
         }
     }
 
-    private fun setSpinnerSite(sites: List<String>) {
+    private fun setSpinnerSiteName(sites: List<String>) {
         val adapter =
             ArrayAdapter(requireContext(), R.layout.spinner_default_item, sites)
         adapter.setDropDownViewResource(R.layout.spinner_selected_item)
-        val spinnerSite = this.binding.spinnerSite
-        spinnerSite.adapter = adapter
-        spinnerSite.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        val spinner = this.binding.spinnerSiteName
+        spinner.adapter = adapter
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
                 position: Int,
                 id: Long
             ) {
-                this@SearchAirQuality.site = sites[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
     }
 
-    private fun searchAQI() {
-        this.site?.let {
-            this.perHourAQIViewModel.getDataBySiteName(it)
+    private fun searchAirQuality() {
+        this.binding.spinnerSiteName.selectedItem.toString().let {
+            this.airQualityViewModel.getDataBySiteName(it)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext { record ->
@@ -135,19 +135,11 @@ class SearchAirQuality : Fragment() {
 
     private fun displayUiDetailBlock(record: PerHourAirQualityEntity) {
         this.binding.detailBlock.visibility = View.VISIBLE
-        this.setSearchCountyAndSiteName()
-        this.setUiAccordingAirQuality(record.aqi.toInt())
-        this.setTextOnDetailBlock(record)
+        this.updateDetailBlockImg(record.aqi.toInt())
+        this.updateDetailBlockText(record)
     }
 
-    private fun setSearchCountyAndSiteName() {
-        val selectedCounty = this.binding.spinnerCounty.selectedItem.toString()
-        val selectedSiteName = this.binding.spinnerSite.selectedItem.toString()
-        val text = "$selectedCounty $selectedSiteName"
-        this.binding.textCountyWithSiteName.text = text
-    }
-
-    private fun setUiAccordingAirQuality(airQualityIndex: Int) {
+    private fun updateDetailBlockImg(airQualityIndex: Int) {
         airQualityIndex.let {
             when (it) {
                 in (0..50) -> this.setAirQualityUi(it, AirQualityStatus.GOOD)
@@ -166,13 +158,18 @@ class SearchAirQuality : Fragment() {
         this.binding.imgAirQuality.setBackgroundResource(status.statusImg)
     }
 
-    private fun setTextOnDetailBlock(record: PerHourAirQualityEntity) {
-        val spannableStringService = SpannableStringService()
-        spannableStringService.setSuperscriptText(
+    private fun updateDetailBlockText(record: PerHourAirQualityEntity) {
+        val selectedCounty = this.binding.spinnerCounty.selectedItem.toString()
+        val selectedSiteName = this.binding.spinnerSiteName.selectedItem.toString()
+        val text = "$selectedCounty $selectedSiteName"
+        this.binding.textCountyWithSiteName.text = text
+
+        val spannable = SpannableStringService()
+        spannable.setSuperscriptText(
             record.pm25 + resources.getString(R.string.micrometer_per_cubic_meter),
             this.binding.textPm25
         )
-        spannableStringService.setSuperscriptText(
+        spannable.setSuperscriptText(
             record.pm10 + resources.getString(R.string.micrometer_per_cubic_meter),
             this.binding.textPm10
         )

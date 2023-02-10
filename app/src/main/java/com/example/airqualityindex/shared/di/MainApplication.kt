@@ -3,6 +3,7 @@ package com.example.airqualityindex.shared.di
 import android.app.Application
 import android.util.Log
 import com.example.airqualityindex.shared.di.module.repositoryModule
+import com.example.airqualityindex.shared.di.module.utilModule
 import com.example.airqualityindex.shared.di.module.viewModeModule
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import org.koin.android.BuildConfig
@@ -19,7 +20,7 @@ class MainApplication : Application() {
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@MainApplication)
             modules(
-                listOf(repositoryModule, viewModeModule)
+                listOf(repositoryModule, viewModeModule, utilModule)
             )
         }
 

@@ -1,4 +1,4 @@
-package com.example.airqualityindex.shared.unit
+package com.example.airqualityindex.shared.util
 
 import android.text.SpannableStringBuilder
 import android.text.Spanned

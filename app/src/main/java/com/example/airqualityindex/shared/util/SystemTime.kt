@@ -1,9 +1,7 @@
-package com.example.airqualityindex.shared.unit
+package com.example.airqualityindex.shared.util
 
-import android.util.Log
 import java.time.Duration
 import java.time.LocalDateTime
-import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
@@ -20,7 +18,6 @@ class SystemTime {
         val startDateTime = LocalDateTime.now()
         val endDateTime = startDateTime.plusHours(1).truncatedTo(ChronoUnit.HOURS)
         val duration = Duration.between(startDateTime, endDateTime)
-
         return duration.seconds
     }
 }

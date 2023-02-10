@@ -6,7 +6,7 @@ import com.example.airqualityindex.features.device.setup.services.MqttEventListe
 import com.example.airqualityindex.features.device.setup.services.MqttService
 import com.example.airqualityindex.shared.model.AWSCertification
 import com.example.airqualityindex.shared.repository.implement.HubRepositoryImpl
-import com.example.airqualityindex.shared.unit.NetworkInformation
+import com.example.airqualityindex.shared.util.NetworkInformation
 import io.reactivex.rxjava3.core.Observable
 
 class HubViewModel(

@@ -1,11 +1,9 @@
 package com.example.airqualityindex.features.indoor.controller
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentIndoorBinding
@@ -20,11 +18,10 @@ import org.koin.android.ext.android.get
 class Indoor : Fragment() {
     private lateinit var binding: FragmentIndoorBinding
 
-    private val navCallback: NavigationViewModel = get()
+    private val navViewModel: NavigationViewModel = get()
     private val userViewModel: UserViewModel = get()
     private val weatherForecastViewModel: WeatherForecastViewModel = get()
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,7 +46,7 @@ class Indoor : Fragment() {
     fun onClickListener(view: View) {
         when (view.id) {
             R.id.open_custom_drawer -> {
-                this.navCallback.navigationCallback?.onShowMenu()
+                this.navViewModel.navigationCallback?.onShowMenu()
             }
         }
     }
@@ -64,17 +61,13 @@ class Indoor : Fragment() {
             .subscribe()
     }
 
-    private fun updateUi(weatherForecast: WeatherForecastEntity) {
-        this.updateWeatherImage(weatherForecast.weatherPhenomenon)
-        this.updateTemperatureRangeText(
-            weatherForecast.temperatureMin,
-            weatherForecast.temperatureMax
-        )
-        this.updateProbabilityOfPrecipitationText(weatherForecast.probabilityOfPrecipitation)
+    private fun updateUi(weather: WeatherForecastEntity) {
+        this.updateWeatherImage(weather.weatherPhenomenon)
+        this.updateWeatherText(weather)
     }
 
-    private fun updateWeatherImage(weatherPhenomenon: String) {
-        weatherPhenomenon.let {
+    private fun updateWeatherImage(phenom: String) {
+        phenom.let {
             if (it == resources.getString(R.string.clear)) {
                 this.binding.imgWeather.setBackgroundResource(R.drawable.weather_clear)
             } else if (it == resources.getString(R.string.mostly_clear)) {
@@ -139,15 +132,13 @@ class Indoor : Fragment() {
         }
     }
 
-    private fun updateTemperatureRangeText(temperatureMin: String, temperatureMax: String) {
-        val temperatureRange =
-            temperatureMin + "-" + temperatureMax + resources.getString(R.string.celsius_unit)
-        this.binding.textTemperatureRange.text = temperatureRange
-    }
+    private fun updateWeatherText(weather: WeatherForecastEntity) {
+        val range =
+            weather.temperatureMin + "-" + weather.temperatureMax + this.resources.getString(R.string.celsius_unit)
+        this.binding.textTemperatureRange.text = range
 
-    private fun updateProbabilityOfPrecipitationText(probabilityOfPrecipitation: String) {
-        val probabilityOfPrecipitationWithPercentSign =
-            probabilityOfPrecipitation + resources.getString(R.string.percent_sign)
-        this.binding.textProbabilityOfPrecipitation.text = probabilityOfPrecipitationWithPercentSign
+        val pop =
+            weather.probabilityOfPrecipitation + this.resources.getString(R.string.percent_sign)
+        this.binding.textProbabilityOfPrecipitation.text = pop
     }
 }

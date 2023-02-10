@@ -3,7 +3,7 @@ package com.example.airqualityindex.shared.repository.implement
 import com.example.airqualityindex.shared.api.ApiInstances
 import com.example.airqualityindex.shared.model.AWSCertification
 import com.example.airqualityindex.shared.repository.IHubRepository
-import com.example.airqualityindex.shared.unit.JsonFormatTransform
+import com.example.airqualityindex.shared.util.JsonFormatTransform
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody

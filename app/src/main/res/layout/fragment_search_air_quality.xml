@@ -128,7 +128,7 @@
             app:layout_constraintWidth_percent="0.70">
 
             <Spinner
-                android:id="@+id/spinner_site"
+                android:id="@+id/spinner_site_name"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"

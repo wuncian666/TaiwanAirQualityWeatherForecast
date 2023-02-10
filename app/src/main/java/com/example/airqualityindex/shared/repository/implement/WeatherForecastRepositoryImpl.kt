@@ -59,7 +59,6 @@ class WeatherForecastRepositoryImpl(
             weatherForecastStore.startTime = location.weatherElement[0].time[0].startTime
             weatherForecastStore.endTime = location.weatherElement[0].time[0].endTime
             weatherForecastStore.locationName = location.locationName
-
             weatherForecastStores.add(weatherForecastStore)
         }
         return weatherForecastStores

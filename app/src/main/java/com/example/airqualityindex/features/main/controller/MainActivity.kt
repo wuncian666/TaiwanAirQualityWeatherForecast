@@ -22,7 +22,7 @@ import com.example.airqualityindex.features.main.viewmodel.NavigationViewModel
 import com.example.airqualityindex.features.outdoor.viewmodels.AirQualityViewModel
 import com.example.airqualityindex.shared.constant.MainConfig.ID_INDOOR
 import com.example.airqualityindex.shared.constant.MainConfig.ID_OUTDOOR
-import com.example.airqualityindex.shared.unit.SystemTime
+import com.example.airqualityindex.shared.util.SystemTime
 import com.google.android.material.navigation.NavigationView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -61,15 +61,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onStart() {
         super.onStart()
-
         this.requestApi()
-
         this.startTimer()
     }
 
     override fun onStop() {
         super.onStop()
-
         this.timeDisposable?.dispose()
     }
 
@@ -80,7 +77,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             3600,
             TimeUnit.SECONDS,
             Schedulers.io()
-        ).doOnNext { this.requestApi() }
+        )
+            .doOnNext {
+                this.requestApi()
+            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe()
@@ -104,9 +104,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setBottomNavigation() {
-        val bottomNavigation = this.binding.bottomNavigation
+        val navigation = this.binding.bottomNavigation
 
-        bottomNavigation.apply {
+        navigation.apply {
             add(MeowBottomNavigation.Model(ID_INDOOR, R.drawable.ic_indoor))
             add(MeowBottomNavigation.Model(ID_OUTDOOR, R.drawable.ic_outdoor))
 
@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setDrawerNavigation() {
-        val actionBarDrawerToggle = ActionBarDrawerToggle(
+        val toggle = ActionBarDrawerToggle(
             this,
             this.binding.drawerLayout,
             this.binding.toolbar,
@@ -130,10 +130,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.string.navigation_close
         )
 
-        this.binding.drawerLayout.addDrawerListener(actionBarDrawerToggle)
+        this.binding.drawerLayout.addDrawerListener(toggle)
         this.binding.navigationView.setNavigationItemSelectedListener(this)
         this.binding.navigationView.itemIconTintList = null
-        actionBarDrawerToggle.syncState()
+        toggle.syncState()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

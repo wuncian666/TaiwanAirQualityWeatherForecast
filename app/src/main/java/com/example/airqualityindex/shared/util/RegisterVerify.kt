@@ -1,6 +1,7 @@
-package com.example.airqualityindex.shared.unit
+package com.example.airqualityindex.shared.util
 
 class RegisterVerify {
+
     fun isLoginIdVerify(loginId: String):Boolean {
         var isLoginIdOk = false
 

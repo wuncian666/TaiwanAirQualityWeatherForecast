@@ -21,7 +21,7 @@ class AWSViewModel(
     fun connectAWSMqtt() {
         val keyStorePath = this.context.filesDir.path
         this.mqttService?.initAWSMqtt()
-        this.mqttService?.connectMqtt(context, keyStorePath)
+        this.mqttService?.connectMqtt(this.context, keyStorePath)
     }
 
     fun subscribeTopic(gatewayUuid: String?) {
@@ -38,6 +38,6 @@ class AWSViewModel(
     }
 
     fun getDeviceUuid(): String? {
-        return this.userDataRepositoryImpl.getData(UserData.GROUP, UserData.DEVICE_UUID)
+        return this.userDataRepositoryImpl.getDeviceUuid()
     }
 }

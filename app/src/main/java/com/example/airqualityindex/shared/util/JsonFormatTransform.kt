@@ -1,8 +1,9 @@
-package com.example.airqualityindex.shared.unit
+package com.example.airqualityindex.shared.util
 
 import com.google.gson.Gson
 
 class JsonFormatTransform {
+
     fun turnJsonFormat(uuid: String): String {
         val gson = Gson()
         val hashMap = HashMap<String, Any>()

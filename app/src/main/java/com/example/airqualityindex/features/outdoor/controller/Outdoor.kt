@@ -15,7 +15,7 @@ import com.example.airqualityindex.features.user.viewmodel.UserViewModel
 import com.example.airqualityindex.shared.constant.AirQualityStatus
 import com.example.airqualityindex.shared.database.entity.PerHourAirQualityEntity
 import com.example.airqualityindex.shared.database.entity.WeatherForecastEntity
-import com.example.airqualityindex.shared.unit.SpannableStringService
+import com.example.airqualityindex.shared.util.SpannableStringService
 import com.skydoves.balloon.*
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -26,7 +26,7 @@ class Outdoor : Fragment() {
 
     private val navCallback: NavigationViewModel = get()
     private val userViewModel: UserViewModel = get()
-    private val perHourAQIViewModel: AirQualityViewModel = get()
+    private val airQualityViewModel: AirQualityViewModel = get()
     private val weatherForecastViewModel: WeatherForecastViewModel = get()
 
     override fun onCreateView(
@@ -40,16 +40,16 @@ class Outdoor : Fragment() {
         this.binding.userName.text = this.userViewModel.getUserName()
         this.binding.textUserLocation.text = this.userViewModel.getLocationName()
 
-        this.queryDatabaseThenUpdateUI()
+        this.queryDatabaseThenUpdateUi()
 
-        this.perHourAQIViewModel.getRecordBySiteNameLiveData(this.userViewModel.getSiteName())
+        this.airQualityViewModel.getRecordBySiteNameLiveData(this.userViewModel.getSiteName())
             .observe(viewLifecycleOwner) {
                 this.updateAirQualityUi(it)
             }
 
         this.weatherForecastViewModel.getRecordByLocationNameLiveData(this.userViewModel.getLocationName())
             .observe(viewLifecycleOwner) {
-                this.setTemperatureRangeText(it)
+                this.updateTemperatureRangeText(it)
             }
 
         return this.binding.root
@@ -92,8 +92,8 @@ class Outdoor : Fragment() {
             .build()
     }
 
-    private fun queryDatabaseThenUpdateUI() {
-        this.perHourAQIViewModel.getDataBySiteName(this.userViewModel.getSiteName())
+    private fun queryDatabaseThenUpdateUi() {
+        this.airQualityViewModel.getDataBySiteName(this.userViewModel.getSiteName())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext {
@@ -105,20 +105,20 @@ class Outdoor : Fragment() {
             }
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext {
-                this.setTemperatureRangeText(it)
+                this.updateTemperatureRangeText(it)
             }
             .subscribe()
     }
 
-    private fun updateAirQualityUi(record: PerHourAirQualityEntity) {
-        this.updateAirQualityText(record)
-        this.updateAirQualityIndexImage(record.aqi.toInt())
+    private fun updateTemperatureRangeText(weather: WeatherForecastEntity) {
+        val range =
+            weather.temperatureMin + "-" + weather.temperatureMax + resources.getString(R.string.celsius_unit)
+        this.binding.textTemperatureRange.text = range
     }
 
-    private fun setTemperatureRangeText(model: WeatherForecastEntity) {
-        val text =
-            model.temperatureMin + "-" + model.temperatureMax + resources.getString(R.string.celsius_unit)
-        this.binding.textTemperatureRange.text = text
+    private fun updateAirQualityUi(record: PerHourAirQualityEntity) {
+        this.updateAirQualityText(record)
+        this.updateAirQualityImage(record.aqi.toInt())
     }
 
     private fun updateAirQualityText(record: PerHourAirQualityEntity) {
@@ -142,7 +142,7 @@ class Outdoor : Fragment() {
         this.binding.textNo2.text = no2WithUnit
     }
 
-    private fun updateAirQualityIndexImage(value: Int) {
+    private fun updateAirQualityImage(value: Int) {
         value.let {
             when (it) {
                 in (0..50) -> this.setAirQualityUi(it, AirQualityStatus.GOOD)
@@ -151,12 +151,11 @@ class Outdoor : Fragment() {
                 in (151..200) -> this.setAirQualityUi(it, AirQualityStatus.UNHEALTHY)
                 in (201..300) -> this.setAirQualityUi(it, AirQualityStatus.VERY_UNHEALTHY)
             }
-        }
-
-        if (value >= 101) {
-            this.binding.outdoorWarning.setBackgroundResource(R.drawable.ic_outdoor_warning)
-        } else {
-            this.binding.outdoorWarning.setBackgroundResource(R.drawable.ic_outdoor_warning_default)
+            if (it >= 101) {
+                this.binding.outdoorWarning.setBackgroundResource(R.drawable.ic_outdoor_warning)
+            } else {
+                this.binding.outdoorWarning.setBackgroundResource(R.drawable.ic_outdoor_warning_default)
+            }
         }
     }
 

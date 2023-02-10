@@ -17,12 +17,16 @@ class UserViewModel(
         return this.repository.getLocationName()
     }
 
+    fun saveLocation(location: String) {
+        this.repository.saveLocationName(location)
+    }
+
     fun getSiteName(): String? {
         return this.repository.getSiteName()
     }
 
-    fun saveLocation(location: String) {
-        this.repository.save(UserData.GROUP, UserData.LOCATION, location)
+    fun saveSiteName(siteName: String) {
+        this.repository.saveSiteName(siteName)
     }
 
     fun getTaiwanDistricts(): List<CityWithDistricts> {
