@@ -44,6 +44,12 @@
 
     <string name="navigation_open">開啟</string>
     <string name="navigation_close">關閉</string>
+    <string name="navigation_description">開起或是關閉側拉選單</string>
+    <string name="air_quality_warning">空氣品質警告</string>
+
+    <string name="spinner_county_spinner_description">縣市選單</string>
+    <string name="spinner_site_name_spinner_description">測站選單</string>
+    <string name="description_search_air_quality">搜尋選擇內容</string>
 
     <string name="indoor">室內</string>
     <string name="outdoor">室外</string>

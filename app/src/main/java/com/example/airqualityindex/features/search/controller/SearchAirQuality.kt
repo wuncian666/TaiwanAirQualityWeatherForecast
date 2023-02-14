@@ -148,6 +148,7 @@ class SearchAirQuality : Fragment() {
                 in (151..200) -> this.setAirQualityUi(it, AirQualityStatus.UNHEALTHY)
                 in (201..300) -> this.setAirQualityUi(it, AirQualityStatus.VERY_UNHEALTHY)
             }
+            this.binding.textAirQualityIndex.text = airQualityIndex.toString()
         }
     }
 

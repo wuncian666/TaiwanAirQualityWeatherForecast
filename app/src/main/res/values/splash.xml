@@ -6,6 +6,6 @@
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
         <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="android:windowSplashScreenBrandingImage" tools:targetApi="s">@drawable/img_have_a_good_day</item>
-        <item name="postSplashScreenTheme">@style/Theme.AirQualityIndex.Fullscreen</item>
+        <item name="postSplashScreenTheme">@style/Theme.AirQualityIndex</item>
     </style>
 </resources>

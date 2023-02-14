@@ -14,6 +14,7 @@
         <item name="android:windowFullscreen">true</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="Theme.AirQualityIndex.Fullscreen" parent="Theme.AirQualityIndex">
         <item name="android:actionBarStyle">
             @style/Widget.Theme.AirQualityIndex.ActionBar.Fullscreen
