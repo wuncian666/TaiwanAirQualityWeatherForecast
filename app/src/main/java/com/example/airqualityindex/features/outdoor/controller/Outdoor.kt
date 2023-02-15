@@ -1,6 +1,7 @@
 package com.example.airqualityindex.features.outdoor.controller
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +39,7 @@ class Outdoor : Fragment() {
         this.binding.onClickListener = this
 
         this.binding.userName.text = this.userViewModel.getUserName()
-        this.binding.textUserLocation.text = this.userViewModel.getLocationName()
+        this.binding.textUserLocation.text = this.userViewModel.getSiteName()
 
         this.queryDatabaseThenUpdateUi()
 

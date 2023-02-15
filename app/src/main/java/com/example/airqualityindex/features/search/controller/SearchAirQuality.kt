@@ -62,8 +62,8 @@ class SearchAirQuality : Fragment() {
 
     /**Air Quality Index*/
     private fun saveDefaultSiteName() {
-        if (this.binding.spinnerCounty.selectedItem.toString().isNotEmpty()) {
-            val selected = this.binding.spinnerCounty.selectedItem.toString()
+        if (this.binding.spinnerSiteName.selectedItem.toString().isNotEmpty()) {
+            val selected = this.binding.spinnerSiteName.selectedItem.toString()
             this.userViewModel.saveSiteName(selected)
         }
     }
@@ -90,16 +90,13 @@ class SearchAirQuality : Fragment() {
     }
 
     private fun getSiteNameByCounty(county: String?) {
-        val split = county?.chunked(2)
-        if (split != null) {
-            this.airQualityViewModel.getSiteNameByCounty(split[0])
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext {
-                    this.setSpinnerSiteName(it)
-                }
-                .subscribe()
-        }
+        this.airQualityViewModel.getSiteNameByCounty(county)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext {
+                this.setSpinnerSiteName(it)
+            }
+            .subscribe()
     }
 
     private fun setSpinnerSiteName(sites: List<String>) {

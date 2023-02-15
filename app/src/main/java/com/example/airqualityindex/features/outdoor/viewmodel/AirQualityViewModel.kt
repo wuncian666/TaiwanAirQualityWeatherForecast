@@ -22,7 +22,7 @@ class AirQualityViewModel(
         return this.repository.getDistinctCounties()
     }
 
-    fun getSiteNameByCounty(county: String): Observable<List<String>> {
+    fun getSiteNameByCounty(county: String?): Observable<List<String>> {
         return this.repository.getSiteNameByCounty(county)
     }
 

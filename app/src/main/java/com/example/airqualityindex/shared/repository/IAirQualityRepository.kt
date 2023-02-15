@@ -13,7 +13,7 @@ interface IAirQualityRepository {
 
     fun getDistinctCounties(): Observable<List<String>>
 
-    fun getSiteNameByCounty(county: String): Observable<List<String>>
+    fun getSiteNameByCounty(county: String?): Observable<List<String>>
 
     fun getRecordBySiteName(siteName: String?): Observable<PerHourAirQualityEntity>
 

@@ -21,8 +21,8 @@ interface PerHourAirQualityDao {
     @Query("SELECT DISTINCT county FROM aqi_per_hour_record")
     fun getDistinctCounties(): List<String>
 
-    @Query("SELECT site_name FROM aqi_per_hour_record WHERE site_name LIKE '%' || :county || '%'")
-    fun getSiteNameByCounty(county: String): List<String>
+    @Query("SELECT site_name FROM aqi_per_hour_record WHERE county =:county")
+    fun getSiteNameByCounty(county: String?): List<String>
 
     @Query("SELECT * FROM aqi_per_hour_record WHERE site_name =:siteName")
     fun getRecordBySiteName(siteName: String?): PerHourAirQualityEntity

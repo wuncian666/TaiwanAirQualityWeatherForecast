@@ -36,7 +36,7 @@ class AirQualityRepositoryImpl(
         }
     }
 
-    override fun getSiteNameByCounty(county: String): Observable<List<String>> {
+    override fun getSiteNameByCounty(county: String?): Observable<List<String>> {
         return Observable.fromCallable {
             this.dao.getSiteNameByCounty(county)
         }
