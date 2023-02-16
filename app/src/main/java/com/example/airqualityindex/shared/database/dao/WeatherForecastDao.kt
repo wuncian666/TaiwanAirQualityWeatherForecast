@@ -13,8 +13,8 @@ interface WeatherForecastDao {
     fun insert(records: List<WeatherForecastEntity>)
 
     @Query("SELECT * FROM weather_forecast WHERE locationName =:locationName")
-    fun getRecordByLocationName(locationName: String?): WeatherForecastEntity
+    fun getRecordByLocation(locationName: String?): WeatherForecastEntity
 
     @Query("SELECT * FROM weather_forecast WHERE locationName =:locationName")
-    fun getRecordByLocationNameLiveData(locationName: String?): LiveData<WeatherForecastEntity>
+    fun getLiveRecordByLocation(locationName: String?): LiveData<WeatherForecastEntity>
 }

@@ -1,6 +1,7 @@
 package com.example.airqualityindex.shared.repository
 
 import com.example.airqualityindex.shared.model.CityWithDistricts
+import com.example.airqualityindex.shared.model.District
 
 interface IUserDataRepository {
     // for aqi application
@@ -22,5 +23,9 @@ interface IUserDataRepository {
 
     fun clearGroup(group: String)
 
-    fun getTaiwanDistricts(): List<CityWithDistricts>
+    fun getCityDistList(): List<CityWithDistricts>
+
+    fun getCityList(): List<String>
+
+    fun getDistList(distList: List<District>): List<String>
 }

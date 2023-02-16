@@ -5,17 +5,17 @@ import com.example.airqualityindex.shared.database.entity.PerHourAirQualityEntit
 import io.reactivex.rxjava3.core.Observable
 
 interface IAirQualityRepository {
-    fun requestApi(): Observable<List<PerHourAirQualityEntity>>
+    fun getApiResult(): Observable<List<PerHourAirQualityEntity>>
 
     fun insert(records: List<PerHourAirQualityEntity>): Observable<Boolean>
 
-    fun getDistinctSiteName(): Observable<List<String>>
+    fun getSiteList(): Observable<List<String>>
 
-    fun getDistinctCounties(): Observable<List<String>>
+    fun getCountyList(): Observable<List<String>>
 
-    fun getSiteNameByCounty(county: String?): Observable<List<String>>
+    fun getSiteListByCounty(county: String?): Observable<List<String>>
 
-    fun getRecordBySiteName(siteName: String?): Observable<PerHourAirQualityEntity>
+    fun getRecordBySite(siteName: String?): Observable<PerHourAirQualityEntity>
 
-    fun getRecordBySiteNameLiveData(siteName: String?): LiveData<PerHourAirQualityEntity>
+    fun getLiveRecordBySite(siteName: String?): LiveData<PerHourAirQualityEntity>
 }

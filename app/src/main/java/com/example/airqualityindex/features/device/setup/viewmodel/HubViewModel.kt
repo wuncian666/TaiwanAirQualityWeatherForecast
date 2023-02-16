@@ -37,7 +37,7 @@ class HubViewModel(
     }
 
     fun requestCertificationApi(uuid: String): Observable<AWSCertification> {
-        return this.hubRepositoryImpl.requestCertificationApi(uuid)
+        return this.hubRepositoryImpl.getApiResult(uuid)
     }
 
     fun findVisionHubSSID(): Boolean {

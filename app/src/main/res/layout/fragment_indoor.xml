@@ -11,7 +11,7 @@
 
         <variable
             name="userViewModel"
-            type="com.example.airqualityindex.features.user.viewmodel.UserViewModel" />
+            type="com.example.airqualityindex.features.main.viewmodel.UserViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -97,6 +97,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:text="@{userViewModel.userName}"
                 android:id="@+id/user_name"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -125,6 +126,7 @@
                 app:layout_constraintWidth_percent="0.06" />
 
             <TextView
+                android:text="@{userViewModel.locationName}"
                 android:id="@+id/text_user_location"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

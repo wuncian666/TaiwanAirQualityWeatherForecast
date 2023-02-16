@@ -9,9 +9,9 @@ data class WeatherForecastEntity(
     var locationName: String = "",
     var startTime: String = "",
     var endTime: String = "",
-    var weatherPhenomenon: String = "",
-    var temperatureMax: String = "",
-    var temperatureMin: String = "",
-    var comfort: String = "",
-    var probabilityOfPrecipitation: String = ""
+    var weatherPhenomenon: String? = "",
+    var temperatureMax: String? = "",
+    var temperatureMin: String? = "",
+    var comfort: String? = "",
+    var probabilityOfPrecipitation: String? = ""
 )

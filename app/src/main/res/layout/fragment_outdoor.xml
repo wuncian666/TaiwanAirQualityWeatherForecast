@@ -11,7 +11,11 @@
 
         <variable
             name="userViewModel"
-            type="com.example.airqualityindex.features.user.viewmodel.UserViewModel" />
+            type="com.example.airqualityindex.features.main.viewmodel.UserViewModel" />
+
+        <variable
+            name="weatherViewModel"
+            type="com.example.airqualityindex.features.indoor.viewmodel.WeatherViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -103,6 +107,7 @@
                 android:layout_height="0dp"
                 android:autoSizeTextType="uniform"
                 android:fontFamily="@font/gen_sen_maru_gothic_tw_regular"
+                android:text="@{userViewModel.userName}"
                 android:textColor="@color/dark_gray"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -131,6 +136,7 @@
                 android:layout_height="0dp"
                 android:autoSizeTextType="uniform"
                 android:fontFamily="@font/gen_sen_maru_gothic_tw_regular"
+                android:text="@{userViewModel.siteName}"
                 android:textColor="@color/dark_gray"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/img_location"

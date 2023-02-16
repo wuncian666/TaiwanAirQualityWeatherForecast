@@ -15,10 +15,10 @@ interface DailyAirQualityDao {
     fun delete(record: DailyAirQualityEntity)
 
     @Query("SELECT * FROM aqi_record")
-    fun getAllRecord(): List<DailyAirQualityEntity>
+    fun getRecordList(): List<DailyAirQualityEntity>
 
     @Query("SELECT DISTINCT site_name FROM aqi_record")
-    fun getDistinctCity(): List<String>
+    fun getSiteNameList(): List<String>
 
     @Query("SELECT * FROM aqi_record WHERE site_name =:city AND date =:date")
     fun getRecordByCityAndDate(city: String, date: String): DailyAirQualityEntity

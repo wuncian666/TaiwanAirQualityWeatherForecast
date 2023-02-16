@@ -190,11 +190,11 @@
             app:layout_constraintGuide_percent="0.44" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:visibility="gone"
             android:id="@+id/detail_block"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/shape_10dp_bottom_top_corners"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -266,6 +266,7 @@
                 android:layout_marginStart="6dp"
                 android:autoSizeTextType="uniform"
                 android:fontFamily="@font/co_headline_bold"
+                android:gravity="center"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/text_aqi"
                 app:layout_constraintDimensionRatio=""

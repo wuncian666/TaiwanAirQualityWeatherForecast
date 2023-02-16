@@ -13,7 +13,8 @@ import com.example.airqualityindex.shared.database.entity.WeatherForecastEntity
 
 @Database(
     entities = [DailyAirQualityEntity::class, PerHourAirQualityEntity::class, WeatherForecastEntity::class],
-    version = 8
+    version = 9,
+    exportSchema = false
 )
 abstract class ApplicationDatabase : RoomDatabase() {
     companion object {
@@ -29,7 +30,7 @@ abstract class ApplicationDatabase : RoomDatabase() {
         }
     }
 
-    abstract fun getDailyRecord(): DailyAirQualityDao
-    abstract fun getPerHourRecordDao(): PerHourAirQualityDao
-    abstract fun getWeatherForecastDao(): WeatherForecastDao
+    abstract fun dailyRecord(): DailyAirQualityDao
+    abstract fun perHourRecordDao(): PerHourAirQualityDao
+    abstract fun weatherForecastDao(): WeatherForecastDao
 }

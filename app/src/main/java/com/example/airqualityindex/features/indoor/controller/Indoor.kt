@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentIndoorBinding
-import com.example.airqualityindex.features.indoor.viewmodel.WeatherForecastViewModel
+import com.example.airqualityindex.features.indoor.viewmodel.WeatherViewModel
 import com.example.airqualityindex.features.main.viewmodel.NavigationViewModel
-import com.example.airqualityindex.features.user.viewmodel.UserViewModel
+import com.example.airqualityindex.features.main.viewmodel.UserViewModel
 import com.example.airqualityindex.shared.database.entity.WeatherForecastEntity
+import com.example.airqualityindex.shared.util.LoadingViewUtil
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.koin.android.ext.android.get
@@ -20,7 +21,8 @@ class Indoor : Fragment() {
 
     private val navViewModel: NavigationViewModel = get()
     private val userViewModel: UserViewModel = get()
-    private val weatherForecastViewModel: WeatherForecastViewModel = get()
+    private val weatherForecastViewModel: WeatherViewModel = get()
+    private val loadingViewUtil: LoadingViewUtil = get()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,15 +31,13 @@ class Indoor : Fragment() {
     ): View {
         this.binding = FragmentIndoorBinding.inflate(inflater, container, false)
         this.binding.onClickListener = this
+        this.binding.userViewModel = this.userViewModel
 
-        this.binding.userName.text = this.userViewModel.getUserName()
-        this.binding.textUserLocation.text = this.userViewModel.getLocationName()
-
-        this.queryWeatherThenUpdateUi(this.userViewModel.getLocationName())
-
-        this.weatherForecastViewModel.getRecordByLocationNameLiveData(this.userViewModel.getLocationName())
+        this.weatherForecastViewModel.getLiveRecordByLocation(this.userViewModel.getLocationName())
             .observe(viewLifecycleOwner) {
+                this.loadingViewUtil.getLoadingView("").show()
                 this.updateUi(it)
+                this.loadingViewUtil.dismissLoadView()
             }
 
         return this.binding.root
@@ -51,22 +51,12 @@ class Indoor : Fragment() {
         }
     }
 
-    private fun queryWeatherThenUpdateUi(locationName: String?) {
-        this.weatherForecastViewModel.getRecordByLocationName(locationName)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext {
-                this.updateUi(it)
-            }
-            .subscribe()
-    }
-
     private fun updateUi(weather: WeatherForecastEntity) {
         this.updateWeatherImage(weather.weatherPhenomenon)
         this.updateWeatherText(weather)
     }
 
-    private fun updateWeatherImage(phenom: String) {
+    private fun updateWeatherImage(phenom: String?) {
         phenom.let {
             if (it == resources.getString(R.string.clear)) {
                 this.binding.imgWeather.setBackgroundResource(R.drawable.weather_clear)
@@ -134,11 +124,10 @@ class Indoor : Fragment() {
 
     private fun updateWeatherText(weather: WeatherForecastEntity) {
         val range =
-            weather.temperatureMin + "-" + weather.temperatureMax + this.resources.getString(R.string.celsius_unit)
-        this.binding.textTemperatureRange.text = range
-
+            "${weather.temperatureMin}-${weather.temperatureMax}${this.resources.getString(R.string.celsius_unit)}"
         val pop =
-            weather.probabilityOfPrecipitation + this.resources.getString(R.string.percent_sign)
+            "${weather.probabilityOfPrecipitation}${this.resources.getString(R.string.percent_sign)}"
+        this.binding.textTemperatureRange.text = range
         this.binding.textProbabilityOfPrecipitation.text = pop
     }
 }

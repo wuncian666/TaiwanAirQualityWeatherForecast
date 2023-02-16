@@ -7,48 +7,51 @@ import com.example.airqualityindex.shared.database.ApplicationDatabase
 import com.example.airqualityindex.shared.database.entity.PerHourAirQualityEntity
 import com.example.airqualityindex.shared.repository.IAirQualityRepository
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
 
 class AirQualityRepositoryImpl(
     private val context: Context
 ) : IAirQualityRepository {
-    private val dao = ApplicationDatabase.getInstance(this.context).getPerHourRecordDao()
+    private val dao = ApplicationDatabase.getInstance(this.context).perHourRecordDao()
 
-    override fun requestApi(): Observable<List<PerHourAirQualityEntity>> {
+    override fun getApiResult(): Observable<List<PerHourAirQualityEntity>> {
         return ApiInstances.getRetrofitInstance().getAirQualityPerHour()
-            .map { it.records }
+            .map {
+                it.records
+            }
     }
 
     override fun insert(records: List<PerHourAirQualityEntity>): Observable<Boolean> {
         return Observable.fromCallable { this.dao.insert(records) }
-            .flatMap { Observable.just(true) }
+            .flatMap {
+                Observable.just(true)
+            }
     }
 
-    override fun getDistinctSiteName(): Observable<List<String>> {
+    override fun getSiteList(): Observable<List<String>> {
         return Observable.fromCallable {
-            this.dao.getDistinctSiteName()
+            this.dao.geSiteList()
         }
     }
 
-    override fun getDistinctCounties(): Observable<List<String>> {
+    override fun getCountyList(): Observable<List<String>> {
         return Observable.fromCallable {
-            this.dao.getDistinctCounties()
+            this.dao.getCountyList()
         }
     }
 
-    override fun getSiteNameByCounty(county: String?): Observable<List<String>> {
+    override fun getSiteListByCounty(county: String?): Observable<List<String>> {
         return Observable.fromCallable {
-            this.dao.getSiteNameByCounty(county)
+            this.dao.getSiteListByCounty(county)
         }
     }
 
-    override fun getRecordBySiteName(siteName: String?): Observable<PerHourAirQualityEntity> {
+    override fun getRecordBySite(siteName: String?): Observable<PerHourAirQualityEntity> {
         return Observable.fromCallable {
-            this.dao.getRecordBySiteName(siteName)
+            this.dao.getRecordBySite(siteName)
         }
     }
 
-    override fun getRecordBySiteNameLiveData(siteName: String?): LiveData<PerHourAirQualityEntity> {
-        return this.dao.getRecordBySiteNameLiveData(siteName)
+    override fun getLiveRecordBySite(siteName: String?): LiveData<PerHourAirQualityEntity> {
+        return this.dao.getLiveRecordBySite(siteName)
     }
 }

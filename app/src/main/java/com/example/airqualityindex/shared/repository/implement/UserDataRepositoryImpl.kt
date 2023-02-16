@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.airqualityindex.R
 import com.example.airqualityindex.shared.constant.UserData
 import com.example.airqualityindex.shared.model.CityWithDistricts
+import com.example.airqualityindex.shared.model.District
 import com.example.airqualityindex.shared.repository.IUserDataRepository
 import com.example.airqualityindex.shared.util.UserDataManager
 import com.google.gson.GsonBuilder
@@ -57,7 +58,7 @@ class UserDataRepositoryImpl(
         this.manager.sharedPreferences(group).edit().clear().apply()
     }
 
-    override fun getTaiwanDistricts(): List<CityWithDistricts> {
+    override fun getCityDistList(): List<CityWithDistricts> {
         val taiwanDistricts: String =
             this.context.assets.open("taiwan_districts.json").bufferedReader().use {
                 it.readText()
@@ -67,5 +68,21 @@ class UserDataRepositoryImpl(
             taiwanDistricts,
             object : TypeToken<ArrayList<CityWithDistricts>>() {}.type
         )
+    }
+
+    override fun getCityList(): List<String> {
+        val nameList = arrayListOf<String>()
+        for (city in this.getCityDistList()) {
+            nameList.add(city.name)
+        }
+        return nameList
+    }
+
+    override fun getDistList(distList: List<District>): List<String> {
+        val nameList = arrayListOf<String>()
+        for (dist in distList) {
+            nameList.add(dist.name)
+        }
+        return nameList
     }
 }

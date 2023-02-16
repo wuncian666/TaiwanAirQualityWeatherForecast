@@ -11,7 +11,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 
 class HubRepositoryImpl : IHubRepository {
 
-    override fun requestCertificationApi(uuid: String): Observable<AWSCertification> {
+    override fun getApiResult(uuid: String): Observable<AWSCertification> {
         val jsonFormatTransform = JsonFormatTransform()
         val requestBody: RequestBody =
             jsonFormatTransform.turnJsonFormat(uuid)

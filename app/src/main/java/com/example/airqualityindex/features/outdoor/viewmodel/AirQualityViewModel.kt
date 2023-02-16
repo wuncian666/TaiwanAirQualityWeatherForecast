@@ -11,26 +11,26 @@ class AirQualityViewModel(
 ) : ViewModel() {
 
     fun requestApi(): Observable<List<PerHourAirQualityEntity>> {
-        return this.repository.requestApi()
+        return this.repository.getApiResult()
     }
 
     fun insert(records: List<PerHourAirQualityEntity>): Observable<Boolean> {
         return this.repository.insert(records)
     }
 
-    fun getDistinctCounties(): Observable<List<String>> {
-        return this.repository.getDistinctCounties()
+    fun getCountyList(): Observable<List<String>> {
+        return this.repository.getCountyList()
     }
 
-    fun getSiteNameByCounty(county: String?): Observable<List<String>> {
-        return this.repository.getSiteNameByCounty(county)
+    fun getSiteListByCounty(county: String?): Observable<List<String>> {
+        return this.repository.getSiteListByCounty(county)
     }
 
-    fun getDataBySiteName(siteName: String?): Observable<PerHourAirQualityEntity> {
-        return this.repository.getRecordBySiteName(siteName)
+    fun getDataBySite(siteName: String?): Observable<PerHourAirQualityEntity> {
+        return this.repository.getRecordBySite(siteName)
     }
 
-    fun getRecordBySiteNameLiveData(siteName: String?): LiveData<PerHourAirQualityEntity> {
-        return this.repository.getRecordBySiteNameLiveData(siteName)
+    fun getLiveRecordBySiteName(siteName: String?): LiveData<PerHourAirQualityEntity> {
+        return this.repository.getLiveRecordBySite(siteName)
     }
 }

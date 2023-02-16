@@ -17,31 +17,34 @@ import androidx.navigation.fragment.NavHostFragment
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.ActivityMainBinding
-import com.example.airqualityindex.features.indoor.viewmodel.WeatherForecastViewModel
+import com.example.airqualityindex.features.indoor.viewmodel.WeatherViewModel
 import com.example.airqualityindex.features.main.service.NavigationCallback
 import com.example.airqualityindex.features.main.viewmodel.NavigationViewModel
 import com.example.airqualityindex.features.outdoor.viewmodel.AirQualityViewModel
 import com.example.airqualityindex.shared.constant.MainConfig.ID_INDOOR
 import com.example.airqualityindex.shared.constant.MainConfig.ID_OUTDOOR
-import com.example.airqualityindex.shared.util.SystemTime
+import com.example.airqualityindex.shared.util.LoadingViewUtil
+import com.example.airqualityindex.shared.util.SystemTimeManager
 import com.google.android.material.navigation.NavigationView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.koin.android.ext.android.get
+import org.koin.android.ext.android.inject
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     NavigationCallback {
-    private val navCallback: NavigationViewModel = get()
-    private val weatherForecastViewModel: WeatherForecastViewModel = get()
-    private val perHourAirQualityViewModel: AirQualityViewModel = get()
-
-    private var timeDisposable: Disposable? = null
-
     private lateinit var binding: ActivityMainBinding
 
+    private val loadingViewUtil: LoadingViewUtil by inject()
+    private val navCallback: NavigationViewModel = get()
+    private val weatherViewModel: WeatherViewModel = get()
+    private val airQualityViewModel: AirQualityViewModel = get()
+    private val timeManager: SystemTimeManager = get()
+
+    private var timeDisposable: Disposable? = null
     private var navHostFragment: NavHostFragment? = null
     private var navController: NavController? = null
 
@@ -50,6 +53,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         installSplashScreen()
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+        this.loadingViewUtil.initLoadingView(this)
         this.navCallback.navigationCallback = this
         this.navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -74,7 +78,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun startTimer() {
         this.timeDisposable?.dispose()
         this.timeDisposable = Observable.interval(
-            SystemTime().getPeriodTimeNextHour(),
+            this.timeManager.getPeriodTimeNextHour(),
             3600,
             TimeUnit.SECONDS,
             Schedulers.io()
@@ -88,16 +92,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun requestApi() {
-        this.weatherForecastViewModel.getApiResponse(SystemTime().getCurrentTime())
+        this.weatherViewModel.getApiResponse(this.timeManager.getCurrentTime())
             .flatMap {
-                val weatherForecast = this.weatherForecastViewModel.turnStoreFormat(it)
-                this.weatherForecastViewModel.insert(weatherForecast)
+                this.weatherViewModel.turnStoreFormat(it)
             }
             .flatMap {
-                this.perHourAirQualityViewModel.requestApi()
+                this.weatherViewModel.insert(it)
             }
             .flatMap {
-                this.perHourAirQualityViewModel.insert(it)
+                this.airQualityViewModel.requestApi()
+            }
+            .flatMap {
+                this.airQualityViewModel.insert(it)
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

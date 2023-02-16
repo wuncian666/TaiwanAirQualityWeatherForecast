@@ -6,7 +6,7 @@ import org.koin.dsl.module
 val repositoryModule = module {
     single { UserDataRepositoryImpl(get(), get()) }
     single { AirQualityRepositoryImpl(get()) }
-    single { SearchSensorThingsRepositoryImpl(get()) }
-    single { WeatherForecastRepositoryImpl(get()) }
+    single { SensorRepositoryImpl(get()) }
+    single { WeatherRepositoryImpl(get()) }
     single { HubRepositoryImpl() }
 }

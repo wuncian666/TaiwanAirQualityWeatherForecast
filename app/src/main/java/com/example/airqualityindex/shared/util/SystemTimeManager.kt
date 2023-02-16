@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
-class SystemTime {
+class SystemTimeManager {
 
     fun getCurrentTime(): String {
         val currentDate = LocalDateTime.now()

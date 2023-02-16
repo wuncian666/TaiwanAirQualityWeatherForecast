@@ -13,20 +13,20 @@ interface PerHourAirQualityDao {
     fun delete(record: PerHourAirQualityEntity)
 
     @Query("SELECT * FROM aqi_per_hour_record")
-    fun getAllRecord(): List<PerHourAirQualityEntity>
+    fun getRecordList(): List<PerHourAirQualityEntity>
 
     @Query("SELECT DISTINCT site_name FROM aqi_per_hour_record")
-    fun getDistinctSiteName(): List<String>
+    fun geSiteList(): List<String>
 
     @Query("SELECT DISTINCT county FROM aqi_per_hour_record")
-    fun getDistinctCounties(): List<String>
+    fun getCountyList(): List<String>
 
     @Query("SELECT site_name FROM aqi_per_hour_record WHERE county =:county")
-    fun getSiteNameByCounty(county: String?): List<String>
+    fun getSiteListByCounty(county: String?): List<String>
 
     @Query("SELECT * FROM aqi_per_hour_record WHERE site_name =:siteName")
-    fun getRecordBySiteName(siteName: String?): PerHourAirQualityEntity
+    fun getRecordBySite(siteName: String?): PerHourAirQualityEntity
 
     @Query("SELECT * FROM aqi_per_hour_record WHERE site_name =:siteName")
-    fun getRecordBySiteNameLiveData(siteName: String?): LiveData<PerHourAirQualityEntity>
+    fun getLiveRecordBySite(siteName: String?): LiveData<PerHourAirQualityEntity>
 }

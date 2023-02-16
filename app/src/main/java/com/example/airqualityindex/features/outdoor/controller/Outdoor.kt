@@ -9,10 +9,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.airqualityindex.R
 import com.example.airqualityindex.databinding.FragmentOutdoorBinding
-import com.example.airqualityindex.features.indoor.viewmodel.WeatherForecastViewModel
+import com.example.airqualityindex.features.indoor.viewmodel.WeatherViewModel
 import com.example.airqualityindex.features.main.viewmodel.NavigationViewModel
 import com.example.airqualityindex.features.outdoor.viewmodel.AirQualityViewModel
-import com.example.airqualityindex.features.user.viewmodel.UserViewModel
+import com.example.airqualityindex.features.main.viewmodel.UserViewModel
 import com.example.airqualityindex.shared.constant.AirQualityStatus
 import com.example.airqualityindex.shared.database.entity.PerHourAirQualityEntity
 import com.example.airqualityindex.shared.database.entity.WeatherForecastEntity
@@ -28,7 +28,7 @@ class Outdoor : Fragment() {
     private val navCallback: NavigationViewModel = get()
     private val userViewModel: UserViewModel = get()
     private val airQualityViewModel: AirQualityViewModel = get()
-    private val weatherForecastViewModel: WeatherForecastViewModel = get()
+    private val weatherViewModel: WeatherViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,18 +37,17 @@ class Outdoor : Fragment() {
     ): View {
         this.binding = FragmentOutdoorBinding.inflate(inflater, container, false)
         this.binding.onClickListener = this
+        this.binding.userViewModel = this.userViewModel
+        this.binding.weatherViewModel = this.weatherViewModel
 
-        this.binding.userName.text = this.userViewModel.getUserName()
-        this.binding.textUserLocation.text = this.userViewModel.getSiteName()
-
-        this.queryDatabaseThenUpdateUi()
-
-        this.airQualityViewModel.getRecordBySiteNameLiveData(this.userViewModel.getSiteName())
+        this.airQualityViewModel.getLiveRecordBySiteName(this.userViewModel.getSiteName())
             .observe(viewLifecycleOwner) {
-                this.updateAirQualityUi(it)
+                if (it != null) {
+                    this.updateAirQualityUi(it)
+                }
             }
 
-        this.weatherForecastViewModel.getRecordByLocationNameLiveData(this.userViewModel.getLocationName())
+        this.weatherViewModel.getLiveRecordByLocation(this.userViewModel.getLocationName())
             .observe(viewLifecycleOwner) {
                 this.updateTemperatureRangeText(it)
             }
@@ -93,27 +92,9 @@ class Outdoor : Fragment() {
             .build()
     }
 
-    private fun queryDatabaseThenUpdateUi() {
-        this.airQualityViewModel.getDataBySiteName(this.userViewModel.getSiteName())
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext {
-                this.updateAirQualityUi(it)
-            }
-            .flatMap {
-                this.weatherForecastViewModel.getRecordByLocationName(this.userViewModel.getLocationName())
-                    .subscribeOn(Schedulers.io())
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext {
-                this.updateTemperatureRangeText(it)
-            }
-            .subscribe()
-    }
-
     private fun updateTemperatureRangeText(weather: WeatherForecastEntity) {
         val range =
-            weather.temperatureMin + "-" + weather.temperatureMax + resources.getString(R.string.celsius_unit)
+            "${weather.temperatureMin}-${weather.temperatureMax}${resources.getString(R.string.celsius_unit)}"
         this.binding.textTemperatureRange.text = range
     }
 
@@ -125,22 +106,22 @@ class Outdoor : Fragment() {
     private fun updateAirQualityText(record: PerHourAirQualityEntity) {
         val spannableStringService = SpannableStringService()
         spannableStringService.setSuperscriptText(
-            record.pm25 + resources.getString(R.string.micrometer_per_cubic_meter),
+            "${record.pm25}${resources.getString(R.string.micrometer_per_cubic_meter)}",
             this.binding.textPm25
         )
         spannableStringService.setSuperscriptText(
-            record.pm10 + resources.getString(R.string.micrometer_per_cubic_meter),
+            "${record.pm10}${resources.getString(R.string.micrometer_per_cubic_meter)}",
             this.binding.textPm10
         )
 
-        val o3withUnit = record.o3 + resources.getString(R.string.parts_per_billion)
-        this.binding.textO3.text = o3withUnit
-        val coWithUnit = record.co + resources.getString(R.string.parts_per_million)
-        this.binding.textCo.text = coWithUnit
-        val so2WithUnit = record.so2 + resources.getString(R.string.parts_per_billion)
-        this.binding.textSo2.text = so2WithUnit
-        val no2WithUnit = record.no2 + resources.getString(R.string.parts_per_billion)
-        this.binding.textNo2.text = no2WithUnit
+        val o3 = "${record.o3}${resources.getString(R.string.parts_per_billion)}"
+        val co = "${record.co}${resources.getString(R.string.parts_per_million)}"
+        val so2 = "${record.so2}${resources.getString(R.string.parts_per_billion)}"
+        val no2 = "${record.no2}${resources.getString(R.string.parts_per_billion)}"
+        this.binding.textO3.text = o3
+        this.binding.textCo.text = co
+        this.binding.textSo2.text = so2
+        this.binding.textNo2.text = no2
     }
 
     private fun updateAirQualityImage(value: Int) {
